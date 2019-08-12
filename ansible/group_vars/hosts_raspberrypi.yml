@@ -1,0 +1,4 @@
+---
+ansible_user: pi
+ansible_password: raspberrypi
+ansible_become_password: raspberrypi

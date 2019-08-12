@@ -1,6 +1,9 @@
-[home]
+[hosts_debian]
 nomad
 
+[hosts_raspberrypi]
+raspberrypi
 
-[all:vars]
-ansible_user = dwagner
+[home:children]
+hosts_debian
+hosts_raspberrypi
