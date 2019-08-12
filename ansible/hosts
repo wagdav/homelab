@@ -1,0 +1,6 @@
+[home]
+nomad
+
+
+[all:vars]
+ansible_user = dwagner

@@ -1,0 +1,5 @@
+- src: brianshumate.nomad
+  version: v1.8.8
+
+- src: brianshumate.consul
+  version: v2.4.5

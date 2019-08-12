@@ -1,0 +1,51 @@
+---
+- hosts: all
+
+  vars:
+      ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+      ansible_ssh_pass: "{{ ansible_user }}"
+      ansible_become_password: "{{ ansible_user }}"
+
+  tasks:
+    - name: Install sudo
+      become: yes
+      become_method: su
+      apt:
+        name: sudo
+        state: present
+
+    - name: Add the user to the sudoers
+      become: yes
+      become_method: su
+      copy:
+        content: "{{ ansible_user }} ALL=(ALL) NOPASSWD: ALL"
+        dest: "/etc/sudoers.d/{{ ansible_user }}"
+
+    - name: Install Python3
+      become: yes
+      apt:
+        name: python3
+        state: present
+
+    - name: Disable password authentication
+      become: yes
+      lineinfile:
+        dest: /etc/ssh/sshd_config
+        line: "PasswordAuthentication no"
+        state: present
+      notify:
+        - restart ssh
+
+    - name: Deploy SSH publich key
+      become: yes
+      authorized_key:
+        user: "{{ ansible_user }}"
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+  handlers:
+    - name: restart ssh
+      become: yes
+      service:
+        name: sshd
+        state: restarted
