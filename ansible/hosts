@@ -2,7 +2,7 @@
 nomad
 
 [hosts_raspberrypi]
-raspberrypi
+#raspberrypi
 
 [home:children]
 hosts_debian
