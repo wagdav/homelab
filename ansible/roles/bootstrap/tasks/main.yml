@@ -9,6 +9,7 @@
 
 - name: Add the user to the sudoers
   become: yes
+  become_method: su
   copy:
     content: "{{ ansible_user_id }} ALL=(ALL) NOPASSWD: ALL"
     dest: "/etc/sudoers.d/{{ ansible_user_id }}"
