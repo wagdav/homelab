@@ -1,0 +1,18 @@
+---
+- hosts: raspberrypi
+  become: yes
+  tasks:
+  - name: Install Consul
+    include_role:
+      name: brianshumate.consul
+    vars:
+      consul_architecture: "arm"
+      consul_client_address: "0.0.0.0"
+      consul_group_name: home
+
+  - name: Install Nomad
+    include_role:
+      name: brianshumate.nomad
+    vars:
+      nomad_group_name: home
+      nomad_architecture: "arm"
