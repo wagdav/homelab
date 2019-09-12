@@ -1,5 +1,6 @@
 [hosts_debian]
 nomad
+nuc
 
 [hosts_raspberrypi]
 #raspberrypi
