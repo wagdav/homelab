@@ -1,6 +1,6 @@
 [hosts_debian]
-nomad
-nuc
+nomad    consul_node_role=server nomad_node_role=both
+nuc      consul_node_role=client nomad_node_role=client
 
 [hosts_raspberrypi]
 #raspberrypi

@@ -1,0 +1,3 @@
+---
+consul_architecture: "386"
+nomad_architecture: "386"

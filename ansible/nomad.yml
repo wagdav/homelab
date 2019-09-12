@@ -1,21 +1,22 @@
 ---
-- hosts: nomad
+- hosts: home
   become: yes
   tasks:
+  - name: Install dependencies
+    apt:
+      name: python3-netaddr
+      state: present
+
   - name: Install Consul
     include_role:
       name: brianshumate.consul
     vars:
-      consul_architecture: "386"
       consul_bootstrap_expect: true
       consul_client_address: "0.0.0.0"
       consul_group_name: home
-      consul_node_role: server
 
   - name: Install Nomad
     include_role:
       name: brianshumate.nomad
     vars:
-      nomad_architecture: "386"
       nomad_group_name: home
-      nomad_node_role: both
