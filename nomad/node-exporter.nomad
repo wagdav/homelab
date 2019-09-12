@@ -3,6 +3,7 @@ job "node-exporter" {
   type = "system"
 
   meta {
+    download_url = "https://github.com/prometheus/node_exporter/releases/download"
     version = "0.18.1"
   }
 
@@ -24,7 +25,7 @@ job "node-exporter" {
       }
 
       artifact {
-        source = "https://github.com/prometheus/node_exporter/releases/download/v${NOMAD_META_version}/node_exporter-${NOMAD_META_version}.linux-386.tar.gz"
+        source = "${NOMAD_META_download_url}/v${NOMAD_META_version}/node_exporter-${NOMAD_META_version}.linux-386.tar.gz"
         options {
           checksum = "${NOMAD_META_checksum}"
         }
@@ -73,7 +74,7 @@ job "node-exporter" {
       }
 
       artifact {
-        source = "https://github.com/prometheus/node_exporter/releases/download/v${NOMAD_META_version}/node_exporter-${NOMAD_META_version}.linux-amd64.tar.gz"
+        source = "${NOMAD_META_download_url}/v${NOMAD_META_version}/node_exporter-${NOMAD_META_version}.linux-amd64.tar.gz"
         options {
           checksum = "${NOMAD_META_checksum}"
         }
