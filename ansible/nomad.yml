@@ -2,10 +2,6 @@
 - hosts: nomad
   become: yes
   tasks:
-  - name: Install rkt
-    apt:
-      deb: http://ftp.ch.debian.org/debian/pool/main/r/rkt/rkt_1.30.0+dfsg-7+b21_i386.deb
-
   - name: Install Consul
     include_role:
       name: brianshumate.consul
