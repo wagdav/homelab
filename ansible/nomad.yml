@@ -4,7 +4,8 @@
   tasks:
   - name: Install dependencies
     apt:
-      name: python3-netaddr
+      name:
+        - python3-netaddr
       state: present
 
   - name: Install Consul
