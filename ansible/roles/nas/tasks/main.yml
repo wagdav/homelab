@@ -1,0 +1,24 @@
+---
+- name: Install nfs packages
+  apt:
+    name:
+      - nfs-common
+    state: present
+  become: yes
+
+- name: Create mount point
+  file:
+    path: /mnt/nfs/storage
+    state: directory
+    owner: root
+    group: adm
+    recurse: yes
+  become: yes
+
+- name: File server DNS-320
+  mount:
+    path: /mnt/nfs/storage
+    src: dns-320:/mnt/HD/HD_a2/Ajaxpf/nomad-storage
+    fstype: nfs
+    state: mounted
+  become: yes
