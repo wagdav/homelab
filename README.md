@@ -21,9 +21,10 @@ Install ansible galaxy modules
 
     $ ansible-galaxy install -r requirements.yml
 
-First time you provision a server
+First time you provision a server, add it to the inventory and re-run the main playbook
 
-    $ ansibe-playbook bootstrap.yml
+    $ ansibe-playbook site.yml
+    $ ansibe-playbook site.yml --tags bootstrap
 
 Test if all hosts are accessible
 

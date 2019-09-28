@@ -1,0 +1,10 @@
+---
+- hosts: all
+  roles:
+    - {role: "bootstrap", tag: "bootstrap"}
+
+- hosts:
+    - nomad
+    - nuc
+  roles:
+    - {role: "nas", tag: "nas"}
