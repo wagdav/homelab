@@ -35,3 +35,10 @@
     user: "{{ ansible_user_id }}"
     state: present
     key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+- name: Install essential packages for Ansible
+  become: yes
+  apt:
+    name:
+      - aptitude
+    state: present
