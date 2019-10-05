@@ -1,3 +1,4 @@
 ---
 consul_architecture: "386"
+consul_dnsmasq_enable: true
 nomad_architecture: "386"
