@@ -8,7 +8,8 @@ job "fabio" {
       config {
         image = "fabiolb/fabio"
         args = [
-          "-proxy.addr", ":80"
+          "-proxy.addr", ":80",
+          "-proxy.addr", ":1883;proto=tcp",
         ]
         network_mode = "host"
       }
@@ -20,6 +21,9 @@ job "fabio" {
           mbits = 20
           port "lb" {
             static = 80
+          }
+          port "mqtt" {
+            static = 1883
           }
           port "ui" {
             static = 9998

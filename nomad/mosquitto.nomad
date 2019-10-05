@@ -27,7 +27,10 @@ job "mosquitto" {
 
       service {
         name = "mqtt"
-        tags = ["mqtt"]
+        tags = [
+          "mqtt",
+          "urlprefix-:1883 proto=tcp"
+        ]
         port = "broker"
 
         check {
