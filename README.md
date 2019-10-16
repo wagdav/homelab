@@ -1,4 +1,6 @@
-# Infrastructure configuration
+# Homelab
+
+The configuration of my home infrastructure.
 
 ## Getting started
 
