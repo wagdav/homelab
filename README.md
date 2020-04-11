@@ -59,6 +59,32 @@ Its configuration is specified in `x230.nix`.
 
 By default, this configuration is stored in `/etc/nixos/configuration.nix`.
 
+
+## Installing a new NixOS system
+
+Installing a new system takes only a few manual steps.
+
+Create a customized installer ISO image using the command mentioned at the top
+of [installer/iso.nix](installer/iso.nix).
+
+Copy the ISO image to a USB stick and boot the computer from it.  Connect to
+the installer using SSH:
+
+   ssh root@nixos -o StrictHostKeyChecking=no -o 'UserKnownHostsFile /dev/null'
+
+Execute the relevant lines from [/etc/install.sh](installer/install.sh) to
+partition the disk and create file systems.
+
+Use the basic configuration from
+[/etc/configuration.nix](installer/configuration.nix) as default and set the
+hostname.
+
+Run the installer then reboot the machine.  The installation of the basic
+system is done.
+
+Continue the systems's management using NixOps.
+
+
 ### Useful commands
 
 Modify the files and deploy the new configuration:
