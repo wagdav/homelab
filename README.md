@@ -51,3 +51,20 @@ Setup SD card:
     pmount /dev/mmcblk0p1
     touch /media/mmcblk0p1/ssh
     pumount /dev/mmcblk0p1
+
+## Laptop
+
+My main laptop, a Lenovo X230, runs [NixOS](https://nixos.org/).
+Its configuration is specified in `x230.nix`.
+
+By default, this configuration is stored in `/etc/nixos/configuration.nix`.
+
+### Useful commands
+
+Modify the files and deploy the new configuration:
+
+    sudo nixos-rebuild switch -I nixos-config=x230.nix
+
+Query available packages:
+
+    nix search wget
