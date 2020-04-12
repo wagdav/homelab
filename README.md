@@ -55,7 +55,11 @@ Setup SD card:
 ## Laptop
 
 My main laptop, a Lenovo X230, runs [NixOS](https://nixos.org/).
-Its configuration is specified in `x230.nix`.
+
+Its configuration is specified in `x230.nix`.  Modify this file and deploy the
+new configuration:
+
+    sudo nixos-rebuild switch -I nixos-config=x230.nix
 
 By default, this configuration is stored in `/etc/nixos/configuration.nix`.
 
@@ -90,10 +94,6 @@ Continue the systems's management using NixOps.
 The configuration.nix(5) man page documents all the available options for configuring the system:
 
     man configuration.nix
-
-Modify the files and deploy the new configuration:
-
-    sudo nixos-rebuild switch -I nixos-config=x230.nix
 
 Query available packages:
 
