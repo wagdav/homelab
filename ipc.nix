@@ -11,6 +11,7 @@ in
   imports = [
      <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ./common.nix
+    ./prometheus/node-exporter.nix
   ];
 
   deployment.targetHost = "${name}.thewagner.home";

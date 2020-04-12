@@ -10,6 +10,9 @@ in
   imports = [
      <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ./common.nix
+    ./prometheus/server.nix
+    ./prometheus/node-exporter.nix
+    ./grafana
   ];
 
   deployment.targetHost = "${name}.thewagner.home";
