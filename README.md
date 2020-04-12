@@ -59,9 +59,13 @@ My main laptop, a Lenovo X230, runs [NixOS](https://nixos.org/).
 Its configuration is specified in `x230.nix`.  Modify this file and deploy the
 new configuration:
 
-    sudo nixos-rebuild switch -I nixos-config=x230.nix
+    sudo nixos-rebuild -I nixos-config=x230.nix switch
 
 By default, this configuration is stored in `/etc/nixos/configuration.nix`.
+
+For testing purposes you can build a QEMU virtual machine from the configuration:
+
+    nixos-rebuild -I nixos-config=x230.nix build-vm
 
 
 ## Installing a new NixOS system
