@@ -24,6 +24,7 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
+  nix.gc.automatic = true;
   nix.maxJobs = lib.mkDefault 4;
 
   i18n.defaultLocale = "en_US.UTF-8";
