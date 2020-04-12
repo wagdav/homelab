@@ -87,6 +87,10 @@ Continue the systems's management using NixOps.
 
 ### Useful commands
 
+The configuration.nix(5) man page documents all the available options for configuring the system:
+
+    man configuration.nix
+
 Modify the files and deploy the new configuration:
 
     sudo nixos-rebuild switch -I nixos-config=x230.nix
