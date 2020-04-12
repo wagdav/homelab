@@ -99,6 +99,10 @@ The configuration.nix(5) man page documents all the available options for config
 
     man configuration.nix
 
+All supported options are searchable online:
+
+    https://nixos.org/nixos/options.html
+
 Query available packages:
 
     nix search wget
