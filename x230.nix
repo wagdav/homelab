@@ -92,6 +92,12 @@
      extraGroups = [ "networkmanager" "wheel" ];
   };
 
+  fileSystems."/mnt/nas" = {
+    device = "dns-320:/mnt/HD/HD_a2/Ajaxpf";
+    fsType = "nfs";
+    options = ["x-systemd.automount" "noauto"];
+  };
+
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
