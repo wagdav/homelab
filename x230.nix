@@ -31,6 +31,7 @@
     curl
     dmenu
     dropbox-cli
+    flameshot
     git
     pass
     rxvt_unicode
