@@ -1,8 +1,13 @@
-# To build run:
+# To build the installer for your system's architecture:
 #
 #   nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=iso.nix
 #
-{ config, pkgs, ... }:
+# To build a 32-bit installer, overrride the value of the `system` parameter:
+#
+#   nix-build <SAME AS BEFORE> --argStr system i686-linux
+#
+
+{ config, pkgs, system ? builtins.currentSystem, ... }:
 
 {
   imports = [
