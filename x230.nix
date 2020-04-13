@@ -28,6 +28,7 @@
 
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
+    autorandr
     curl
     dmenu
     dropbox-cli
