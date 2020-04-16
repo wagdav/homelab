@@ -14,7 +14,7 @@
           name = "Prometheus";
           isDefault = true;
           type = "prometheus";
-          url = "http://nuc:9090";
+          url = "http://nuc:9090";  # FIXME: remove hard-coded Prometheus port
         }
       ];
     };
