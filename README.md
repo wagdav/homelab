@@ -78,7 +78,7 @@ of [installer/iso.nix](installer/iso.nix).
 Copy the ISO image to a USB stick and boot the computer from it.  Connect to
 the installer using SSH:
 
-   ssh root@nixos -o StrictHostKeyChecking=no -o 'UserKnownHostsFile /dev/null'
+    ssh root@nixos -o StrictHostKeyChecking=no -o 'UserKnownHostsFile /dev/null'
 
 Execute the relevant lines from [/etc/install.sh](installer/install.sh) to
 partition the disk and create file systems.
