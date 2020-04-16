@@ -1,6 +1,21 @@
 {
   network.description = "thewagner.home infrastructure";
 
-  ipc = import ./ipc.nix;
-  nuc = import ./nuc.nix;
+  ipc = {
+    imports = [
+      ./ipc.nix
+      ./common.nix
+      ./prometheus/node-exporter.nix
+    ];
+  };
+
+  nuc = {
+    imports = [
+      ./nuc.nix
+      ./common.nix
+      ./prometheus/server.nix
+      ./prometheus/node-exporter.nix
+      ./grafana
+    ];
+  };
 }
