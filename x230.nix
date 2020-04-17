@@ -36,6 +36,7 @@
     flameshot
     git
     pass
+    pmount
     rxvt_unicode
     unzip
     urxvt_font_size
@@ -44,6 +45,11 @@
     wget
     xmobar
   ];
+
+  security.wrappers = {
+    pmount.source = "${pkgs.pmount}/bin/pmount";
+    pumount.source = "${pkgs.pmount}/bin/pumount";
+  };
 
   programs.autojump.enable = true;
 
