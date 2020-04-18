@@ -1,0 +1,60 @@
+#!/bin/sh
+set -o errexit
+
+if [ "$#" -ne 2 ]; then
+  echo "Usage: $0 WIFI_SSID WIFI_KEY" >&2
+  exit 1
+fi
+
+WIFI_SSID="$1"
+WIFI_KEY="$2"
+
+uci set system.@system[0].hostname="wrt"
+uci set system.@system[0].zonename="Europe/Zurich"
+
+# LAN
+uci set network.lan.ipaddr=172.16.0.1
+
+uci set wireless.radio0.country="CH"
+uci set wireless.radio1.country="CH"
+uci set wireless.radio2.country="CH"
+
+# 5 GHz
+uci set wireless.@wifi-device[0].disabled=0;
+uci set wireless.@wifi-device[0].channel="auto";
+
+uci set wireless.@wifi-iface[0].disabled=0
+uci set wireless.@wifi-iface[0].ssid="${WIFI_SSID}_5GHz"
+uci set wireless.@wifi-iface[0].encryption="psk"
+uci set wireless.@wifi-iface[0].key="$WIFI_KEY"
+
+# 2.4 GHz
+uci set wireless.@wifi-device[1].disabled=0;
+uci set wireless.@wifi-device[1].channel="auto";
+
+uci set wireless.@wifi-iface[1].disabled=0
+uci set wireless.@wifi-iface[1].ssid="$WIFI_SSID"
+uci set wireless.@wifi-iface[1].encryption="psk"
+uci set wireless.@wifi-iface[1].key="$WIFI_KEY"
+
+# Local domain
+uci set dhcp.@dnsmasq[0].domain='thewagner.home'
+uci set dhcp.@dnsmasq[0].local='/thewagner.home/'
+
+CHANGES=$(uci changes)
+if [ -n "$CHANGES" ]; then
+    echo "Changes:"
+    uci changes
+    echo ""
+    echo ""
+    echo "This script doesn't restart any services. You may need to run:"
+    echo "- wifi"
+    echo "- service network restart"
+    echo "- service dnsmasq restart"
+    echo ""
+    echo "Or just reboot the device"
+else
+    echo "No changes. Configuration is up-to-date!"
+fi
+
+uci commit

@@ -106,3 +106,23 @@ All supported options are searchable online:
 Query available packages:
 
     nix search wget
+
+# Router
+
+Linksys WRT ACM-3200 running OpenWRT.
+
+## First time setup
+
+Connect to the router with an Ethernet cable.
+
+Download and install the firmware from https://openwrt.org/toh/linksys/linksys_wrt3200acm then run:
+
+    router/setup.sh --first-time
+
+Reboot the router.
+
+## Customizations
+
+Change the settings in `router/config` and run
+
+    router/setup.sh
