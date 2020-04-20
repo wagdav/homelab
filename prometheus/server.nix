@@ -1,19 +1,16 @@
 { config, ... }:
 
 let
-
-  listenPort = 9090;
+  listenAddress = config.services.prometheus.listenAddress;
 
   nodePort = config.services.prometheus.exporters.node.port;
-
-  grafana = config.services.grafana;
 
   scrapeConfigs = [
     {
       job_name = "prometheus";
       static_configs = [
         {
-          targets = [ "127.0.0.1:${toString listenPort}" ];
+          targets = [ listenAddress ];
         }
       ];
     }
@@ -32,7 +29,7 @@ let
       job_name = "grafana";
       static_configs = [
         {
-          targets = [ "nuc:${toString grafana.port}" ];
+          targets = [ "metrics.thewagner.home" ];
         }
       ];
     }
@@ -43,11 +40,6 @@ in
 {
   services.prometheus = {
     enable = true;
-    listenAddress = "0.0.0.0:${toString listenPort}";
     inherit scrapeConfigs;
   };
-
-  networking.firewall.allowedTCPPorts = [
-    listenPort
-  ];
 }

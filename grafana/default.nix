@@ -14,13 +14,9 @@
           name = "Prometheus";
           isDefault = true;
           type = "prometheus";
-          url = "http://nuc:9090";  # FIXME: remove hard-coded Prometheus port
+          url = "http://prometheus.thewagner.home";
         }
       ];
     };
   };
-
-  networking.firewall.allowedTCPPorts = [
-    config.services.grafana.port
-  ];
 }
