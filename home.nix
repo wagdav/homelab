@@ -6,6 +6,7 @@
       ./ipc.nix
       ./common.nix
       ./prometheus/node-exporter.nix
+      ./mqtt
     ];
   };
 
