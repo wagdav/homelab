@@ -41,6 +41,20 @@ uci set wireless.@wifi-iface[1].key="$WIFI_KEY"
 uci set dhcp.@dnsmasq[0].domain='thewagner.home'
 uci set dhcp.@dnsmasq[0].local='/thewagner.home/'
 
+# CNAME records
+while uci -q get dhcp.@cname[0]; do
+    uci delete dhcp.@cname[0]
+done
+
+uci add dhcp cname
+uci set	dhcp.@cname[-1].cname="metrics.thewagner.home"
+uci set	dhcp.@cname[-1].target="nuc.thewagner.home"
+
+uci add dhcp cname
+uci set	dhcp.@cname[-1].cname="prometheus.thewagner.home"
+uci set	dhcp.@cname[-1].target="nuc.thewagner.home"
+
+
 CHANGES=$(uci changes)
 if [ -n "$CHANGES" ]; then
     echo "Changes:"
