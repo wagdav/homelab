@@ -78,22 +78,26 @@
   services.illum.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
 
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
-  services.xserver.libinput.accelSpeed = "2";
-
-  services.xserver.windowManager = {
-    default = "xmonad";
-
-    xmonad = {
-     enable = true;
-     enableContribAndExtras = true;
+    # Enable touchpad support.
+    libinput = {
+      enable = true;
+      accelSpeed = "2";
     };
-  };
 
-  services.xserver.desktopManager.xterm.enable = false;
+    displayManager.defaultSession = "none+xmonad";
+
+    windowManager = {
+      xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+      };
+    };
+
+    desktopManager.xterm.enable = false;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dwagner = {
@@ -112,5 +116,5 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.09"; # Did you read the comment?
+  system.stateVersion = "20.03"; # Did you read the comment?
 }
