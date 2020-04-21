@@ -5,10 +5,15 @@
 
   time.timeZone = "Europe/Zurich";
 
-  services.nixosManual.showManual = false;
-  services.openssh.enable = true;
-  services.openssh.allowSFTP = false;
-  services.openssh.passwordAuthentication = false;
+  services = {
+    nixosManual.showManual = false;
+
+    openssh = {
+      enable = true;
+      allowSFTP = false;
+      passwordAuthentication = false;
+    };
+  };
 
   users = {
     mutableUsers = false;
