@@ -1,4 +1,0 @@
----
-ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-ansible_password: "{{ lookup('env','USER') }}"
-ansible_become_password: "{{ ansible_password }}"
