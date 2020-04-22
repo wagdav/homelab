@@ -95,8 +95,6 @@
         enableContribAndExtras = true;
       };
     };
-
-    desktopManager.xterm.enable = false;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
