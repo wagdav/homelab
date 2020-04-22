@@ -57,7 +57,7 @@
     ohMyZsh = {
       enable = true;
       theme = "robbyrussell";
-      plugins = [ "autojump" "git" "pass" "sudo" ];
+      plugins = [ "autojump" "dirhistory" "git" "pass" "sudo" ];
     };
   };
 
