@@ -80,6 +80,9 @@
   services.xserver = {
     enable = true;
 
+    autoRepeatDelay = 250;
+    autoRepeatInterval = 60;
+
     # Enable touchpad support.
     libinput = {
       enable = true;
