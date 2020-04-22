@@ -1,9 +1,13 @@
+{ config, lib, ... }:
+
 {
   nix.gc.automatic = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
 
   time.timeZone = "Europe/Zurich";
+
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
   services = {
     nixosManual.showManual = false;

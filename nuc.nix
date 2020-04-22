@@ -35,8 +35,6 @@ in
 
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-
   networking.useDHCP = false;
   networking.interfaces.eno1.useDHCP = true;
   networking.interfaces.wlp58s0.useDHCP = true;
