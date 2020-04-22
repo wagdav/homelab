@@ -29,6 +29,7 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     acpi
+    alacritty
     autorandr
     curl
     dmenu
@@ -37,9 +38,7 @@
     git
     pass
     pmount
-    rxvt_unicode
     unzip
-    urxvt_font_size
     vcsh
     vim
     wget
