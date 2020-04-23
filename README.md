@@ -66,6 +66,14 @@ Query available packages:
 
     nix search wget
 
+Remove old, unreferenced packages, system-wide:
+
+    sudo nix-collect-garbage
+    sudo nix-collect-garbage -d  # also delete old system old configurations
+
+This is documented in the [Cleaning the Nix Store](https://nixos.org/nixos/manual/index.html#sec-nix-gc)
+section of the NixOS manual.
+
 ## Router
 
 Linksys WRT ACM-3200 running OpenWRT.
