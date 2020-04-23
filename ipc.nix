@@ -12,30 +12,51 @@ in
      <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
 
-  deployment.targetHost = "${name}.thewagner.home";
-  networking.hostName = name;
+  deployment.targetHost = name;
   nixpkgs.system = "i686-linux";
+  nix.maxJobs = lib.mkDefault 2;
 
-  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ata_piix" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "ata_piix"
+        "ehci_pci"
+        "sd_mod"
+        "uhci_hcd"
+        "usbhid"
+        "usb_storage"
+      ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "/dev/sda";
-
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/nixos";
-      fsType = "ext4";
+      kernelModules = [ ];
     };
+
+    kernelModules = [ ];
+
+    extraModulePackages = [ ];
+
+    # Use the GRUB 2 boot loader.
+    loader.grub = {
+      enable = true;
+      version = 2;
+      device = "/dev/sda";
+    };
+  };
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
 
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
-  networking.useDHCP = false;
-  networking.interfaces.enp1s0.useDHCP = true;
-  networking.interfaces.enp2s0.useDHCP = true;
+  networking = {
+    hostName = name;
 
-  nix.maxJobs = lib.mkDefault 2;
+    useDHCP = false;
+
+    interfaces = {
+      enp1s0.useDHCP = true;
+      enp2s0.useDHCP = true;
+    };
+  };
 }
