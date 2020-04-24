@@ -30,7 +30,6 @@
   environment.systemPackages = with pkgs; [
     acpi
     alacritty
-    autorandr
     curl
     dmenu
     dropbox-cli
@@ -75,6 +74,11 @@
 
   # Enable the brightness buttons
   services.illum.enable = true;
+
+  services.autorandr = {
+    enable = true;
+    defaultTarget = "standalone";
+  };
 
   # Enable the X11 windowing system.
   services.xserver = {
