@@ -9,7 +9,7 @@ in
 
   ipc = {
     imports = [
-      ./ipc.nix
+      ./hardware/ipc.nix
       ./common.nix
       ./prometheus/node-exporter.nix
       ./mqtt
@@ -36,7 +36,7 @@ in
 
   nuc = { config, ... } : {
     imports = [
-      ./nuc.nix
+      ./hardware/nuc.nix
       ./common.nix
       ./prometheus/server.nix
       ./prometheus/node-exporter.nix
