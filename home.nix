@@ -1,5 +1,11 @@
+let
+
+  domain = "thewagner.home";
+
+in
+
 {
-  network.description = "thewagner.home infrastructure";
+  network.description = "${domain} infrastructure";
 
   ipc = {
     imports = [
@@ -10,9 +16,7 @@
       ./git
     ];
 
-    services.nginx = let
-      domain = "thewagner.home";
-    in {
+    services.nginx = {
       enable = true;
 
       gitweb = {
@@ -42,7 +46,6 @@
     services.nginx = let
       grafana = config.services.grafana;
       prometheus = config.services.prometheus;
-      domain = "thewagner.home";
     in {
       enable = true;
 
