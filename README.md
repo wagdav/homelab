@@ -74,6 +74,10 @@ Remove old, unreferenced packages, system-wide:
 This is documented in the [Cleaning the Nix Store](https://nixos.org/nixos/manual/index.html#sec-nix-gc)
 section of the NixOS manual.
 
+The builtin functions of the Nix evaulator:
+
+    https://nixos.org/nix/manual/#ssec-builtins
+
 ## Router
 
 Linksys WRT ACM-3200 running OpenWRT.
