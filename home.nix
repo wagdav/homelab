@@ -7,7 +7,27 @@
       ./common.nix
       ./prometheus/node-exporter.nix
       ./mqtt
+      ./git
     ];
+
+    services.nginx = let
+      domain = "thewagner.home";
+    in {
+      enable = true;
+
+      gitweb = {
+        enable = true;
+        virtualHost = "git.${domain}";
+      };
+
+      virtualHosts = {
+        "git" = {
+          globalRedirect = "git.${domain}";
+        };
+      };
+    };
+
+    networking.firewall.allowedTCPPorts = [ 80 ];
   };
 
   nuc = { config, ... } : {
