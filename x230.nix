@@ -110,10 +110,31 @@
      extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  fileSystems."/mnt/nas" = {
-    device = "dns-320:/mnt/HD/HD_a2/Ajaxpf";
-    fsType = "nfs";
-    options = ["x-systemd.automount" "noauto"];
+  fileSystems = {
+    "/mnt/nas" = {
+      device = "dns-320:/mnt/HD/HD_a2/Ajaxpf";
+      fsType = "nfs";
+      options = ["x-systemd.automount" "noauto"];
+    };
+
+    "/mnt/nook" = {
+      device = "/dev/disk/by-uuid/C701-B45D";
+      fsType = "vfat";
+      options = ["x-systemd.automount" "noauto"];
+    };
+
+    "/mnt/pocketdrive" = {
+      device = "/dev/disk/by-uuid/8f9d722f-281a-4647-a084-94b0510cfb7a";
+      fsType = "ext3";
+      options = ["x-systemd.automount" "noauto"];
+    };
+
+    "/mnt/wd-elements" = {
+      device = "/dev/disk/by-uuid/4743da06-ca4c-4879-8126-fb1308263b88";
+      fsType = "ext4";
+      options = ["x-systemd.automount" "noauto"];
+    };
+
   };
 
   # This value determines the NixOS release with which your system is to be
