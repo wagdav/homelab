@@ -11,33 +11,54 @@ in
      <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
 
-  deployment.targetHost = "${name}.thewagner.home";
-  networking.hostName = name;
+  deployment.targetHost = name;
+  nix.maxJobs = lib.mkDefault 4;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "ahci"
+        "rtsx_pci_sdmmc"
+        "sd_mod"
+        "usb_storage"
+        "xhci_pci"
+      ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/boot";
-      fsType = "vfat";
+      kernelModules = [ ];
     };
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/nixos";
-      fsType = "ext4";
+    kernelModules = [ "kvm-intel" ];
+
+    extraModulePackages = [ ];
+
+    # Use the systemd-boot EFI boot loader.
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
     };
+  };
+
+  fileSystems = {
+    "/boot" =
+      { device = "/dev/disk/by-label/boot";
+        fsType = "vfat";
+      };
+
+    "/" =
+      { device = "/dev/disk/by-label/nixos";
+        fsType = "ext4";
+      };
+  };
 
   swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
-  networking.useDHCP = false;
-  networking.interfaces.eno1.useDHCP = true;
-  networking.interfaces.wlp58s0.useDHCP = true;
+  networking = {
+    hostName = name;
+    useDHCP = false;
 
-  nix.maxJobs = lib.mkDefault 4;
+    interfaces = {
+      eno1.useDHCP = true;
+      wlp58s0.useDHCP = true;
+    };
+  };
 }
