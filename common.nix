@@ -7,7 +7,7 @@
 
   time.timeZone = "Europe/Zurich";
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 
   services = {
     nixosManual.showManual = false;
