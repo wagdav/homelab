@@ -21,6 +21,7 @@ let
           targets = [
             "ipc:${toString nodePort}"
             "nuc:${toString nodePort}"
+            "rp3:${toString nodePort}"
             "wrt:${toString nodePort}"
           ];
         }

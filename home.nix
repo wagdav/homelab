@@ -79,6 +79,7 @@ in
     imports = [
       ./hardware/rp3.nix
       ./common.nix
+      ./prometheus/node-exporter.nix
     ];
   };
 }
