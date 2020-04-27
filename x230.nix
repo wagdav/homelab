@@ -149,6 +149,12 @@
         maxJobs = 4;
         inherit sshUser sshKey;
       }
+      {
+        hostName = "rp3.thewagner.home";
+        system = "aarch64-linux";
+        maxJobs = 4;
+        inherit sshUser sshKey;
+      }
     ];
     extraOptions = ''
       builders-use-substitutes = true
@@ -159,6 +165,11 @@
     nuc = {
       hostNames = [ "nuc" "nuc.thewagner.home" ];
       publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIKaEtc8PNqhxAQ24gY5t25Y/8HU6StUB6kmU1xmVta7";
+    };
+
+    rp3 = {
+      hostNames = [ "rp3" "rp3.thewagner.home" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILK0illQrUbCmn+UHgM79tDecSItLUVNuWi/Sg+DW2tr";
     };
   };
 
