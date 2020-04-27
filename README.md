@@ -98,7 +98,9 @@ Change the settings in `router/config` and run
 
     router/setup.sh
 
-## Raspberry PI
+## Raspberry Pi 3 Model B
+
+### Raspbian
 
 Setup SD card:
 
@@ -108,3 +110,40 @@ Setup SD card:
     pmount /dev/mmcblk0p1
     touch /media/mmcblk0p1/ssh
     pumount /dev/mmcblk0p1
+
+### NixOS
+
+The official NixOS images boot without any problems.  Download the latest
+aarch64 SD card image from
+[Hydra](https://hydra.nixos.org/search?query=sd_image).
+
+Flash the image to an SD card as described in the [previous section](#raspbian).
+
+Boot the system then start an SSH server and set a temporary password for the
+root user:
+
+    systemctl start sshd
+    passwd root
+
+The password is only used for the first time access.  Password authentication
+will be disabled later.  Connect to the freshly booted system using SSH.
+
+If you want to manage Pi using NixOps, there's some extra steps required.
+
+NixOps compiles all managed systems on the control PC where it runs. Then, it
+copies the binaries to the target systems.  This works well for i686 and amd64
+architectures but it doesn't work for aarch64.
+
+I tried to setup cross-compilation to aarch64, but it didn't work.
+
+The trick is to add the newly created Raspberry Pi as an aarch64 [remote build
+machine for Nix](https://nixos.org/nix/manual/#chap-distributed-builds).  This
+way the required packages will be built natively on the Pi itself (or other
+aarch64 remote build nodes, if you have any).  In practice, almost nothing is
+built from source, because the required derivations are pulled from the offical
+Nix binary cache.
+
+See the section `nix.buildMachines` in [x230.nix](x230.nix), which shows how to
+add the Pi to your control PC's remote build pool.  Enable some Raspberry Pi
+specific arguments in the [hardware specification](hardware/rp3.nix) and use
+NixOps as usual.
