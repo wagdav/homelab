@@ -137,6 +137,31 @@
 
   };
 
+  nix = {
+    distributedBuilds = true;
+    buildMachines = let
+      sshUser = "root";
+      sshKey = "/root/remote_build";
+    in [
+      {
+        hostName = "nuc.thewagner.home";
+        system = "x86_64-linux";
+        maxJobs = 4;
+        inherit sshUser sshKey;
+      }
+    ];
+    extraOptions = ''
+      builders-use-substitutes = true
+    '';
+  };
+
+  programs.ssh.knownHosts = {
+    nuc = {
+      hostNames = [ "nuc" "nuc.thewagner.home" ];
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIKaEtc8PNqhxAQ24gY5t25Y/8HU6StUB6kmU1xmVta7";
+    };
+  };
+
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
