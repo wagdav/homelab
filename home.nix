@@ -73,4 +73,12 @@ in
 
     networking.firewall.allowedTCPPorts = [ 80 ];
   };
+
+
+  rp3 = { config, ...}: {
+    imports = [
+      ./hardware/rp3.nix
+      ./common.nix
+    ];
+  };
 }
