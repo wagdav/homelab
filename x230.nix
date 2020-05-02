@@ -107,7 +107,7 @@
   users.users.dwagner = {
      isNormalUser = true;
      shell = pkgs.zsh;
-     extraGroups = [ "networkmanager" "wheel" ];
+     extraGroups = [ "dialout" "networkmanager" "wheel" ];
   };
 
   fileSystems = {
