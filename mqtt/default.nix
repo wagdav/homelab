@@ -7,7 +7,12 @@
     users = { };
 
     allowAnonymous = true;
-    aclExtraConf = "topic readwrite #";
+    aclExtraConf = ''
+      topic readwrite #
+
+      user david
+      topic owntracks/david/#
+    '';
   };
 
   networking.firewall.allowedTCPPorts = [ config.services.mosquitto.port ];
