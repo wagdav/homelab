@@ -147,3 +147,35 @@ See the section `nix.buildMachines` in [x230.nix](x230.nix), which shows how to
 add the Pi to your control PC's remote build pool.  Enable some Raspberry Pi
 specific arguments in the [hardware specification](hardware/rp3.nix) and use
 NixOps as usual.
+
+
+## NodeMCU
+
+I have a couple of NodeMCU boards which can be configured using the scripts in the [nodemcu](nodemcu) directory.
+
+Enter a Nix shell
+```
+$ cd nodemcu
+$ nix-shell
+```
+
+In this shell the following helper functions are available.
+
+Erase everything from the device and start from scratch:
+
+* `flash_erase`: Perform Chip Erase on SPI flash
+* `flash_write`: Write the [Tasmota firmware](https://github.com/arendst/Tasmota) to the device
+
+Open an interactive serial terminal:
+
+    serial_terminal
+
+Restore the firmware's factory settings:
+
+    device_reset | commit
+
+Configure a device
+
+    device_config <WIFI_SSID> <WIFI_KEY> | commit
+
+These commands are defined as [shell hooks in shell.nix](./nodemcu/shell.nix)
