@@ -19,6 +19,10 @@ in
     services.nginx = {
       enable = true;
 
+      recommendedOptimisation = true;
+      recommendedGzipSettings = true;
+      recommendedProxySettings = true;
+
       gitweb = {
         enable = true;
         virtualHost = "git.${domain}";
@@ -51,6 +55,7 @@ in
 
       recommendedOptimisation = true;
       recommendedGzipSettings = true;
+      recommendedProxySettings = true;
 
       virtualHosts = {
         "metrics" = {
