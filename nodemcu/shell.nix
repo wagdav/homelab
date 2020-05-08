@@ -13,20 +13,23 @@ mkShell {
   buildInputs = [ esptool picocom ];
 
   shellHook = ''
+    PORT=/dev/ttyUSB0
+    BAUD=115200
+
     flash_erase() {
-      esptool.py erase_flash
+      esptool.py --baud $BAUD --port $PORT erase_flash
     }
 
     flash_write() {
-      esptool.py write_flash -fs 1MB -fm dout 0x0 ${firmware}
+      esptool.py --baud $BAUD --port $PORT write_flash -fs 1MB -fm dout 0x0 ${firmware}
     }
 
     serial_terminal() {
-      picocom --baud 115200 --omap crcrlf --echo /dev/ttyUSB0
+      picocom --baud $BAUD --omap crcrlf --echo $PORT
     }
 
     commit() {
-      picocom --baud 115200 --quiet --exit-after 1000 /dev/ttyUSB0
+      picocom --baud $BAUD --quiet --exit-after 1000 $PORT
     }
 
     device_reset() {
