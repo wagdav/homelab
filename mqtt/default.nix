@@ -7,6 +7,12 @@
     users = { };
 
     allowAnonymous = true;
+
+    # Also listen on all IPv6 interfaces
+    extraConf = ''
+      listener ${toString config.services.mosquitto.port} ::
+    '';
+
     aclExtraConf = ''
       topic readwrite #
 
