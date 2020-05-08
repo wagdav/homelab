@@ -179,3 +179,18 @@ Configure a device
     device_config <WIFI_SSID> <WIFI_KEY> | commit
 
 These commands are defined as [shell hooks in shell.nix](./nodemcu/shell.nix)
+
+### Provisioning
+
+The best way I found to provision the ESP8266 systems with custom firmware is
+through MQTT because it's not always easy to get access to a serial terminal.
+
+Use the serial console or the web interface to connect the device to the WiFi
+and to the MQTT broker.
+
+Built and run the [provisioning script](nodemcu/provision.nix):
+
+    nix build -f provision.nix && ./result
+
+This will reconfigure all the devices by executing the specified
+[commands](https://tasmota.github.io/docs/Commands/).
