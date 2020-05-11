@@ -35,6 +35,14 @@ let
         }
       ];
     }
+    {
+      job_name = "telegraf";
+      static_configs = [
+        {
+          targets = [ "ipc:9883" ];
+        }
+      ];
+    }
   ];
 
 in
