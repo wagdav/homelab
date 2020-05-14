@@ -1,9 +1,9 @@
 { config, ... }:
 
 let
-  listenAddress = config.services.prometheus.listenAddress;
+  consulAgent = "localhost:8500";
 
-  nodePort = config.services.prometheus.exporters.node.port;
+  listenAddress = config.services.prometheus.listenAddress;
 
   scrapeConfigs = [
     {
@@ -16,30 +16,35 @@ let
     }
     {
       job_name = "node";
+      consul_sd_configs = [
+        {
+          server = consulAgent;
+          services = [ "node-exporter" ];
+        }
+      ];
       static_configs = [
         {
           targets = [
-            "ipc:${toString nodePort}"
-            "nuc:${toString nodePort}"
-            "rp3:${toString nodePort}"
-            "wrt:${toString nodePort}"
+            "wrt:9100"
           ];
         }
       ];
     }
     {
       job_name = "grafana";
-      static_configs = [
+      consul_sd_configs = [
         {
-          targets = [ "metrics.thewagner.home" ];
+          server = consulAgent;
+          services = [ "grafana" ];
         }
       ];
     }
     {
       job_name = "telegraf";
-      static_configs = [
+      consul_sd_configs = [
         {
-          targets = [ "ipc:9883" ];
+          server = consulAgent;
+          services = [ "telegraf" ];
         }
       ];
     }

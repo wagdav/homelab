@@ -11,6 +11,7 @@ in
     imports = [
       ./hardware/ipc.nix
       ./common.nix
+      ./consul
       ./prometheus/node-exporter.nix
       ./mqtt
       ./git
@@ -42,6 +43,7 @@ in
     imports = [
       ./hardware/nuc.nix
       ./common.nix
+      ./consul
       ./prometheus/server.nix
       ./prometheus/node-exporter.nix
       ./grafana
@@ -84,6 +86,7 @@ in
     imports = [
       ./hardware/rp3.nix
       ./common.nix
+      ./consul
       ./prometheus/node-exporter.nix
     ];
   };

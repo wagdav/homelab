@@ -7,6 +7,8 @@ let
 in
 
 {
+  imports = [ ../modules/consul-catalog.nix ];
+
   services.mosquitto = {
     enable = true;
     host = "0.0.0.0";
@@ -45,6 +47,17 @@ in
       };
     };
   };
+
+  services.consul.catalog = [
+    {
+      name = "mosquitto";
+      port = config.services.mosquitto.port;
+    }
+    {
+      name = "telegraf";
+      port = prometheus_client_port;
+    }
+  ];
 
   networking.firewall.allowedTCPPorts = [
     config.services.mosquitto.port

@@ -1,6 +1,8 @@
 { config, ...}:
 
 {
+  imports = [ ../modules/consul-catalog.nix ];
+
   services.grafana = {
     enable = true;
     addr = "0.0.0.0";
@@ -19,4 +21,13 @@
       ];
     };
   };
+
+  networking.firewall.allowedTCPPorts = [ config.services.grafana.port ];
+
+  services.consul.catalog = [
+    {
+      name = "grafana";
+      port = config.services.grafana.port;
+    }
+  ];
 }
