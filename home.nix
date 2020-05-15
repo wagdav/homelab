@@ -46,7 +46,7 @@ in
       ./consul
       ./prometheus/server.nix
       ./prometheus/node-exporter.nix
-      ./grafana
+      ./modules/grafana.nix
     ];
 
     services.nginx = let

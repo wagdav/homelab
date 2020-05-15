@@ -1,7 +1,7 @@
 { config, ...}:
 
 {
-  imports = [ ../modules/consul-catalog.nix ];
+  imports = [ ./consul-catalog.nix ];
 
   services.grafana = {
     enable = true;
