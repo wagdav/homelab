@@ -11,7 +11,7 @@ in
     imports = [
       ./hardware/ipc.nix
       ./modules/common.nix
-      ./consul
+      ./modules/consul.nix
       ./modules/node-exporter.nix
       ./modules/mqtt.nix
       ./modules/git.nix
@@ -43,7 +43,7 @@ in
     imports = [
       ./hardware/nuc.nix
       ./modules/common.nix
-      ./consul
+      ./modules/consul.nix
       ./modules/prometheus.nix
       ./modules/node-exporter.nix
       ./modules/grafana.nix
@@ -86,7 +86,7 @@ in
     imports = [
       ./hardware/rp3.nix
       ./modules/common.nix
-      ./consul
+      ./modules/consul.nix
       ./modules/node-exporter.nix
     ];
   };
