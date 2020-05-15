@@ -12,7 +12,7 @@ in
       ./hardware/ipc.nix
       ./common.nix
       ./consul
-      ./prometheus/node-exporter.nix
+      ./modules/node-exporter.nix
       ./modules/mqtt.nix
       ./modules/git.nix
     ];
@@ -45,7 +45,7 @@ in
       ./common.nix
       ./consul
       ./modules/prometheus.nix
-      ./prometheus/node-exporter.nix
+      ./modules/node-exporter.nix
       ./modules/grafana.nix
     ];
 
@@ -87,7 +87,7 @@ in
       ./hardware/rp3.nix
       ./common.nix
       ./consul
-      ./prometheus/node-exporter.nix
+      ./modules/node-exporter.nix
     ];
   };
 }
