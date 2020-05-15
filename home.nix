@@ -14,7 +14,7 @@ in
       ./consul
       ./prometheus/node-exporter.nix
       ./mqtt
-      ./git
+      ./modules/git.nix
     ];
 
     services.nginx = {
