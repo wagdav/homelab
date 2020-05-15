@@ -7,7 +7,7 @@ let
 in
 
 {
-  imports = [ ../modules/consul-catalog.nix ];
+  imports = [ ./consul-catalog.nix ];
 
   services.mosquitto = {
     enable = true;

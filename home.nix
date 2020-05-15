@@ -13,7 +13,7 @@ in
       ./common.nix
       ./consul
       ./prometheus/node-exporter.nix
-      ./mqtt
+      ./modules/mqtt.nix
       ./modules/git.nix
     ];
 
