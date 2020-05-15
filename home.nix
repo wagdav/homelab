@@ -10,7 +10,7 @@ in
   ipc = {
     imports = [
       ./hardware/ipc.nix
-      ./common.nix
+      ./modules/common.nix
       ./consul
       ./modules/node-exporter.nix
       ./modules/mqtt.nix
@@ -42,7 +42,7 @@ in
   nuc = { config, ... } : {
     imports = [
       ./hardware/nuc.nix
-      ./common.nix
+      ./modules/common.nix
       ./consul
       ./modules/prometheus.nix
       ./modules/node-exporter.nix
@@ -85,7 +85,7 @@ in
   rp3 = { config, ...}: {
     imports = [
       ./hardware/rp3.nix
-      ./common.nix
+      ./modules/common.nix
       ./consul
       ./modules/node-exporter.nix
     ];
