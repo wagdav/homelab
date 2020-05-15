@@ -12,9 +12,9 @@ in
       ./hardware/ipc.nix
       ./modules/common.nix
       ./modules/consul.nix
-      ./modules/node-exporter.nix
-      ./modules/mqtt.nix
       ./modules/git.nix
+      ./modules/mqtt.nix
+      ./modules/node-exporter.nix
     ];
 
     services.nginx = {
@@ -44,9 +44,9 @@ in
       ./hardware/nuc.nix
       ./modules/common.nix
       ./modules/consul.nix
-      ./modules/prometheus.nix
-      ./modules/node-exporter.nix
       ./modules/grafana.nix
+      ./modules/node-exporter.nix
+      ./modules/prometheus.nix
     ];
 
     services.nginx = let
