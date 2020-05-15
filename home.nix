@@ -44,7 +44,7 @@ in
       ./hardware/nuc.nix
       ./common.nix
       ./consul
-      ./prometheus/server.nix
+      ./modules/prometheus.nix
       ./prometheus/node-exporter.nix
       ./modules/grafana.nix
     ];
