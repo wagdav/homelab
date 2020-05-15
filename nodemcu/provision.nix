@@ -54,6 +54,18 @@ let
     }
   ];
 
+  # Sonoff Basic with a switch on GPIO14
+  config-60-01-94-68-C8-18 = [
+    {
+      cmnd = "Template";
+      value = ''"{NAME":"Sonoff Basic","GPIO":[17,255,255,255,255,0,0,0,21,56,9,0,0],"FLAG":0,"BASE":1}'';
+    }
+    {
+      cmnd = "Module";
+      value = 0;
+    }
+  ];
+
   backlogMessage = with builtins; config :
     let
       mkCommand = { cmnd, value } : "${cmnd} ${toString value}";
