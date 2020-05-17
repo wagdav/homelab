@@ -34,6 +34,18 @@ let
     }
   ];
 
+  # Custom NodeMCU board with an AM-2301 temperature and humidity sensor on GPIO14
+  config-2c-3a-e8-08-23-20 = [
+    {
+      cmnd = "Template";
+      value = ''{"NAME":"MySensor","GPIO":[0,0,0,0,0,0,0,0,0,0,2,0,0],"FLAG":0,"BASE":18}'';
+    }
+    {
+      cmnd = "Module";
+      value = 0;
+    }
+  ];
+
   # MagicHome LED controller
   config-60-01-94-96-80-4e = [
     {
@@ -132,6 +144,7 @@ in
 
   pkgs.writeScript "provision.sh" ''
     ${send "tasmota_0E63DE" "Backlog" (backlogMessage config-2c-3a-e8-0e-63-de)}
+    ${send "tasmota_082320" "Backlog" (backlogMessage config-2c-3a-e8-08-23-20)}
 
     ${send "tasmota_96804E" "Rule1" (ruleMessage IrRemote1)}
     ${send "tasmota_96804E" "Rule1" 1}
