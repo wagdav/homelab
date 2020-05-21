@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 
 let
+  tasmota = import ./tasmota.nix;
 
   # https://tasmota.github.io/docs/Commands
 
@@ -10,7 +11,12 @@ let
   config-2c-3a-e8-0e-63-de = [
     {
       cmnd = "Template";
-      value = ''{"NAME":"MySensor","GPIO":[0,0,0,0,0,0,0,0,0,0,2,0,0],"FLAG":0,"BASE":18}'';
+      value = tasmota.template {
+        name = "MySensor";
+        gpio = {
+          GPIO14 = tasmota.component.AM2301;
+        };
+      };
     }
     {
       cmnd = "SwitchMode1";
@@ -38,7 +44,12 @@ let
   config-2c-3a-e8-08-23-20 = [
     {
       cmnd = "Template";
-      value = ''{"NAME":"MySensor","GPIO":[0,0,0,0,0,0,0,0,0,0,2,0,0],"FLAG":0,"BASE":18}'';
+      value = tasmota.template {
+        name = "MySensor";
+        gpio = {
+          GPIO14 = tasmota.component.AM2301;
+        };
+      };
     }
     {
       cmnd = "Module";
@@ -50,7 +61,15 @@ let
   config-60-01-94-96-80-4e = [
     {
       cmnd = "Template";
-      value = ''{"NAME":"ZJ-ESP-IR-B-v2.3","GPIO":[0,0,0,0,51,37,0,0,39,38,0,0,0],"FLAG":0,"BASE":18}'';
+      value = tasmota.template {
+        name = "ZJ-ESP-IR-B-v2.3";
+        gpio = with tasmota.component; {
+          GPIO4 = IRrecv;
+          GPIO5 = PWM1;
+          GPIO12 = PWM3;
+          GPIO13 = PWM2;
+        };
+      };
     }
     {
       cmnd = "Fade";
@@ -67,10 +86,23 @@ let
   ];
 
   # Sonoff Basic with a switch on GPIO14
-  config-60-01-94-68-C8-18 = [
+  config-60-01-94-68-c8-18 = [
     {
       cmnd = "Template";
-      value = ''"{NAME":"Sonoff Basic","GPIO":[17,255,255,255,255,0,0,0,21,56,9,0,0],"FLAG":0,"BASE":1}'';
+      value = tasmota.template {
+        name = "Sonoff Basic";
+        gpio = with tasmota.component; {
+          GPIO0 = Button1;
+          GPIO1 = User;
+          GPIO2 = User;
+          GPIO3 = User;
+          GPIO4 = User;
+          GPIO12 = Relay1;
+          GPIO13 = Led1i;
+          GPIO14 = Switch1;
+        };
+        base = tasmota.base.SonoffBasic;
+      };
     }
     {
       cmnd = "Module";
@@ -145,6 +177,7 @@ in
   pkgs.writeScript "provision.sh" ''
     ${send "tasmota_0E63DE" "Backlog" (backlogMessage config-2c-3a-e8-0e-63-de)}
     ${send "tasmota_082320" "Backlog" (backlogMessage config-2c-3a-e8-08-23-20)}
+    ${send "tasmota_68C818" "Backlog" (backlogMessage config-60-01-94-68-c8-18)}
 
     ${send "tasmota_96804E" "Rule1" (ruleMessage IrRemote1)}
     ${send "tasmota_96804E" "Rule1" 1}
