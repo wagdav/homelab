@@ -57,11 +57,11 @@ uci set dhcp.@cname[-1].target="ipc.thewagner.home"
 
 uci add dhcp cname
 uci set dhcp.@cname[-1].cname="metrics.thewagner.home"
-uci set dhcp.@cname[-1].target="nuc.thewagner.home"
+uci set dhcp.@cname[-1].target="ipc.thewagner.home"
 
 uci add dhcp cname
 uci set dhcp.@cname[-1].cname="prometheus.thewagner.home"
-uci set dhcp.@cname[-1].target="nuc.thewagner.home"
+uci set dhcp.@cname[-1].target="ipc.thewagner.home"
 
 uci add dhcp cname
 uci set dhcp.@cname[-1].cname="mqtt.thewagner.home"

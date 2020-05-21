@@ -53,8 +53,19 @@ let
 in
 
 {
+  imports = [ ./consul-catalog.nix ];
+
   services.prometheus = {
     enable = true;
     inherit scrapeConfigs;
   };
+
+  services.consul.catalog = [
+    {
+      name = "prometheus";
+      port = 9090;
+    }
+  ];
+
+  networking.firewall.allowedTCPPorts = [ 9090 ];
 }
