@@ -159,6 +159,8 @@
     extraOptions = ''
       builders-use-substitutes = true
     '';
+
+    trustedUsers = [ "root" "@wheel" ];
   };
 
   programs.ssh.knownHosts = {
