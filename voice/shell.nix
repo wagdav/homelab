@@ -40,22 +40,24 @@ pkgs.mkShell {
     dragonfly() {
       set -eu
 
-      MODEL=kaldi_model
+      MODEL_DIR=kaldi_model
+      TMP_DIR="$MODEL_DIR".tmp
 
-      if [ ! -d $MODEL ]; then
-        rm -rf "$MODEL.tmp"
+      if [ ! -d $MODEL_DIR ]; then
+        rm -rf "$TMP_DIR"
 
-        echo "Creating $MODEL in $(pwd)"
-        cp -r ${kaldi-model} $MODEL
-        find $MODEL -type f -exec chmod 644 {} \;
-        find $MODEL -type d -exec chmod 755 {} \;
+        echo "Creating $MODEL_DIR in $(pwd)"
+        cp -r ${kaldi-model} $MODEL_DIR
+        find $MODEL_DIR -type f -exec chmod 644 {} \;
+        find $MODEL_DIR -type d -exec chmod 755 {} \;
       else
-        echo "Using $MODEL in $(pwd)"
+        echo "Using $MODEL_DIR in $(pwd)"
       fi
 
       python \
         -m dragonfly load ${caster}/_*.py \
         --engine kaldi \
+        --engine-options model_dir="$MODEL_DIR",tmp_dir="$TMP_DIR" \
         --no-recobs-messages \
         --log-level INFO
     }
