@@ -30,10 +30,6 @@ uci set wireless.@wifi-iface[0].key="$WIFI_KEY"
 
 # 2.4 GHz
 
-# Disable WMM so that NodeMCU can connect to the WiFi
-# https://github.com/esp8266/Arduino/issues/2795
-uci set wireless.@wifi-device[1].wmm='0'
-
 uci set wireless.@wifi-device[1].disabled=0;
 uci set wireless.@wifi-device[1].channel="auto";
 
