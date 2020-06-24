@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ ./hardware/lenovo-x230.nix
+      # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
     ];
 
