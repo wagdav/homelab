@@ -76,7 +76,7 @@ in {
       (builtins.concatStringsSep ":" [
         "${nginxTemplate name service}"
         "/tmp/${service}-consul.conf"
-        "${pkgs.systemd}/bin/systemctl reload nginx"
+        "${pkgs.nginx}/bin/nginx -s reload"
       ]) +
       "\"");
 
@@ -93,8 +93,8 @@ in {
       );
       ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
       Restart = "on-failure";
-      User = "root";
-      Group = "root";
+      User = config.services.nginx.user;
+      Group = config.services.nginx.group;
     };
   };
 }
