@@ -7,7 +7,7 @@
     enable = true;
     addr = "0.0.0.0";
     auth.anonymous.enable = true;
-    auth.anonymous.org_role = "Viewer";
+    auth.anonymous.org_role = "Editor";
 
     provision = {
       enable = true;
