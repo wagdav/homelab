@@ -40,6 +40,15 @@ let
       ];
     }
     {
+      job_name = "loki";
+      consul_sd_configs = [
+        {
+          server = consulAgent;
+          services = [ "loki" ];
+        }
+      ];
+    }
+    {
       job_name = "telegraf";
       consul_sd_configs = [
         {
