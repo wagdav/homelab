@@ -26,6 +26,7 @@ in
       ./modules/common.nix
       ./modules/consul.nix
       ./modules/grafana.nix
+      ./modules/loki.nix
       ./modules/node-exporter.nix
       ./modules/prometheus.nix
     ];
