@@ -18,6 +18,11 @@
           type = "prometheus";
           url = "http://prometheus.thewagner.home";
         }
+        {
+          name = "Loki";
+          type = "loki";
+          url = "http://nuc.thewagner.home:3100";
+        }
       ];
     };
   };
