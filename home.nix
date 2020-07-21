@@ -16,6 +16,7 @@ in
       ./modules/mqtt.nix
       ./modules/node-exporter.nix
       ./modules/nginx.nix
+      ./modules/promtail.nix
     ];
 
   };
@@ -29,6 +30,7 @@ in
       ./modules/loki.nix
       ./modules/node-exporter.nix
       ./modules/prometheus.nix
+      ./modules/promtail.nix
     ];
   };
 
@@ -38,6 +40,7 @@ in
       ./modules/common.nix
       ./modules/consul.nix
       ./modules/node-exporter.nix
+      ./modules/promtail.nix
     ];
   };
 }
