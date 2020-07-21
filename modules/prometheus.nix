@@ -49,6 +49,15 @@ let
       ];
     }
     {
+      job_name = "promtail";
+      consul_sd_configs = [
+        {
+          server = consulAgent;
+          services = [ "promtail" ];
+        }
+      ];
+    }
+    {
       job_name = "telegraf";
       consul_sd_configs = [
         {
