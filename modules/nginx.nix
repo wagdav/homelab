@@ -5,6 +5,7 @@ let
   domain = "thewagner.home";
 
   consulService = {
+    loki = "loki";
     metrics = "grafana";
     prometheus = "prometheus";
   };

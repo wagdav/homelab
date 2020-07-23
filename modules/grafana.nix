@@ -21,7 +21,7 @@
         {
           name = "Loki";
           type = "loki";
-          url = "http://nuc.thewagner.home:3100";
+          url = "http://loki.thewagner.home";
         }
       ];
     };
