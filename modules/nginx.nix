@@ -95,6 +95,7 @@ in {
         "${pkgs.consul-template}/bin/consul-template " +
         builtins.concatStringsSep " " (lib.mapAttrsToList toArg consulService)
       );
+      ExecStop = "${pkgs.coreutils}/bin/kill -INT $MAINPID";
       ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
       Restart = "on-failure";
       User = config.services.nginx.user;
