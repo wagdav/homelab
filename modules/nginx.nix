@@ -48,15 +48,17 @@ in {
       }
 
       server {
-        listen 0.0.0.0:80;
+        listen 80;
         listen [::]:80;
+
         server_name ${name};
-        return 301 http://${name}.${domain}$request_uri;
+        return 301 $scheme://${name}.${domain}$request_uri;
       }
 
       server {
-        listen 0.0.0.0:80;
+        listen 80;
         listen [::]:80;
+
         server_name ${name}.${domain};
         location / {
           proxy_pass http://${service};
