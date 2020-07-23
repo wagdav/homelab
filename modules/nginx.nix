@@ -22,6 +22,7 @@ in {
     gitweb = {
       enable = true;
       virtualHost = "git.${domain}";
+      location = "";
     };
 
     virtualHosts = {
