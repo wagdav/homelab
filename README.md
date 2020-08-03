@@ -6,16 +6,21 @@ The configuration of my home infrastructure.
 
 My main laptop, a Lenovo X230, runs [NixOS](https://nixos.org/).
 
-Its configuration is specified in `x230.nix`.  Modify this file and deploy the
-new configuration:
+Its configuration is specified in `x230.nix` using the [experimental flakes
+feature](https://www.tweag.io/blog/2020-07-31-nixos-flakes/).  Modify this file
+and switch to the new configuration:
 
-    sudo nixos-rebuild -I nixos-config=x230.nix switch
+    sudo nixos-rebuild switch --flake .
 
 By default, this configuration is stored in `/etc/nixos/configuration.nix`.
 
 For testing purposes you can build a QEMU virtual machine from the configuration:
 
-    nixos-rebuild -I nixos-config=x230.nix build-vm
+    nixos-rebuild build-vm --flake .
+
+To update the lock files:
+
+    nix flake update --update-input nixpkgs --commit-lock-file
 
 ## Servers
 
