@@ -5,10 +5,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ ./hardware/lenovo-x230.nix
-      # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
+  imports = [
+      ./hardware/lenovo-x230.nix
+      ./hardware/x230.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -157,8 +156,10 @@
         inherit sshUser sshKey;
       }
     ];
+    package = pkgs.nixUnstable;
     extraOptions = ''
       builders-use-substitutes = true
+      experimental-features = nix-command flakes
     '';
 
     trustedUsers = [ "root" "@wheel" ];
