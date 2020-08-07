@@ -72,6 +72,12 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  hardware.trackpoint = {
+    enable = true;
+    speed = 200;
+    sensitivity = 200;
+  };
+
   # Enable the brightness buttons
   services.illum.enable = true;
 
