@@ -24,13 +24,18 @@ To update the lock files:
 
 ## Servers
 
-The entrypoint for my home server setup is [home.nix](home.nix).  Modify that
-expression and deploy:
+The entrypoint for my home server setup is [home.nix](home.nix).  This
+configuration is deployed using [nixops](https://github.com/NixOS/nixops).  A
+one-time setup is required if the deployment doesn't exist yet:
+
+    nixops create --name home --flake .
+
+Then, run the following command to deploy:
 
     nixops deploy
 
-This will build the system configurations locally and copy the resulting
-closures to the remote machines.
+This builds the system configurations locally and copies the resulting closures
+to the remote machines.
 
 ## Installing a new NixOS system
 

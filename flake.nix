@@ -17,5 +17,8 @@
         ];
     };
 
+    nixopsConfigurations.default = {
+      inherit nixpkgs;
+    } // import ./home.nix;
   };
 }
