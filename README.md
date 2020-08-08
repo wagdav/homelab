@@ -28,11 +28,11 @@ The entrypoint for my home server setup is [home.nix](home.nix).  This
 configuration is deployed using [nixops](https://github.com/NixOS/nixops).  A
 one-time setup is required if the deployment doesn't exist yet:
 
-    nixops create --name home --flake .
+    nix develop -c nixops create --name home --flake .
 
 Then, run the following command to deploy:
 
-    nixops deploy
+    nix develop -c nixops deploy
 
 This builds the system configurations locally and copies the resulting closures
 to the remote machines.

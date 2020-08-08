@@ -1,6 +1,74 @@
 {
   "nodes": {
+    "nixops": {
+      "inputs": {
+        "nixops-aws": "nixops-aws",
+        "nixops-hetzner": "nixops-hetzner",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1591784847,
+        "narHash": "sha256-nBmp7z8W88f9eDH7N1WX0tKudQ1EbvbE9/nX8FrSWRw=",
+        "owner": "NixOS",
+        "repo": "nixops",
+        "rev": "c781c8f04786ab99b2e7afca01c94e3f25499b5d",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixops",
+        "type": "indirect"
+      }
+    },
+    "nixops-aws": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1586700941,
+        "narHash": "sha256-9yh7iHMJ8F8wA4nwTjm8rcmceFM/6URHK/Q/AuCkdzE=",
+        "owner": "NixOS",
+        "repo": "nixops-aws",
+        "rev": "af97c16f179cd0df94a6fc3ef470092122253f60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "flake",
+        "repo": "nixops-aws",
+        "type": "github"
+      }
+    },
+    "nixops-hetzner": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1586701048,
+        "narHash": "sha256-q1QhsSp3N4nffnpUnGrF0Jg7VyLvi9JXiD82oxaM/Jg=",
+        "owner": "NixOS",
+        "repo": "nixops-hetzner",
+        "rev": "663b02618ece7a92a72da408a552528ee8dd354c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "zfs",
+        "repo": "nixops-hetzner",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1596787272,
+        "narHash": "sha256-3/xVkvtLtU+NfXhdsMecBDeQIg3O8Ms/xgdL0bgPL6Y=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4364ff933ebec0ef856912b182f4f9272aa7f98f",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-20.03",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1596240678,
         "narHash": "sha256-BWZglwYwAj4+6+ZaKLHLo0k1p7yXTL7JI6Z17uNeo6k=",
@@ -18,7 +86,8 @@
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixops": "nixops",
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },
