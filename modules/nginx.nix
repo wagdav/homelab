@@ -27,7 +27,7 @@ in {
 
     virtualHosts = {
       "git" = {
-        globalRedirect = "git.${domain}";
+        locations."/".return = "301 http://git.${domain}\$request_uri";
       };
     };
 
