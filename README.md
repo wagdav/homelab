@@ -74,7 +74,11 @@ All supported options are searchable online:
 
 Query available packages:
 
-    nix search wget
+    nix search nixpkgs wget
+
+[Install a package](https://nixos.wiki/wiki/Nix_command/profile_install) into the user's profile
+
+    nix profile install nixpkgs#firefox
 
 Remove old, unreferenced packages, system-wide:
 
