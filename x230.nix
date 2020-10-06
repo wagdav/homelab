@@ -33,15 +33,25 @@
     curl
     dmenu
     dropbox-cli
+    file
+    fim
+    firefox
     flameshot
     git
+    httpie
+    moreutils
+    mpv
     pass
+    pavucontrol
     pmount
+    ripgrep
+    tree
     unzip
     vcsh
     vim
     wget
     xmobar
+    zathura
   ];
 
   security.wrappers = {
