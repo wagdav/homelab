@@ -80,7 +80,7 @@ in {
       (builtins.concatStringsSep ":" [
         "${nginxTemplate name service}"
         "/tmp/${service}-consul.conf"
-        "${pkgs.nginx}/bin/nginx -s reload"
+        "${pkgs.systemd}/bin/systemctl reload nginx"
       ]) +
       "\"");
 
