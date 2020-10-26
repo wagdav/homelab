@@ -33,6 +33,7 @@
     curl
     dmenu
     dropbox-cli
+    fd
     file
     fim
     firefox
