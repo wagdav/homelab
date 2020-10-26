@@ -31,6 +31,7 @@ in
       ./modules/node-exporter.nix
       ./modules/prometheus.nix
       ./modules/promtail.nix
+      ./modules/remote-builder.nix
     ];
   };
 
@@ -41,6 +42,7 @@ in
       ./modules/consul.nix
       ./modules/node-exporter.nix
       ./modules/promtail.nix
+      ./modules/remote-builder.nix
     ];
   };
 }

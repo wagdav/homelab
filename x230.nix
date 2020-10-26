@@ -157,7 +157,7 @@
     distributedBuilds = true;
     buildMachines = let
       sshUser = "root";
-      sshKey = "/root/remote_build";
+      sshKey = "/root/remote-builder";
     in [
       {
         hostName = "nuc.thewagner.home";
