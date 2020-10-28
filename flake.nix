@@ -21,14 +21,6 @@
       inherit nixpkgs;
     } // import ./home.nix;
 
-    devShell.x86_64-linux = let
-      pkgs = import nixpkgs {
-        system = "x86_64-linux";
-        overlays = [ nixops.overlay ];
-      };
-
-      in pkgs.mkShell {
-        buildInputs = [ pkgs.nixops ];
-      };
+    defaultPackage.x86_64-linux = nixops.defaultPackage.x86_64-linux;
   };
 }

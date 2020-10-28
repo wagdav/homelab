@@ -10,8 +10,6 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 
   services = {
-    nixosManual.showManual = false;
-
     openssh = {
       enable = true;
       allowSFTP = false;
