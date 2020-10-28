@@ -1,5 +1,6 @@
 {
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
+  inputs.nixops.url = "github:NixOS/nixops/flake-support";
 
   outputs = { self, nixpkgs, nixops }: {
 

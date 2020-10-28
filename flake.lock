@@ -15,8 +15,10 @@
         "type": "github"
       },
       "original": {
-        "id": "nixops",
-        "type": "indirect"
+        "owner": "NixOS",
+        "ref": "flake-support",
+        "repo": "nixops",
+        "type": "github"
       }
     },
     "nixops-aws": {
