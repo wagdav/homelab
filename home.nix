@@ -2,6 +2,12 @@ let
 
   domain = "thewagner.home";
 
+  disable-loki-tests = self: super: {
+    grafana-loki = super.grafana-loki.overrideAttrs (oldAttrs: rec {
+      doCheck = false;
+    });
+  };
+
 in
 
 {
@@ -17,6 +23,13 @@ in
       ./modules/node-exporter.nix
       ./modules/nginx.nix
       ./modules/promtail.nix
+
+      (
+        { config, ... }:
+        {
+          nixpkgs.overlays = [ disable-loki-tests ];
+        }
+      )
     ];
 
   };
