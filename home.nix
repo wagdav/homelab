@@ -21,8 +21,8 @@ in
       ./modules/git.nix
       ./modules/mqtt.nix
       ./modules/node-exporter.nix
-      ./modules/nginx.nix
       ./modules/promtail.nix
+      ./modules/traefik.nix
 
       (
         { config, ... }:
