@@ -81,11 +81,7 @@ in
     {
       name = "prometheus";
       port = 9090;
-      tags = [
-         "traefik.enable=true"
-         "traefik.http.routers.prometheus1.rule=Host(`prometheus`)"
-         "traefik.http.routers.prometheus2.rule=Host(`prometheus.thewagner.home`)"
-      ];
+      tags = (import ./lib/traefik.nix).tagsForHost "prometheus";
     }
   ];
 

@@ -33,11 +33,7 @@
     {
       name = "grafana";
       port = config.services.grafana.port;
-      tags = [
-         "traefik.enable=true"
-         "traefik.http.routers.grafana1.rule=Host(`metrics`)"
-         "traefik.http.routers.grafana2.rule=Host(`metrics.thewagner.home`)"
-      ];
+      tags = (import ./lib/traefik.nix).tagsForHost "metrics";
     }
   ];
 }

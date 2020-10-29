@@ -20,11 +20,7 @@ in
     {
       name = "loki";
       port = httpPort;
-      tags = [
-         "traefik.enable=true"
-         "traefik.http.routers.loki1.rule=Host(`loki`)"
-         "traefik.http.routers.loki2.rule=Host(`loki.thewagner.home`)"
-      ];
+      tags = (import ./lib/traefik.nix).tagsForHost "loki";
     }
   ];
 
