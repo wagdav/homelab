@@ -3,14 +3,13 @@
 let
   consulAgent = "localhost:8500";
 
-  listenAddress = config.services.prometheus.listenAddress;
-
   scrapeConfigs = [
     {
       job_name = "prometheus";
-      static_configs = [
+      consul_sd_configs = [
         {
-          targets = [ listenAddress ];
+          server = consulAgent;
+          services = [ "prometheus" ];
         }
       ];
     }
