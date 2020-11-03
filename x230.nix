@@ -26,6 +26,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  powerManagement.powertop.enable = true;
+
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     acpi
