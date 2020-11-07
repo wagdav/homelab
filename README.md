@@ -92,6 +92,11 @@ The builtin functions of the Nix evaulator:
 
     https://nixos.org/nix/manual/#ssec-builtins
 
+See the version of this repository from which the system's configuration was
+built:
+
+    nixos-version --json
+
 ## Router
 
 Linksys WRT ACM-3200 running OpenWRT.

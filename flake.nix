@@ -12,6 +12,8 @@
 
           ({ pkgs, ... }: {
             nix.registry.nixpkgs.flake = nixpkgs;
+
+            system.configurationRevision = (self.rev or "dirty");
           })
 
           nixpkgs.nixosModules.notDetected
