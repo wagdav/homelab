@@ -5,6 +5,20 @@ let
 
   scrapeConfigs = [
     {
+      job_name = "consul";
+      static_configs = [
+        {
+          targets = [
+            "ipc:8500"
+            "nuc:8500"
+            "rp3:8500"
+          ];
+        }
+      ];
+      metrics_path = "/v1/agent/metrics";
+      params.format = ["prometheus"];
+    }
+    {
       job_name = "prometheus";
       consul_sd_configs = [
         {
