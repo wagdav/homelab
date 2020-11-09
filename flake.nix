@@ -1,8 +1,9 @@
 {
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
   inputs.nixops.url = "github:NixOS/nixops/flake-support";
+  inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-  outputs = { self, nixpkgs, nixops }: {
+  outputs = { self, nixpkgs, nixops, nixos-hardware }: {
 
     nixosConfigurations.x230 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -17,6 +18,7 @@
           })
 
           nixpkgs.nixosModules.notDetected
+          nixos-hardware.nixosModules.lenovo-thinkpad-x230
         ];
     };
 

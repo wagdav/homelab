@@ -55,6 +55,21 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1604571579,
+        "narHash": "sha256-3kQmLlKOlH742cZqeFd18JaKcuOBItAY2Pf6V9Q4tx4=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "40ade7c0349d31e9f9722c7331de3c473f65dce0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1596787272,
@@ -89,6 +104,7 @@
     "root": {
       "inputs": {
         "nixops": "nixops",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2"
       }
     }
