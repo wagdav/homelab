@@ -59,7 +59,7 @@ hostname.
 Run the installer then reboot the machine.  The installation of the basic
 system is done.
 
-Continue the systems's management using NixOps.
+Continue the system's management using NixOps.
 
 
 ### Useful commands
