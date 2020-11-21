@@ -24,7 +24,7 @@
 
     nixopsConfigurations.default = {
       inherit nixpkgs;
-    } // import ./home.nix;
+    } // import ./home.nix { revision = self.rev or "dirty"; };
 
     defaultPackage.x86_64-linux = nixops.defaultPackage.x86_64-linux;
   };

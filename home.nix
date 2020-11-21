@@ -1,3 +1,5 @@
+{ revision }:
+
 let
 
   domain = "thewagner.home";
@@ -19,6 +21,10 @@ in
       ./modules/consul.nix
       ./modules/node-exporter.nix
       ./modules/promtail.nix
+
+      {
+        system.configurationRevision = revision;
+      }
     ];
   };
 
