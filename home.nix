@@ -2,8 +2,6 @@
 
 let
 
-  domain = "thewagner.home";
-
   disable-loki-tests = self: super: {
     grafana-loki = super.grafana-loki.overrideAttrs (oldAttrs: rec {
       doCheck = false;
@@ -13,7 +11,7 @@ let
 in
 
 {
-  network.description = "${domain} infrastructure";
+  network.description = "My home infrastructure";
 
   defaults = {
     imports = [
