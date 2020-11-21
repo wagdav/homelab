@@ -13,15 +13,20 @@ in
 {
   network.description = "${domain} infrastructure";
 
+  defaults = {
+    imports = [
+      ./modules/common.nix
+      ./modules/consul.nix
+      ./modules/node-exporter.nix
+      ./modules/promtail.nix
+    ];
+  };
+
   ipc = {
     imports = [
       ./hardware/ipc.nix
-      ./modules/common.nix
-      ./modules/consul.nix
       ./modules/git.nix
       ./modules/mqtt.nix
-      ./modules/node-exporter.nix
-      ./modules/promtail.nix
       ./modules/traefik.nix
 
       (
@@ -37,13 +42,9 @@ in
   nuc = {
     imports = [
       ./hardware/nuc.nix
-      ./modules/common.nix
-      ./modules/consul.nix
       ./modules/grafana.nix
       ./modules/loki.nix
-      ./modules/node-exporter.nix
       ./modules/prometheus.nix
-      ./modules/promtail.nix
       ./modules/remote-builder
     ];
   };
@@ -51,10 +52,6 @@ in
   rp3 = {
     imports = [
       ./hardware/rp3.nix
-      ./modules/common.nix
-      ./modules/consul.nix
-      ./modules/node-exporter.nix
-      ./modules/promtail.nix
       ./modules/remote-builder
     ];
   };
