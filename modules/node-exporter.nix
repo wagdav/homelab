@@ -6,6 +6,7 @@
   services.prometheus.exporters.node = {
     enable = true;
     enabledCollectors = [ "cpu" "filesystem" "loadavg" "systemd" ];
+    extraFlags = [ "--collector.textfile.directory=/etc/metrics" ];
   };
 
   networking.firewall.allowedTCPPorts = [
@@ -18,4 +19,8 @@
       port = config.services.prometheus.exporters.node.port;
     }
   ];
+
+  environment.etc."metrics/revision.prom".text = ''
+    node_nixos_configuration{revision="${config.system.configurationRevision}"} 1
+  '';
 }
