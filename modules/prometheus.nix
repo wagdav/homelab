@@ -94,10 +94,10 @@ in
   services.consul.catalog = [
     {
       name = "prometheus";
-      port = 9090;
+      port = config.services.prometheus.port;
       tags = (import ./lib/traefik.nix).tagsForHost "prometheus";
     }
   ];
 
-  networking.firewall.allowedTCPPorts = [ 9090 ];
+  networking.firewall.allowedTCPPorts = [ config.services.prometheus.port ];
 }
