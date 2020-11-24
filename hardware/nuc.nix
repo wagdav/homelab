@@ -8,7 +8,7 @@ in
 
 {
   imports = [
-     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+    <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
 
   deployment.targetHost = name;
@@ -24,12 +24,12 @@ in
         "xhci_pci"
       ];
 
-      kernelModules = [ ];
+      kernelModules = [];
     };
 
     kernelModules = [ "kvm-intel" ];
 
-    extraModulePackages = [ ];
+    extraModulePackages = [];
 
     # Use the systemd-boot EFI boot loader.
     loader = {
@@ -40,12 +40,14 @@ in
 
   fileSystems = {
     "/boot" =
-      { device = "/dev/disk/by-label/boot";
+      {
+        device = "/dev/disk/by-label/boot";
         fsType = "vfat";
       };
 
     "/" =
-      { device = "/dev/disk/by-label/nixos";
+      {
+        device = "/dev/disk/by-label/nixos";
         fsType = "ext4";
       };
   };

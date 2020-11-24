@@ -7,5 +7,5 @@ let
     inherit sha256;
   };
 
-in (import "${nixos-hardware}/lenovo/thinkpad/x230")
-
+in
+(import "${nixos-hardware}/lenovo/thinkpad/x230")

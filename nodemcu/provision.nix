@@ -110,9 +110,9 @@ let
     }
   ];
 
-  backlogMessage = with builtins; config :
+  backlogMessage = with builtins; config:
     let
-      mkCommand = { cmnd, value } : "${cmnd} ${toString value}";
+      mkCommand = { cmnd, value }: "${cmnd} ${toString value}";
     in
       assert length config <= 30;
       concatStringsSep ";" (map mkCommand config);
@@ -160,7 +160,7 @@ let
     let
       lengthLimit = 511;  # https://tasmota.github.io/docs/Rules/#rule-syntax
 
-      mkRule = code : command : "ON IrReceived#Data=${code} DO ${command} ENDON";
+      mkRule = code: command: "ON IrReceived#Data=${code} DO ${command} ENDON";
 
       rules = attrValues (mapAttrs mkRule keyMap);
       message = concatStringsSep " " rules;
@@ -174,16 +174,16 @@ let
 
 in
 
-  pkgs.writeScript "provision.sh" ''
-    ${send "tasmota_0E63DE" "Backlog" (backlogMessage config-2c-3a-e8-0e-63-de)}
-    ${send "tasmota_082320" "Backlog" (backlogMessage config-2c-3a-e8-08-23-20)}
-    ${send "tasmota_68C818" "Backlog" (backlogMessage config-60-01-94-68-c8-18)}
+pkgs.writeScript "provision.sh" ''
+  ${send "tasmota_0E63DE" "Backlog" (backlogMessage config-2c-3a-e8-0e-63-de)}
+  ${send "tasmota_082320" "Backlog" (backlogMessage config-2c-3a-e8-08-23-20)}
+  ${send "tasmota_68C818" "Backlog" (backlogMessage config-60-01-94-68-c8-18)}
 
-    ${send "tasmota_96804E" "Rule1" (ruleMessage IrRemote1)}
-    ${send "tasmota_96804E" "Rule1" 1}
-    ${send "tasmota_96804E" "Rule2" (ruleMessage IrRemote2)}
-    ${send "tasmota_96804E" "Rule2" 1}
-    ${send "tasmota_96804E" "Rule3" (ruleMessage IrRemote3)}
-    ${send "tasmota_96804E" "Rule3" 1}
-    ${send "tasmota_96804E" "Backlog" (backlogMessage config-60-01-94-96-80-4e)}
-  ''
+  ${send "tasmota_96804E" "Rule1" (ruleMessage IrRemote1)}
+  ${send "tasmota_96804E" "Rule1" 1}
+  ${send "tasmota_96804E" "Rule2" (ruleMessage IrRemote2)}
+  ${send "tasmota_96804E" "Rule2" 1}
+  ${send "tasmota_96804E" "Rule3" (ruleMessage IrRemote3)}
+  ${send "tasmota_96804E" "Rule3" 1}
+  ${send "tasmota_96804E" "Backlog" (backlogMessage config-60-01-94-96-80-4e)}
+''

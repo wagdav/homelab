@@ -16,7 +16,7 @@ let
         }
       ];
       metrics_path = "/v1/agent/metrics";
-      params.format = ["prometheus"];
+      params.format = [ "prometheus" ];
     }
     {
       job_name = "prometheus";

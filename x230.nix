@@ -6,9 +6,9 @@
 
 {
   imports = [
-      ./hardware/lenovo-x230.nix
-      ./hardware/x230.nix
-    ];
+    ./hardware/lenovo-x230.nix
+    ./hardware/x230.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -124,34 +124,34 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dwagner = {
-     isNormalUser = true;
-     shell = pkgs.zsh;
-     extraGroups = [ "dialout" "networkmanager" "wheel" ];
+    isNormalUser = true;
+    shell = pkgs.zsh;
+    extraGroups = [ "dialout" "networkmanager" "wheel" ];
   };
 
   fileSystems = {
     "/mnt/nas" = {
       device = "dns-320:/mnt/HD/HD_a2/Ajaxpf";
       fsType = "nfs";
-      options = ["x-systemd.automount" "noauto"];
+      options = [ "x-systemd.automount" "noauto" ];
     };
 
     "/mnt/nook" = {
       device = "/dev/disk/by-uuid/C701-B45D";
       fsType = "vfat";
-      options = ["x-systemd.automount" "noauto"];
+      options = [ "x-systemd.automount" "noauto" ];
     };
 
     "/mnt/pocketdrive" = {
       device = "/dev/disk/by-uuid/8f9d722f-281a-4647-a084-94b0510cfb7a";
       fsType = "ext3";
-      options = ["x-systemd.automount" "noauto"];
+      options = [ "x-systemd.automount" "noauto" ];
     };
 
     "/mnt/wd-elements" = {
       device = "/dev/disk/by-uuid/4743da06-ca4c-4879-8126-fb1308263b88";
       fsType = "ext4";
-      options = ["x-systemd.automount" "noauto"];
+      options = [ "x-systemd.automount" "noauto" ];
     };
 
   };
@@ -161,20 +161,21 @@
     buildMachines = let
       sshUser = "root";
       sshKey = "/root/remote-builder";
-    in [
-      {
-        hostName = "nuc.thewagner.home";
-        systems = [ "x86_64-linux" "i686-linux" ];
-        maxJobs = 4;
-        inherit sshUser sshKey;
-      }
-      {
-        hostName = "rp3.thewagner.home";
-        system = "aarch64-linux";
-        maxJobs = 4;
-        inherit sshUser sshKey;
-      }
-    ];
+    in
+      [
+        {
+          hostName = "nuc.thewagner.home";
+          systems = [ "x86_64-linux" "i686-linux" ];
+          maxJobs = 4;
+          inherit sshUser sshKey;
+        }
+        {
+          hostName = "rp3.thewagner.home";
+          system = "aarch64-linux";
+          maxJobs = 4;
+          inherit sshUser sshKey;
+        }
+      ];
     package = pkgs.nixUnstable;
     extraOptions = ''
       builders-use-substitutes = true

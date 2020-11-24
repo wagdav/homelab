@@ -9,8 +9,8 @@ in
 
 {
   imports = [
-     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-   ];
+    <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+  ];
 
   deployment.targetHost = name;
   nix.maxJobs = lib.mkDefault 4;
@@ -24,12 +24,12 @@ in
         "usbhid"
         "vc4"
       ];
-      kernelModules = [ ];
+      kernelModules = [];
     };
 
     kernelParams = [ "cma=32M" ];
 
-    extraModulePackages = [ ];
+    extraModulePackages = [];
 
     loader.grub.enable = false;
     loader.generic-extlinux-compatible.enable = true;
@@ -38,7 +38,7 @@ in
       enable = true;
       uboot.enable = true;
       version = 3;
-   };
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -46,7 +46,8 @@ in
   ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/NIXOS_SD";
+    {
+      device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
     };
 

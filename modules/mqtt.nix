@@ -12,7 +12,7 @@ in
   services.mosquitto = {
     enable = true;
     host = "0.0.0.0";
-    users = { };
+    users = {};
 
     allowAnonymous = true;
 

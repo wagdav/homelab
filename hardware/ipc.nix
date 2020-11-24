@@ -9,7 +9,7 @@ in
 
 {
   imports = [
-     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+    <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
 
   deployment.targetHost = name;
@@ -27,12 +27,12 @@ in
         "usb_storage"
       ];
 
-      kernelModules = [ ];
+      kernelModules = [];
     };
 
-    kernelModules = [ ];
+    kernelModules = [];
 
-    extraModulePackages = [ ];
+    extraModulePackages = [];
 
     # Use the GRUB 2 boot loader.
     loader.grub = {

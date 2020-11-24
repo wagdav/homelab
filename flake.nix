@@ -11,11 +11,13 @@
         [
           ./x230.nix
 
-          ({ pkgs, ... }: {
-            nix.registry.nixpkgs.flake = nixpkgs;
+          (
+            { pkgs, ... }: {
+              nix.registry.nixpkgs.flake = nixpkgs;
 
-            system.configurationRevision = (self.rev or "dirty");
-          })
+              system.configurationRevision = (self.rev or "dirty");
+            }
+          )
 
           nixpkgs.nixosModules.notDetected
           nixos-hardware.nixosModules.lenovo-thinkpad-x230

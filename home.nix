@@ -3,9 +3,11 @@
 let
 
   disable-loki-tests = self: super: {
-    grafana-loki = super.grafana-loki.overrideAttrs (oldAttrs: rec {
-      doCheck = false;
-    });
+    grafana-loki = super.grafana-loki.overrideAttrs (
+      oldAttrs: rec {
+        doCheck = false;
+      }
+    );
   };
 
 in
@@ -35,9 +37,9 @@ in
 
       (
         { config, ... }:
-        {
-          nixpkgs.overlays = [ disable-loki-tests ];
-        }
+          {
+            nixpkgs.overlays = [ disable-loki-tests ];
+          }
       )
     ];
 

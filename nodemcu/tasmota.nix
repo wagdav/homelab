@@ -8,25 +8,36 @@ let
     let
 
       # https://tasmota.github.io/docs/Templates/#gpio
-      toList = {
-        GPIO0 ? component.None,
-        GPIO1 ? component.None,
-        GPIO2 ? component.None,
-        GPIO3 ? component.None,
-        GPIO4 ? component.None,
-        GPIO5 ? component.None,
-        GPIO9 ? component.None,
-        GPIO10 ? component.None,
-        GPIO12 ? component.None,
-        GPIO13 ? component.None,
-        GPIO14 ? component.None,
-        GPIO15 ? component.None,
-        GPIO16 ? component.None,
-      }: [
-        GPIO0 GPIO1 GPIO2 GPIO3 GPIO4 GPIO5
-        GPIO9 GPIO10
-        GPIO12 GPIO13 GPIO14 GPIO15 GPIO16
-      ];
+      toList =
+        { GPIO0 ? component.None
+        , GPIO1 ? component.None
+        , GPIO2 ? component.None
+        , GPIO3 ? component.None
+        , GPIO4 ? component.None
+        , GPIO5 ? component.None
+        , GPIO9 ? component.None
+        , GPIO10 ? component.None
+        , GPIO12 ? component.None
+        , GPIO13 ? component.None
+        , GPIO14 ? component.None
+        , GPIO15 ? component.None
+        , GPIO16 ? component.None
+        ,
+        }: [
+          GPIO0
+          GPIO1
+          GPIO2
+          GPIO3
+          GPIO4
+          GPIO5
+          GPIO9
+          GPIO10
+          GPIO12
+          GPIO13
+          GPIO14
+          GPIO15
+          GPIO16
+        ];
 
     in
 
@@ -58,6 +69,7 @@ let
     User = 255;
   };
 
-in {
+in
+{
   inherit component template base;
 }

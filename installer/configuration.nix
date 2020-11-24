@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -13,5 +14,5 @@
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keyFiles = [ /etc/ssh/authorized_keys.d/root ];
 
-  networking.hostName = "nixos";  # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
 }
