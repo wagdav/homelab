@@ -6,7 +6,6 @@
 
 {
   imports = [
-    ./hardware/lenovo-x230.nix
     ./hardware/x230.nix
   ];
 
