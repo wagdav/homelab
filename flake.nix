@@ -3,31 +3,38 @@
   inputs.nixops.url = "github:NixOS/nixops/flake-support";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-  outputs = { self, nixpkgs, nixops, nixos-hardware }: {
+  outputs = { self, nixpkgs, nixops, nixos-hardware }:
+    let
 
-    nixosConfigurations.x230 = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules =
-        [
-          ./x230.nix
+      revision = "${self.lastModifiedDate}-${self.shortRev or "dirty"}";
 
-          (
-            { pkgs, ... }: {
-              nix.registry.nixpkgs.flake = nixpkgs;
+    in
+      {
 
-              system.configurationRevision = (self.rev or "dirty");
-            }
-          )
+        nixosConfigurations.x230 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
 
-          nixpkgs.nixosModules.notDetected
-          nixos-hardware.nixosModules.lenovo-thinkpad-x230
-        ];
-    };
+          modules =
+            [
+              ./x230.nix
 
-    nixopsConfigurations.default = {
-      inherit nixpkgs;
-    } // import ./home.nix { revision = self.rev or "dirty"; };
+              (
+                { pkgs, ... }: {
+                  nix.registry.nixpkgs.flake = nixpkgs;
 
-    defaultPackage.x86_64-linux = nixops.defaultPackage.x86_64-linux;
-  };
+                  system.configurationRevision = revision;
+                }
+              )
+
+              nixpkgs.nixosModules.notDetected
+              nixos-hardware.nixosModules.lenovo-thinkpad-x230
+            ];
+        };
+
+        nixopsConfigurations.default = {
+          inherit nixpkgs;
+        } // import ./home.nix { inherit revision; };
+
+        defaultPackage.x86_64-linux = nixops.defaultPackage.x86_64-linux;
+      };
 }
