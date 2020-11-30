@@ -48,7 +48,7 @@ in
   nuc = {
     imports = [
       ./hardware/nuc.nix
-      ./modules/grafana.nix
+      ./modules/grafana
       ./modules/loki.nix
       ./modules/prometheus.nix
       ./modules/remote-builder

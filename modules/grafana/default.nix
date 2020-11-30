@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  imports = [ ./consul-catalog.nix ];
+  imports = [ ../consul-catalog.nix ];
 
   services.grafana = {
     enable = true;
@@ -33,7 +33,7 @@
     {
       name = "grafana";
       port = config.services.grafana.port;
-      tags = (import ./lib/traefik.nix).tagsForHost "metrics";
+      tags = (import ../lib/traefik.nix).tagsForHost "metrics";
     }
   ];
 }
