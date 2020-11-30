@@ -24,8 +24,22 @@
           url = "http://loki.thewagner.home";
         }
       ];
+
+      dashboards = [
+        {
+          options.path = "/etc/dashboards";
+        }
+      ];
     };
   };
+
+  # Provision each dashboard in /etc/dashboard
+  environment.etc = builtins.mapAttrs (
+    name: _: {
+      target = "dashboards/${name}";
+      source = builtins.path { path = ./dashboards; inherit name; };
+    }
+  ) (builtins.readDir ./dashboards);
 
   networking.firewall.allowedTCPPorts = [ config.services.grafana.port ];
 
