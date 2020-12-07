@@ -90,6 +90,11 @@
     sensitivity = 200;
   };
 
+  hardware.bluetooth = {
+    enable = true;
+    package = pkgs.bluezFull;
+  };
+
   # Enable the brightness buttons
   services.illum.enable = true;
 
