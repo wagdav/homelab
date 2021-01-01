@@ -171,7 +171,7 @@
       [
         {
           hostName = "nuc.thewagner.home";
-          systems = [ "x86_64-linux" "i686-linux" "aarch64-linux"];
+          systems = [ "x86_64-linux" "i686-linux" "aarch64-linux" ];
           maxJobs = 4;
           inherit sshUser sshKey;
         }
