@@ -82,7 +82,14 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    extraConfig = ''
+      # Automatically switch to newly-connected devices
+      load-module module-switch-on-connect
+    '';
+    package = pkgs.pulseaudioFull;
+  };
 
   hardware.trackpoint = {
     enable = true;
