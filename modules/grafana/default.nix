@@ -37,7 +37,7 @@
   environment.etc = builtins.mapAttrs (
     name: _: {
       target = "dashboards/${name}";
-      source = builtins.path { path = ./dashboards; inherit name; };
+      source = ./. + "/dashboards/${name}";
     }
   ) (builtins.readDir ./dashboards);
 
