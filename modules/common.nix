@@ -1,7 +1,10 @@
 { config, lib, ... }:
 
 {
-  nix.gc.automatic = true;
+  nix.gc = {
+    automatic = true;
+    options = "--delete-older-than 30d";
+  };
 
   i18n.defaultLocale = "en_US.UTF-8";
 
