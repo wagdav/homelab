@@ -16,6 +16,10 @@ mkShell {
     PORT=/dev/ttyUSB0
     BAUD=115200
 
+    flash_backup() {
+      esptool.py --baud $BAUD --port $PORT read_flash 0x00000 0x100000 image1M.bin
+    }
+
     flash_erase() {
       esptool.py --baud $BAUD --port $PORT erase_flash
     }
