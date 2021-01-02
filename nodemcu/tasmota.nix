@@ -51,6 +51,7 @@ let
   # https://tasmota.github.io/docs/Modules/
   base = {
     SonoffBasic = 1;
+    SonoffTH = 4;
     Generic = Generic';
   };
 
@@ -65,6 +66,7 @@ let
     PWM2 = 38;
     PWM3 = 39;
     Relay1 = 21;
+    SI7021 = 3;
     Switch1 = 9;
     User = 255;
   };

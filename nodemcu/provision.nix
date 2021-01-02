@@ -110,6 +110,31 @@ let
     }
   ];
 
+  # Sonoff TH16 with an Si7021 temperature and humidity sensor
+  config-a4-cf-12-d8-92-ea = [
+    {
+      cmnd = "Template";
+      value = tasmota.template {
+        name = "Sonoff TH";
+        gpio = with tasmota.component; {
+          GPIO0 = Button1;
+          GPIO1 = User;
+          GPIO2 = User;
+          GPIO3 = User;
+          GPIO4 = User;
+          GPIO12 = Relay1;
+          GPIO13 = Led1i;
+          GPIO14 = SI7021;
+        };
+        base = tasmota.base.SonoffTH;
+      };
+    }
+    {
+      cmnd = "Module";
+      value = 0;
+    }
+  ];
+
   backlogMessage = with builtins; config:
     let
       mkCommand = { cmnd, value }: "${cmnd} ${toString value}";
@@ -178,6 +203,7 @@ pkgs.writeScript "provision.sh" ''
   ${send "tasmota_0E63DE" "Backlog" (backlogMessage config-2c-3a-e8-0e-63-de)}
   ${send "tasmota_082320" "Backlog" (backlogMessage config-2c-3a-e8-08-23-20)}
   ${send "tasmota_68C818" "Backlog" (backlogMessage config-60-01-94-68-c8-18)}
+  ${send "tasmota_D892EA" "Backlog" (backlogMessage config-a4-cf-12-d8-92-ea)}
 
   ${send "tasmota_96804E" "Rule1" (ruleMessage IrRemote1)}
   ${send "tasmota_96804E" "Rule1" 1}
