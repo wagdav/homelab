@@ -6,6 +6,10 @@
 
   outputs = { self, nixpkgs, nixops, nixos-hardware }:
     let
+      system = "x86_64-linux";
+
+      pkgs = import nixpkgs { inherit system; };
+
       revision = "${self.lastModifiedDate}-${self.shortRev or "dirty"}";
 
     in
@@ -36,5 +40,17 @@
       } // import ./home.nix { inherit revision; };
 
       defaultPackage.x86_64-linux = nixops.defaultPackage.x86_64-linux;
+
+      checks.${system} = {
+        nixpkgs-fmt = pkgs.runCommand "nixpkgs-fmt"
+          {
+            buildInputs = [ pkgs.nixpkgs-fmt ];
+            src = builtins.path { path = ./.; name = "homelab-src"; };
+          }
+          ''
+            mkdir $out
+            nixpkgs-fmt --check "$src"
+          '';
+      };
     };
 }
