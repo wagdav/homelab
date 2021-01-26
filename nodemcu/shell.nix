@@ -1,5 +1,4 @@
-with import <nixpkgs> {};
-
+with import <nixpkgs> { };
 let
 
   firmware = fetchurl {
@@ -8,7 +7,6 @@ let
   };
 
 in
-
 mkShell {
   buildInputs = [ esptool picocom ];
 

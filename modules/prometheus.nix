@@ -1,5 +1,4 @@
 { config, ... }:
-
 let
   consulAgent = "localhost:8500";
 
@@ -82,7 +81,6 @@ let
   ];
 
 in
-
 {
   imports = [ ./consul-catalog.nix ];
 

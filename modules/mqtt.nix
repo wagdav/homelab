@@ -1,18 +1,16 @@
 { config, ... }:
-
 let
 
   prometheus_client_port = 9883;
 
 in
-
 {
   imports = [ ./consul-catalog.nix ];
 
   services.mosquitto = {
     enable = true;
     host = "0.0.0.0";
-    users = {};
+    users = { };
 
     allowAnonymous = true;
 

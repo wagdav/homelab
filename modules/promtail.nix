@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
-
 let
-
   httpPort = 9080;
 
   configFile = pkgs.writeText "promtail-config.yaml" ''
@@ -30,7 +28,6 @@ let
   '';
 
 in
-
 {
   imports = [ ./consul-catalog.nix ];
 
@@ -47,7 +44,7 @@ in
     };
   };
 
-  users.groups.promtail = {};
+  users.groups.promtail = { };
   users.users.promtail = {
     description = "Promtail Service User";
     group = "promtail";

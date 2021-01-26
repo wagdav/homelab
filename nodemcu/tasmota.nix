@@ -1,6 +1,5 @@
 # Generate Tasmota JSON templates
 # https://tasmota.github.io/docs/Templates/
-
 let
   Generic' = 18;
 
@@ -40,13 +39,12 @@ let
         ];
 
     in
-
-      builtins.toJSON {
-        BASE = base;
-        FLAG = flag;
-        GPIO = toList gpio;
-        NAME = name;
-      };
+    builtins.toJSON {
+      BASE = base;
+      FLAG = flag;
+      GPIO = toList gpio;
+      NAME = name;
+    };
 
   # https://tasmota.github.io/docs/Modules/
   base = {

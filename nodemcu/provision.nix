@@ -1,5 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
-
+{ pkgs ? import <nixpkgs> { } }:
 let
   tasmota = import ./tasmota.nix;
 
@@ -164,8 +163,8 @@ let
     let
       mkCommand = { cmnd, value }: "${cmnd} ${toString value}";
     in
-      assert length config <= 30;
-      concatStringsSep ";" (map mkCommand config);
+    assert length config <= 30;
+    concatStringsSep ";" (map mkCommand config);
 
   IrRemote1 = {
     # See the command list https://tasmota.github.io/docs/Commands/#light
@@ -216,14 +215,13 @@ let
       message = concatStringsSep " " rules;
 
     in
-      assert stringLength message <= lengthLimit; message;
+    assert stringLength message <= lengthLimit; message;
 
 
   send = device: command: value:
     "${pkgs.mosquitto}/bin/mosquitto_pub --host mqtt --topic cmnd/${device}/${command} --message '${toString value}'";
 
 in
-
 pkgs.writeScript "provision.sh" ''
   ${send "tasmota_0E63DE" "Backlog" (backlogMessage config-2c-3a-e8-0e-63-de)}
   ${send "tasmota_082320" "Backlog" (backlogMessage config-2c-3a-e8-08-23-20)}

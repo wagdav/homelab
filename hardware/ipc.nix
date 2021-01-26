@@ -1,12 +1,10 @@
 # 32-bit Lannert industrial PC
 { config, lib, pkgs, ... }:
-
 let
 
   name = "ipc";
 
 in
-
 {
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -27,12 +25,12 @@ in
         "usb_storage"
       ];
 
-      kernelModules = [];
+      kernelModules = [ ];
     };
 
-    kernelModules = [];
+    kernelModules = [ ];
 
-    extraModulePackages = [];
+    extraModulePackages = [ ];
 
     # Use the GRUB 2 boot loader.
     loader.grub = {
@@ -47,7 +45,7 @@ in
     fsType = "ext4";
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   networking = {
     hostName = name;

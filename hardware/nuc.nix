@@ -1,11 +1,9 @@
 { config, lib, pkgs, ... }:
-
 let
 
   name = "nuc";
 
 in
-
 {
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -24,12 +22,12 @@ in
         "xhci_pci"
       ];
 
-      kernelModules = [];
+      kernelModules = [ ];
     };
 
     kernelModules = [ "kvm-intel" ];
 
-    extraModulePackages = [];
+    extraModulePackages = [ ];
 
     # Use the systemd-boot EFI boot loader.
     loader = {
@@ -54,7 +52,7 @@ in
       };
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   networking = {
     hostName = name;

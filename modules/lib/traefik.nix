@@ -3,7 +3,6 @@ let
   domain = "thewagner.home";
 
 in
-
 {
   tagsForHost = host: [
     "traefik.enable=true"

@@ -1,12 +1,10 @@
 # Raspberry Pi 3
 { config, lib, pkgs, ... }:
-
 let
 
   name = "rp3";
 
 in
-
 {
   imports = [
     <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -24,12 +22,12 @@ in
         "usbhid"
         "vc4"
       ];
-      kernelModules = [];
+      kernelModules = [ ];
     };
 
     kernelParams = [ "cma=32M" ];
 
-    extraModulePackages = [];
+    extraModulePackages = [ ];
 
     loader.grub.enable = false;
     loader.generic-extlinux-compatible.enable = true;
@@ -51,7 +49,7 @@ in
       fsType = "ext4";
     };
 
-  swapDevices = [ { device = "/swapfile"; size = 1024; } ];
+  swapDevices = [{ device = "/swapfile"; size = 1024; }];
 
   networking = {
     hostName = name;

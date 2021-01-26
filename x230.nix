@@ -171,10 +171,11 @@
 
   nix = {
     distributedBuilds = true;
-    buildMachines = let
-      sshUser = "root";
-      sshKey = "/root/remote-builder";
-    in
+    buildMachines =
+      let
+        sshUser = "root";
+        sshKey = "/root/remote-builder";
+      in
       [
         {
           hostName = "nuc.thewagner.home";

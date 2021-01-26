@@ -1,5 +1,4 @@
 { revision }:
-
 let
 
   disable-loki-tests = self: super: {
@@ -11,7 +10,6 @@ let
   };
 
 in
-
 {
   network.description = "My home infrastructure";
 
@@ -37,9 +35,9 @@ in
 
       (
         { config, ... }:
-          {
-            nixpkgs.overlays = [ disable-loki-tests ];
-          }
+        {
+          nixpkgs.overlays = [ disable-loki-tests ];
+        }
       )
     ];
 

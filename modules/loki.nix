@@ -1,11 +1,9 @@
 { config, pkgs, ... }:
-
 let
 
   httpPort = 3100;
 
 in
-
 {
   imports = [ ./consul-catalog.nix ];
 

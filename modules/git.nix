@@ -1,13 +1,10 @@
 { config, ... }:
-
 let
-
   user = "git";
   group = "gitolite";
   httpPort = 8022;
 
 in
-
 {
   imports = [ ./consul-catalog.nix ];
 

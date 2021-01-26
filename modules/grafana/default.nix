@@ -34,12 +34,14 @@
   };
 
   # Provision each dashboard in /etc/dashboard
-  environment.etc = builtins.mapAttrs (
-    name: _: {
-      target = "dashboards/${name}";
-      source = ./. + "/dashboards/${name}";
-    }
-  ) (builtins.readDir ./dashboards);
+  environment.etc = builtins.mapAttrs
+    (
+      name: _: {
+        target = "dashboards/${name}";
+        source = ./. + "/dashboards/${name}";
+      }
+    )
+    (builtins.readDir ./dashboards);
 
   networking.firewall.allowedTCPPorts = [ config.services.grafana.port ];
 
