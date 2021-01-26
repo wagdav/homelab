@@ -60,6 +60,15 @@
             mkdir $out
             mdl ${./README.md}
           '';
+
+        yamllint = pkgs.runCommand "yamllint"
+          {
+            buildInputs = [ pkgs.yamllint ];
+          }
+          ''
+            mkdir $out
+            yamllint --strict ${./.github/workflows}
+          '';
       };
     };
 }
