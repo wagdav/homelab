@@ -10,17 +10,23 @@ Its configuration is specified in `x230.nix` using the [experimental flakes
 feature](https://www.tweag.io/blog/2020-07-31-nixos-flakes/).  Modify this file
 and switch to the new configuration:
 
-    sudo nixos-rebuild switch --flake .
+```
+sudo nixos-rebuild switch --flake .
+```
 
 By default, this configuration is stored in `/etc/nixos/configuration.nix`.
 
 For testing purposes you can build a QEMU virtual machine from the configuration:
 
-    nixos-rebuild build-vm --flake .
+```
+nixos-rebuild build-vm --flake .
+```
 
 To update the lock files:
 
-    nix flake update --update-input nixpkgs --commit-lock-file
+```
+nix flake update --update-input nixpkgs --commit-lock-file
+```
 
 ## Servers
 
@@ -28,11 +34,15 @@ The entrypoint for my home server setup is [home.nix](home.nix).  This
 configuration is deployed using [nixops](https://github.com/NixOS/nixops).  A
 one-time setup is required if the deployment doesn't exist yet:
 
-    nix shell -c nixops create --name home --flake .
+```
+nix shell -c nixops create --name home --flake .
+```
 
 Then, run the following command to deploy:
 
-    nix shell -c nixops deploy
+```
+nix shell -c nixops deploy
+```
 
 This builds the system configurations locally and copies the resulting closures
 to the remote machines.
@@ -47,7 +57,9 @@ of [installer/iso.nix](installer/iso.nix).
 Copy the ISO image to a USB stick and boot the computer from it.  Connect to
 the installer using SSH:
 
-    ssh root@nixos -o StrictHostKeyChecking=no -o 'UserKnownHostsFile /dev/null'
+```
+ssh root@nixos -o StrictHostKeyChecking=no -o 'UserKnownHostsFile /dev/null'
+```
 
 Execute the relevant lines from [/etc/install.sh](installer/install.sh) to
 partition the disk and create file systems.
@@ -61,41 +73,49 @@ system is done.
 
 Continue the system's management using NixOps.
 
-
 ### Useful commands
 
-The configuration.nix(5) man page documents all the available options for configuring the system:
+The configuration.nix(5) man page documents all the available options for
+configuring the system:
 
-    man configuration.nix
+```
+man configuration.nix
+```
 
-All supported options are searchable online:
-
-    https://nixos.org/nixos/options.html
+All supported options are searchable [online](https://nixos.org/nixos/options.html).
 
 Query available packages:
 
-    nix search nixpkgs wget
+```
+nix search nixpkgs wget
+```
 
-[Install a package](https://nixos.wiki/wiki/Nix_command/profile_install) into the user's profile
+[Install a package](https://nixos.wiki/wiki/Nix_command/profile_install) into
+the user's profile
 
-    nix profile install nixpkgs#firefox
+```
+nix profile install nixpkgs#firefox
+```
 
 Remove old, unreferenced packages, system-wide:
 
-    sudo nix-collect-garbage
-    sudo nix-collect-garbage -d  # also delete old system old configurations
+```
+sudo nix-collect-garbage
+sudo nix-collect-garbage -d  # also delete old system old configurations
+```
 
 This is documented in the [Cleaning the Nix Store](https://nixos.org/nixos/manual/index.html#sec-nix-gc)
 section of the NixOS manual.
 
-The builtin functions of the Nix evaulator:
-
-    https://nixos.org/nix/manual/#ssec-builtins
+The builtin functions of the Nix evaulator are listed
+[here](https://nixos.org/nix/manual/#ssec-builtins).
 
 See the version of this repository from which the system's configuration was
 built:
 
-    nixos-version --json
+```
+nixos-version --json
+```
 
 ## Router
 
@@ -105,9 +125,12 @@ Linksys WRT ACM-3200 running OpenWRT.
 
 Connect to the router with an Ethernet cable.
 
-Download and install the firmware from https://openwrt.org/toh/linksys/linksys_wrt3200acm then run:
+Download and install the [OpenWRT
+firmware](https://openwrt.org/toh/linksys/linksys_wrt3200acm then run):
 
-    router/setup.sh --first-time
+```
+router/setup.sh --first-time
+```
 
 Reboot the router.
 
@@ -115,7 +138,9 @@ Reboot the router.
 
 Change the settings in `router/config` and run
 
-    router/setup.sh
+```
+router/setup.sh
+```
 
 ## Raspberry Pi 3 Model B
 
@@ -123,12 +148,14 @@ Change the settings in `router/config` and run
 
 Setup SD card:
 
-    wget https://downloads.raspberrypi.org/raspbian_lite_latest
-    unzip -p raspbian_lite_latest | sudo dd of=/dev/mmcblk0 bs=4M conv=fsync status=progress
-    # remove then reinsert SD card
-    pmount /dev/mmcblk0p1
-    touch /media/mmcblk0p1/ssh
-    pumount /dev/mmcblk0p1
+```
+wget https://downloads.raspberrypi.org/raspbian_lite_latest
+unzip -p raspbian_lite_latest | sudo dd of=/dev/mmcblk0 bs=4M conv=fsync status=progress
+# remove then reinsert SD card
+pmount /dev/mmcblk0p1
+touch /media/mmcblk0p1/ssh
+pumount /dev/mmcblk0p1
+```
 
 ### NixOS
 
@@ -141,8 +168,10 @@ Flash the image to an SD card as described in the [previous section](#raspbian).
 Boot the system then start an SSH server and set a temporary password for the
 root user:
 
-    systemctl start sshd
-    passwd root
+```
+systemctl start sshd
+passwd root
+```
 
 The password is only used for the first time access.  Password authentication
 will be disabled later.  Connect to the freshly booted system using SSH.
@@ -167,15 +196,16 @@ add the Pi to your control PC's remote build pool.  Enable some Raspberry Pi
 specific arguments in the [hardware specification](hardware/rp3.nix) and use
 NixOps as usual.
 
-
 ## NodeMCU
 
-I have a couple of NodeMCU boards which can be configured using the scripts in the [nodemcu](nodemcu) directory.
+I have a couple of NodeMCU boards which can be configured using the scripts in
+the [nodemcu](nodemcu) directory.
 
 Enter a Nix shell
+
 ```
-$ cd nodemcu
-$ nix-shell
+cd nodemcu
+nix-shell
 ```
 
 In this shell the following helper functions are available.
@@ -183,19 +213,26 @@ In this shell the following helper functions are available.
 Erase everything from the device and start from scratch:
 
 * `flash_erase`: Perform Chip Erase on SPI flash
-* `flash_write`: Write the [Tasmota firmware](https://github.com/arendst/Tasmota) to the device
+* `flash_write`: Write the [Tasmota firmware](
+   https://github.com/arendst/Tasmota) to the device
 
 Open an interactive serial terminal:
 
-    serial_terminal
+```
+serial_terminal
+```
 
 Restore the firmware's factory settings:
 
-    device_reset | commit
+```
+device_reset | commit
+```
 
 Configure a device
 
-    device_config <WIFI_SSID> <WIFI_KEY> | commit
+```
+device_config <WIFI_SSID> <WIFI_KEY> | commit
+```
 
 These commands are defined as [shell hooks in shell.nix](./nodemcu/shell.nix)
 
@@ -209,7 +246,9 @@ and to the MQTT broker.
 
 Built and run the [provisioning script](nodemcu/provision.nix):
 
-    nix build -f provision.nix && ./result
+```
+nix build -f provision.nix && ./result
+```
 
 This will reconfigure all the devices by executing the specified
 [commands](https://tasmota.github.io/docs/Commands/).
