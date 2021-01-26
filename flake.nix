@@ -51,6 +51,15 @@
             mkdir $out
             nixpkgs-fmt --check "$src"
           '';
+
+        markdownlint = pkgs.runCommand "mdl"
+          {
+            buildInputs = [ pkgs.mdl ];
+          }
+          ''
+            mkdir $out
+            mdl ${./README.md}
+          '';
       };
     };
 }
