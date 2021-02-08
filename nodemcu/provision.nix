@@ -221,19 +221,42 @@ let
   send = device: command: value:
     "${pkgs.mosquitto}/bin/mosquitto_pub --host mqtt --topic cmnd/${device}/${command} --message '${toString value}'";
 
-in
-pkgs.writeScript "provision.sh" ''
-  ${send "tasmota_0E63DE" "Backlog" (backlogMessage config-2c-3a-e8-0e-63-de)}
-  ${send "tasmota_082320" "Backlog" (backlogMessage config-2c-3a-e8-08-23-20)}
-  ${send "tasmota_68C818" "Backlog" (backlogMessage config-60-01-94-68-c8-18)}
-  ${send "tasmota_D892EA" "Backlog" (backlogMessage config-a4-cf-12-d8-92-ea)}
-  ${send "tasmota_D8A2DD" "Backlog" (backlogMessage config-a4-cf-12-d8-a2-dd)}
+  tasmota_0E63DE = pkgs.writeScript "tasmota_0E63DE" ''
+    ${send "tasmota_0E63DE" "Backlog" (backlogMessage config-2c-3a-e8-0e-63-de)}
+  '';
 
-  ${send "tasmota_96804E" "Rule1" (ruleMessage IrRemote1)}
-  ${send "tasmota_96804E" "Rule1" 1}
-  ${send "tasmota_96804E" "Rule2" (ruleMessage IrRemote2)}
-  ${send "tasmota_96804E" "Rule2" 1}
-  ${send "tasmota_96804E" "Rule3" (ruleMessage IrRemote3)}
-  ${send "tasmota_96804E" "Rule3" 1}
-  ${send "tasmota_96804E" "Backlog" (backlogMessage config-60-01-94-96-80-4e)}
+  tasmota_082320 = pkgs.writeScript "tasmota_082320" ''
+    ${send "tasmota_082320" "Backlog" (backlogMessage config-2c-3a-e8-08-23-20)}
+  '';
+
+  tasmota_68C818 = pkgs.writeScript "tasmota_68C818" ''
+    ${send "tasmota_68C818" "Backlog" (backlogMessage config-60-01-94-68-c8-18)}
+  '';
+
+  tasmota_D892EA = pkgs.writeScript "tasmota_D892EA" ''
+    ${send "tasmota_D892EA" "Backlog" (backlogMessage config-a4-cf-12-d8-92-ea)}
+  '';
+
+  tasmota_D8A2DD = pkgs.writeScript "tasmota_D8A2DD" ''
+    ${send "tasmota_D8A2DD" "Backlog" (backlogMessage config-a4-cf-12-d8-a2-dd)}
+  '';
+
+  tasmota_96804E = pkgs.writeScript "tasmota_96804E" ''
+    ${send "tasmota_96804E" "Rule1" (ruleMessage IrRemote1)}
+    ${send "tasmota_96804E" "Rule1" 1}
+    ${send "tasmota_96804E" "Rule2" (ruleMessage IrRemote2)}
+    ${send "tasmota_96804E" "Rule2" 1}
+    ${send "tasmota_96804E" "Rule3" (ruleMessage IrRemote3)}
+    ${send "tasmota_96804E" "Rule3" 1}
+    ${send "tasmota_96804E" "Backlog" (backlogMessage config-60-01-94-96-80-4e)}
+  '';
+in
+pkgs.runCommand "provisioning_scripts" { } ''
+  mkdir $out
+  cp ${tasmota_0E63DE} $out/tasmota_0E63DE.sh
+  cp ${tasmota_082320} $out/tasmota_082320.sh
+  cp ${tasmota_68C818} $out/tasmota_68C818.sh
+  cp ${tasmota_D892EA} $out/tasmota_D892EA.sh
+  cp ${tasmota_D8A2DD} $out/tasmota_D8A2DD.sh
+  cp ${tasmota_96804E} $out/tasmota_96804E.sh
 ''
