@@ -79,6 +79,10 @@ let
       value = 1;
     }
     {
+      cmnd = "PowerRetain";
+      value = "on";
+    }
+    {
       cmnd = "Module";
       value = 0;
     }
@@ -102,6 +106,10 @@ let
         };
         base = tasmota.base.SonoffBasic;
       };
+    }
+    {
+      cmnd = "PowerRetain";
+      value = "on";
     }
     {
       cmnd = "Module";
