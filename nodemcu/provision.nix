@@ -34,6 +34,10 @@ let
       value = 0;
     }
     {
+      cmnd = "SensorRetain";
+      value = "on";
+    }
+    {
       cmnd = "Module";
       value = 0;
     }
@@ -49,6 +53,10 @@ let
           GPIO14 = tasmota.component.AM2301;
         };
       };
+    }
+    {
+      cmnd = "SensorRetain";
+      value = "on";
     }
     {
       cmnd = "Module";
@@ -137,6 +145,10 @@ let
       };
     }
     {
+      cmnd = "SensorRetain";
+      value = "on";
+    }
+    {
       cmnd = "Module";
       value = 0;
     }
@@ -160,6 +172,10 @@ let
         };
         base = tasmota.base.SonoffTH;
       };
+    }
+    {
+      cmnd = "SensorRetain";
+      value = "on";
     }
     {
       cmnd = "Module";
