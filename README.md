@@ -35,13 +35,13 @@ configuration is deployed using [nixops](https://github.com/NixOS/nixops).  A
 one-time setup is required if the deployment doesn't exist yet:
 
 ```
-nix shell -c nixops create --name home --flake .
+nix develop -c nixops create --name home --flake .
 ```
 
 Then, run the following command to deploy:
 
 ```
-nix shell -c nixops deploy
+nix develop -c nixops deploy
 ```
 
 This builds the system configurations locally and copies the resulting closures

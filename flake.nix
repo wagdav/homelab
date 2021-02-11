@@ -39,7 +39,9 @@
         inherit nixpkgs;
       } // import ./home.nix { inherit revision; };
 
-      defaultPackage.x86_64-linux = nixops.defaultPackage.x86_64-linux;
+      devShell.${system} = pkgs.mkShell {
+        buildInputs = [ nixops.defaultPackage.${system} ];
+      };
 
       checks.${system} = {
         nixpkgs-fmt = pkgs.runCommand "nixpkgs-fmt"
