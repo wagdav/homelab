@@ -11,10 +11,8 @@
       pkgs = import nixpkgs { inherit system; };
 
       revision = "${self.lastModifiedDate}-${self.shortRev or "dirty"}";
-
     in
     {
-
       nixosConfigurations.x230 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
@@ -22,13 +20,11 @@
           [
             ./x230.nix
 
-            (
-              { pkgs, ... }: {
-                nix.registry.nixpkgs.flake = nixpkgs;
+            {
+              nix.registry.nixpkgs.flake = nixpkgs;
 
-                system.configurationRevision = revision;
-              }
-            )
+              system.configurationRevision = revision;
+            }
 
             nixpkgs.nixosModules.notDetected
             nixos-hardware.nixosModules.lenovo-thinkpad-x230
@@ -39,33 +35,34 @@
         inherit nixpkgs;
       } // import ./home.nix { inherit revision; };
 
+
       devShell.${system} = pkgs.mkShell {
         buildInputs = [ nixops.defaultPackage.${system} ];
       };
 
-      checks.${system} = {
-        nixpkgs-fmt = pkgs.runCommand "nixpkgs-fmt"
+      checks.${system} = with pkgs; {
+        nixpkgs-fmt = runCommand "nixpkgs-fmt"
           {
-            buildInputs = [ pkgs.nixpkgs-fmt ];
-            src = builtins.path { path = ./.; name = "homelab-src"; };
+            buildInputs = [ nixpkgs-fmt ];
+            src = self;
           }
           ''
             mkdir $out
             nixpkgs-fmt --check "$src"
           '';
 
-        markdownlint = pkgs.runCommand "mdl"
+        markdownlint = runCommand "mdl"
           {
-            buildInputs = [ pkgs.mdl ];
+            buildInputs = [ mdl ];
           }
           ''
             mkdir $out
             mdl ${./README.md}
           '';
 
-        yamllint = pkgs.runCommand "yamllint"
+        yamllint = runCommand "yamllint"
           {
-            buildInputs = [ pkgs.yamllint ];
+            buildInputs = [ yamllint ];
           }
           ''
             mkdir $out
