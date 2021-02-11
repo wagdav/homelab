@@ -60,6 +60,15 @@
             mdl ${./README.md}
           '';
 
+        shellcheck = runCommand "shellcheck"
+          {
+            buildInputs = [ shellcheck ];
+          }
+          ''
+            mkdir $out
+            shellcheck --shell bash ${./scripts}/*
+          '';
+
         yamllint = runCommand "yamllint"
           {
             buildInputs = [ yamllint ];
