@@ -8,7 +8,7 @@
     let
       system = "x86_64-linux";
 
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = nixpkgs.legacyPackages.${system};
 
       revision = "${self.lastModifiedDate}-${self.shortRev or "dirty"}";
     in
