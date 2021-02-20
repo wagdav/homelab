@@ -98,7 +98,7 @@
   };
 
   hardware.bluetooth = {
-    enable = true;
+    enable = false;
     package = pkgs.bluezFull;
   };
 
