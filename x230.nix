@@ -135,12 +135,14 @@
   };
 
   virtualisation.podman.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dwagner = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "dialout" "networkmanager" "wheel" ];
+    extraGroups = [ "dialout" "networkmanager" "vboxusers" "wheel" ];
   };
 
   fileSystems = {
