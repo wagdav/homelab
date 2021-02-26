@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs }:
 let
   tasmota = import ./tasmota.nix;
 

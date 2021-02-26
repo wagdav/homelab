@@ -244,11 +244,11 @@ through MQTT because it's not always easy to get access to a serial terminal.
 Use the serial console or the web interface to connect the device to the WiFi
 and to the MQTT broker.
 
-Built and run the [provisioning script](nodemcu/provision.nix):
+Build and run any of the [provisioning scripts](nodemcu/provision.nix):
 
-```
-nix build -f provision.nix && ./result
+```shell
+nix build .#sensors && ./result/tasmota_082320.sh
 ```
 
-This will reconfigure all the devices by executing the specified
-[commands](https://tasmota.github.io/docs/Commands/).
+This will reconfigure the specified sensor by sending
+[commands](https://tasmota.github.io/docs/Commands/) over MQTT.

@@ -40,6 +40,10 @@
         buildInputs = [ nixops.defaultPackage.${system} ];
       };
 
+      packages.${system} = with pkgs; {
+        sensors = callPackage ./nodemcu/provision.nix { };
+      };
+
       checks.${system} = with pkgs; {
         nixpkgs-fmt = runCommand "nixpkgs-fmt"
           {
