@@ -47,7 +47,6 @@
     pavucontrol
     pmount
     ripgrep
-    trash-cli
     tree
     unzip
     vcsh
