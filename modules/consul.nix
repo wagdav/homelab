@@ -18,6 +18,7 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 8300 8301 8500 8600 ];
-  networking.firewall.allowedUDPPorts = [ 8301 8600 ];
+  # https://www.consul.io/docs/install/ports
+  networking.firewall.allowedTCPPorts = [ 8300 8301 8302 8500 8600 ];
+  networking.firewall.allowedUDPPorts = [ 8301 8302 8600 ];
 }
