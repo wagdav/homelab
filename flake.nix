@@ -1,7 +1,6 @@
 {
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
-  inputs.nixops.url = "github:NixOS/nixops/flake-support";
-  inputs.nixops.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.nixops.url = "github:NixOS/nixops";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
 
   outputs = { self, nixpkgs, nixops, nixos-hardware }:
