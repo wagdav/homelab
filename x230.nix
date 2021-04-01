@@ -25,6 +25,15 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.overlays = [
+    (self: super: {
+      neovim = super.neovim.override {
+        viAlias = true;
+        vimAlias = true;
+      };
+    })
+  ];
+
   powerManagement.powertop.enable = true;
 
   # List packages installed in system profile.
@@ -43,6 +52,7 @@
     httpie
     moreutils
     mpv
+    neovim
     pass
     pavucontrol
     pmount
@@ -50,7 +60,6 @@
     tree
     unzip
     vcsh
-    vim
     wget
     xmobar
     zathura
