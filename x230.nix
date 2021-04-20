@@ -63,6 +63,7 @@
     wget
     xmobar
     zathura
+    zoom-us
   ];
 
   security.wrappers = {
