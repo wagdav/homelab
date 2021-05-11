@@ -1,0 +1,14 @@
+# git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# After running the above, commits listed in this file will be
+# ignored by git blame. The blame will be shifted to the person
+# who edited the line(s) before the ignored commit.
+#
+# To disable this ignorance for a command, run as follows
+# git blame --ignore-revs-file="" <other options>
+#
+# https://git-scm.com/docs/git-blame/2.23.0
+
+# Run nixpkgs-fmt
+dca13c594213206feb3e794242c75cffa69a9a50
+d262360fef17cd1a22f6f92a8787f15fdcfd0dc1
