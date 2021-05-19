@@ -102,6 +102,8 @@
     sensitivity = 200;
   };
 
+  hardware.enableRedistributableFirmware = true;
+
   # Enable the brightness buttons
   services.illum.enable = true;
 
