@@ -13,12 +13,16 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "x230";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "x230";
+    networkmanager.enable = true;
 
-  networking.useDHCP = false;
-  networking.interfaces.enp0s25.useDHCP = true;
-  networking.interfaces.wlp3s0.useDHCP = true;
+    useDHCP = false;
+    interfaces = {
+      enp0s25.useDHCP = true;
+      wlp3s0.useDHCP = true;
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
@@ -71,66 +75,81 @@
     pumount.source = "${pkgs.pmount}/bin/pumount";
   };
 
-  programs.autojump.enable = true;
+  programs = {
+    autojump.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    ohMyZsh = {
-      enable = true;
-      theme = "robbyrussell";
-      plugins = [ "autojump" "dirhistory" "git" "pass" "sudo" ];
-    };
-  };
+    gnupg.agent = { enable = true; enableSSHSupport = true; };
 
-  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+    ssh.knownHosts = {
+      nuc = {
+        hostNames = [ "nuc" "nuc.thewagner.home" ];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIKaEtc8PNqhxAQ24gY5t25Y/8HU6StUB6kmU1xmVta7";
+      };
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio = {
-    enable = true;
-  };
-
-  hardware.trackpoint = {
-    enable = true;
-    speed = 200;
-    sensitivity = 200;
-  };
-
-  hardware.enableRedistributableFirmware = true;
-
-  # Enable the brightness buttons
-  services.illum.enable = true;
-
-  services.autorandr = {
-    enable = true;
-    defaultTarget = "standalone";
-  };
-
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-
-    autoRepeatDelay = 250;
-    autoRepeatInterval = 60;
-
-    # Enable touchpad support.
-    libinput = {
-      enable = true;
-      accelSpeed = "2";
+      rp3 = {
+        hostNames = [ "rp3" "rp3.thewagner.home" ];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILK0illQrUbCmn+UHgM79tDecSItLUVNuWi/Sg+DW2tr";
+      };
     };
 
-    displayManager.defaultSession = "none+xmonad";
-
-    windowManager = {
-      xmonad = {
+    zsh = {
+      enable = true;
+      ohMyZsh = {
         enable = true;
-        enableContribAndExtras = true;
+        theme = "robbyrussell";
+        plugins = [ "autojump" "dirhistory" "git" "pass" "sudo" ];
+      };
+    };
+  };
+
+  sound.enable = true;
+
+  hardware = {
+    enableRedistributableFirmware = true;
+
+    pulseaudio = {
+      enable = true;
+    };
+
+    trackpoint = {
+      enable = true;
+      speed = 200;
+      sensitivity = 200;
+    };
+  };
+
+  services = {
+    autorandr = {
+      enable = true;
+      defaultTarget = "standalone";
+    };
+
+    illum.enable = true; # Enable the brightness buttons
+
+    openssh.enable = true;
+
+    printing.enable = true;
+
+    # Enable the X11 windowing system.
+    xserver = {
+      enable = true;
+
+      autoRepeatDelay = 250;
+      autoRepeatInterval = 60;
+
+      # Enable touchpad support.
+      libinput = {
+        enable = true;
+        accelSpeed = "2";
+      };
+
+      displayManager.defaultSession = "none+xmonad";
+
+      windowManager = {
+        xmonad = {
+          enable = true;
+          enableContribAndExtras = true;
+        };
       };
     };
   };
@@ -201,18 +220,6 @@
     '';
 
     trustedUsers = [ "root" "@wheel" ];
-  };
-
-  programs.ssh.knownHosts = {
-    nuc = {
-      hostNames = [ "nuc" "nuc.thewagner.home" ];
-      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIKaEtc8PNqhxAQ24gY5t25Y/8HU6StUB6kmU1xmVta7";
-    };
-
-    rp3 = {
-      hostNames = [ "rp3" "rp3.thewagner.home" ];
-      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILK0illQrUbCmn+UHgM79tDecSItLUVNuWi/Sg+DW2tr";
-    };
   };
 
   # This value determines the NixOS release with which your system is to be
