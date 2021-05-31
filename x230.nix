@@ -106,6 +106,7 @@
 
   hardware = {
     enableRedistributableFirmware = true;
+    enableAllFirmware = true;
 
     pulseaudio = {
       enable = true;
