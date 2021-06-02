@@ -40,7 +40,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    raspberrypi-tools
+    libraspberrypi
   ];
 
   fileSystems."/" =

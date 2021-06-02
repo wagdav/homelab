@@ -18,7 +18,6 @@ in
       ./modules/common.nix
       ./modules/consul.nix
       ./modules/node-exporter.nix
-      ./modules/promtail.nix
 
       {
         system.configurationRevision = revision;
@@ -49,6 +48,7 @@ in
       ./modules/grafana
       ./modules/loki.nix
       ./modules/prometheus.nix
+      ./modules/promtail.nix
       ./modules/remote-builder
     ];
   };
@@ -56,6 +56,7 @@ in
   rp3 = {
     imports = [
       ./hardware/rp3.nix
+      ./modules/promtail.nix
       ./modules/remote-builder
     ];
   };

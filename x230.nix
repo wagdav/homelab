@@ -29,15 +29,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.overlays = [
-    (self: super: {
-      neovim = super.neovim.override {
-        viAlias = true;
-        vimAlias = true;
-      };
-    })
-  ];
-
   powerManagement.powertop.enable = true;
 
   # List packages installed in system profile.
@@ -56,7 +47,6 @@
     httpie
     moreutils
     mpv
-    neovim
     pass
     pavucontrol
     pmount
@@ -90,6 +80,12 @@
         hostNames = [ "rp3" "rp3.thewagner.home" ];
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILK0illQrUbCmn+UHgM79tDecSItLUVNuWi/Sg+DW2tr";
       };
+    };
+
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
     };
 
     zsh = {
@@ -141,7 +137,7 @@
       # Enable touchpad support.
       libinput = {
         enable = true;
-        accelSpeed = "2";
+        touchpad.accelSpeed = "2";
       };
 
       displayManager.defaultSession = "none+xmonad";
