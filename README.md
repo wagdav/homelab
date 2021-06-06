@@ -47,6 +47,20 @@ nix develop -c nixops deploy
 This builds the system configurations locally and copies the resulting closures
 to the remote machines.
 
+## Logs
+
+All server send their logs to [Loki](https://grafana.com/oss/loki/).  To see
+all logs live:
+
+```
+export LOKI_ADDR=http://loki.thewagner.home
+nix shell nixpkgs#grafana-loki --command \
+    logcli query '{job="systemd-journald"}' --tail
+```
+
+The `query` command takes a
+[LogQL](https://grafana.com/docs/loki/latest/logql/) expression as an argument.
+
 ## Installing a new NixOS system
 
 Installing a new system takes only a few manual steps.
