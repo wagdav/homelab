@@ -98,7 +98,10 @@
     };
   };
 
-  sound.enable = true;
+  sound = {
+    enable = true;
+    mediaKeys.enable = true;
+  };
 
   hardware = {
     enableRedistributableFirmware = true;
