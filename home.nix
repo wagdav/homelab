@@ -1,12 +1,10 @@
 { revision }:
 let
 
-  disable-loki-tests = self: super: {
-    grafana-loki = super.grafana-loki.overrideAttrs (
-      oldAttrs: rec {
-        doCheck = false;
-      }
-    );
+  lokiWithGo116 = self: super: {
+    grafana-loki = super.grafana-loki.override {
+      buildGoModule = super.buildGo116Module;
+    };
   };
 
 in
@@ -18,6 +16,7 @@ in
       ./modules/common.nix
       ./modules/consul.nix
       ./modules/node-exporter.nix
+      ./modules/promtail.nix
 
       {
         system.configurationRevision = revision;
@@ -35,7 +34,7 @@ in
       (
         { config, ... }:
         {
-          nixpkgs.overlays = [ disable-loki-tests ];
+          nixpkgs.overlays = [ lokiWithGo116 ];
         }
       )
     ];
@@ -48,7 +47,6 @@ in
       ./modules/grafana
       ./modules/loki.nix
       ./modules/prometheus.nix
-      ./modules/promtail.nix
       ./modules/remote-builder
     ];
   };
@@ -56,7 +54,6 @@ in
   rp3 = {
     imports = [
       ./hardware/rp3.nix
-      ./modules/promtail.nix
       ./modules/remote-builder
     ];
   };
