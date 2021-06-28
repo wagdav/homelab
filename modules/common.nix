@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
+  documentation.enable = false;
+
   nix.gc = {
     automatic = true;
     options = ''--delete-older-than 30d'';
