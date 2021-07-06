@@ -13,22 +13,39 @@
       revision = "${self.lastModifiedDate}-${self.shortRev or "dirty"}";
     in
     {
-      nixosConfigurations.x230 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      nixosConfigurations = {
+        ipc = nixpkgs.lib.nixosSystem {
+          system = "i686-linux";
+          modules = [ (import ./host-ipc.nix { inherit revision; }) ];
+        };
 
-        modules =
-          [
-            ./x230.nix
+        nuc = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [ (import ./host-nuc.nix { inherit revision; }) ];
+        };
 
-            {
-              nix.registry.nixpkgs.flake = nixpkgs;
+        rp3 = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [ (import ./host-rp3.nix { inherit revision; }) ];
+        };
 
-              system.configurationRevision = revision;
-            }
+        x230 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
 
-            nixpkgs.nixosModules.notDetected
-            nixos-hardware.nixosModules.lenovo-thinkpad-x230
-          ];
+          modules =
+            [
+              ./x230.nix
+
+              {
+                nix.registry.nixpkgs.flake = nixpkgs;
+
+                system.configurationRevision = revision;
+              }
+
+              nixpkgs.nixosModules.notDetected
+              nixos-hardware.nixosModules.lenovo-thinkpad-x230
+            ];
+        };
       };
 
       nixopsConfigurations.default = {

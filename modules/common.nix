@@ -1,6 +1,13 @@
+{ revision }:
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./consul.nix
+    ./node-exporter.nix
+    ./promtail.nix
+  ];
+
   documentation.enable = false;
 
   nix.gc = {
@@ -21,6 +28,8 @@
       passwordAuthentication = false;
     };
   };
+
+  system.configurationRevision = revision;
 
   users = {
     mutableUsers = false;
