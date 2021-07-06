@@ -6,10 +6,6 @@ let
 
 in
 {
-  imports = [
-    <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-  ];
-
   deployment.targetHost = name;
   nixpkgs.system = "i686-linux";
   nix.maxJobs = lib.mkDefault 2;

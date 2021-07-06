@@ -15,6 +15,8 @@
     options = ''--delete-older-than 30d'';
   };
 
+  hardware.enableRedistributableFirmware = true;
+
   i18n.defaultLocale = "en_US.UTF-8";
 
   time.timeZone = "Europe/Zurich";

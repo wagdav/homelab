@@ -5,10 +5,6 @@ let
 
 in
 {
-  imports = [
-    <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-  ];
-
   deployment.targetHost = name;
   nix.maxJobs = lib.mkDefault 4;
 
