@@ -35,6 +35,6 @@
 
   users = {
     mutableUsers = false;
-    users.root.openssh.authorizedKeys.keyFiles = [ ~/.ssh/id_rsa.pub ];
+    users.root.openssh.authorizedKeys.keys = [ (import ./keys.nix).dwagner ];
   };
 }

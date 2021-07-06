@@ -11,7 +11,7 @@ in
   services = {
     gitolite = {
       enable = true;
-      adminPubkey = builtins.readFile ~/.ssh/id_rsa.pub;
+      adminPubkey = (import ./keys.nix).dwagner;
 
       inherit user group;
     };
