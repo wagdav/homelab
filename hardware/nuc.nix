@@ -5,7 +5,6 @@ let
 
 in
 {
-  deployment.targetHost = name;
   nix.maxJobs = lib.mkDefault 4;
 
   boot = {

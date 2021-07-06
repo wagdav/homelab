@@ -6,7 +6,6 @@ let
 
 in
 {
-  deployment.targetHost = name;
   nix.maxJobs = lib.mkDefault 4;
   nixpkgs.system = "aarch64-linux";
 

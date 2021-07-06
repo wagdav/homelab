@@ -6,7 +6,6 @@ let
 
 in
 {
-  deployment.targetHost = name;
   nixpkgs.system = "i686-linux";
   nix.maxJobs = lib.mkDefault 2;
 
