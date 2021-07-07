@@ -6,6 +6,7 @@
   services.prometheus.exporters.node = {
     enable = true;
     enabledCollectors = [ "cpu" "filesystem" "loadavg" "systemd" ];
+    disabledCollectors = [ "rapl" ];
     extraFlags = [ "--collector.textfile.directory=/etc/metrics" ];
   };
 
