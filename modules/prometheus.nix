@@ -24,6 +24,7 @@ let
           server = consulAgent;
           services = [
             "grafana"
+            "hydra"
             "loki"
             "node-exporter"
             "prometheus"

@@ -52,6 +52,10 @@ uci set dhcp.@cname[-1].cname="git.thewagner.home"
 uci set dhcp.@cname[-1].target="ipc.thewagner.home"
 
 uci add dhcp cname
+uci set dhcp.@cname[-1].cname="hydra.thewagner.home"
+uci set dhcp.@cname[-1].target="ipc.thewagner.home"
+
+uci add dhcp cname
 uci set dhcp.@cname[-1].cname="loki.thewagner.home"
 uci set dhcp.@cname[-1].target="ipc.thewagner.home"
 
