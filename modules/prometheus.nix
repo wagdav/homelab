@@ -78,6 +78,15 @@ let
         }
       ];
     }
+    {
+      job_name = "hydra";
+      consul_sd_configs = [
+        {
+          server = consulAgent;
+          services = [ "hydra" ];
+        }
+      ];
+    }
   ];
 
 in
