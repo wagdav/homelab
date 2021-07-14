@@ -22,7 +22,8 @@ let
           job: systemd-journal
       relabel_configs:
        - source_labels: ['__journal__systemd_unit' ]
-         target_label: 'unit'
+         regex: '(.*)\.service'
+         target_label: 'service'
        - source_labels: ['__journal__hostname']
          target_label: 'hostname'
   '';

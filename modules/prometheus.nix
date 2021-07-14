@@ -32,6 +32,16 @@ let
           ];
         }
       ];
+      relabel_configs = [
+        {
+          source_labels = [ "__meta_consul_node" ];
+          target_label = "hostname";
+        }
+        {
+          source_labels = [ "__meta_consul_service" ];
+          target_label = "service";
+        }
+      ];
     }
     {
       job_name = "node";
