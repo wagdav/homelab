@@ -18,63 +18,28 @@ let
       params.format = [ "prometheus" ];
     }
     {
-      job_name = "prometheus";
+      job_name = "consul_catalog";
       consul_sd_configs = [
         {
           server = consulAgent;
-          services = [ "prometheus" ];
-        }
-      ];
-    }
-    {
-      job_name = "node";
-      consul_sd_configs = [
-        {
-          server = consulAgent;
-          services = [ "node-exporter" ];
-        }
-      ];
-      static_configs = [
-        {
-          targets = [
-            "wrt:9100"
+          services = [
+            "grafana"
+            "loki"
+            "node-exporter"
+            "prometheus"
+            "promtail"
+            "telegraf"
           ];
         }
       ];
     }
     {
-      job_name = "grafana";
-      consul_sd_configs = [
+      job_name = "node";
+      static_configs = [
         {
-          server = consulAgent;
-          services = [ "grafana" ];
-        }
-      ];
-    }
-    {
-      job_name = "loki";
-      consul_sd_configs = [
-        {
-          server = consulAgent;
-          services = [ "loki" ];
-        }
-      ];
-    }
-    {
-      job_name = "promtail";
-      consul_sd_configs = [
-        {
-          server = consulAgent;
-          services = [ "promtail" ];
-        }
-      ];
-    }
-    {
-      job_name = "telegraf";
-      consul_sd_configs = [
-        {
-          server = consulAgent;
-          services = [ "telegraf" ];
+          targets = [
+            "wrt:9100"
+          ];
         }
       ];
     }
