@@ -10,7 +10,7 @@
 
       pkgs = nixpkgs.legacyPackages.${system};
 
-      revision = "${self.lastModifiedDate}-${self.shortRev or "dirty"}";
+      revision = "latest";
     in
     {
       nixosConfigurations = {
