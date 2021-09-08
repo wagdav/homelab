@@ -16,17 +16,32 @@
       nixosConfigurations = {
         ipc = nixpkgs.lib.nixosSystem {
           system = "i686-linux";
-          modules = [ (import ./host-ipc.nix { inherit revision; }) ];
+          modules = [
+            (import ./host-ipc.nix { inherit revision; })
+            {
+              nix.registry.nixpkgs.flake = nixpkgs;
+            }
+          ];
         };
 
         nuc = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          modules = [ (import ./host-nuc.nix { inherit revision; }) ];
+          modules = [
+            (import ./host-nuc.nix { inherit revision; })
+            {
+              nix.registry.nixpkgs.flake = nixpkgs;
+            }
+          ];
         };
 
         rp3 = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          modules = [ (import ./host-rp3.nix { inherit revision; }) ];
+          modules = [
+            (import ./host-rp3.nix { inherit revision; })
+            {
+              nix.registry.nixpkgs.flake = nixpkgs;
+            }
+          ];
         };
 
         x230 = nixpkgs.lib.nixosSystem {
