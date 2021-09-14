@@ -55,7 +55,6 @@
     unzip
     vcsh
     wget
-    xmobar
     zathura
     zoom-us
   ];
@@ -81,6 +80,8 @@
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILK0illQrUbCmn+UHgM79tDecSItLUVNuWi/Sg+DW2tr";
       };
     };
+
+    sway.enable = true;
 
     neovim = {
       enable = true;
@@ -119,36 +120,17 @@
   };
 
   services = {
-    autorandr = {
-      enable = true;
-      defaultTarget = "standalone";
-    };
-
     illum.enable = true; # Enable the brightness buttons
 
     openssh.enable = true;
 
     printing.enable = true;
 
-    # Enable the X11 windowing system.
-    xserver = {
+    greetd = {
       enable = true;
-
-      autoRepeatDelay = 250;
-      autoRepeatInterval = 60;
-
-      # Enable touchpad support.
-      libinput = {
-        enable = true;
-        touchpad.accelSpeed = "2";
-      };
-
-      displayManager.defaultSession = "none+xmonad";
-
-      windowManager = {
-        xmonad = {
-          enable = true;
-          enableContribAndExtras = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
         };
       };
     };
