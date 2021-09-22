@@ -28,6 +28,10 @@ To update the lock files:
 nix flake update --update-input nixpkgs --commit-lock-file
 ```
 
+My [rcfiles](https://github.com/wagdav/rcfiles) repository completes the
+configuration of my laptop.  Those files live in a separate repository because
+I also use them on my work computer which doesn't run NixOS.
+
 ## Servers
 
 The entrypoint for my home server setup is [home.nix](home.nix).  This
