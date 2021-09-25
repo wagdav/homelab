@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware/x230.nix
+    ./modules/buildMachines.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -68,18 +69,6 @@
     autojump.enable = true;
 
     gnupg.agent = { enable = true; enableSSHSupport = true; };
-
-    ssh.knownHosts = {
-      nuc = {
-        hostNames = [ "nuc" "nuc.thewagner.home" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIKaEtc8PNqhxAQ24gY5t25Y/8HU6StUB6kmU1xmVta7";
-      };
-
-      rp3 = {
-        hostNames = [ "rp3" "rp3.thewagner.home" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILK0illQrUbCmn+UHgM79tDecSItLUVNuWi/Sg+DW2tr";
-      };
-    };
 
     sway.enable = true;
 
@@ -156,26 +145,6 @@
   };
 
   nix = {
-    distributedBuilds = true;
-    buildMachines =
-      let
-        sshUser = "root";
-        sshKey = "/root/remote-builder";
-      in
-      [
-        {
-          hostName = "nuc.thewagner.home";
-          systems = [ "x86_64-linux" "i686-linux" "aarch64-linux" ];
-          maxJobs = 4;
-          inherit sshUser sshKey;
-        }
-        {
-          hostName = "rp3.thewagner.home";
-          system = "aarch64-linux";
-          maxJobs = 4;
-          inherit sshUser sshKey;
-        }
-      ];
     package = pkgs.nixUnstable;
     extraOptions = ''
       builders-use-substitutes = true
