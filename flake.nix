@@ -1,10 +1,11 @@
 {
+  inputs.neovim.url = "github:neovim/neovim?dir=contrib";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
   inputs.nixops.url = "github:NixOS/nixops";
   inputs.nixops.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-  outputs = { self, nixpkgs, nixops, nixos-hardware }:
+  outputs = { self, neovim, nixpkgs, nixops, nixos-hardware }:
     let
       system = "x86_64-linux";
 
@@ -55,6 +56,8 @@
                 nix.registry.nixpkgs.flake = nixpkgs;
 
                 system.configurationRevision = revision;
+
+                programs.neovim.package = neovim.defaultPackage.x86_64-linux;
               }
 
               nixpkgs.nixosModules.notDetected
