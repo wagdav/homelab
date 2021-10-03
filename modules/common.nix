@@ -1,4 +1,3 @@
-{ revision }:
 { config, lib, pkgs, ... }:
 
 {
@@ -38,8 +37,6 @@
       passwordAuthentication = false;
     };
   };
-
-  system.configurationRevision = revision;
 
   users = {
     mutableUsers = false;

@@ -1,4 +1,3 @@
-{ revision }:
 { config, ... }:
 
 let
@@ -13,7 +12,7 @@ in
 {
   imports = [
     ./hardware/ipc.nix
-    (import ./modules/common.nix { inherit revision; })
+    ./modules/common.nix
     ./modules/git.nix
     ./modules/mqtt.nix
     ./modules/traefik.nix

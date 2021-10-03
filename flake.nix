@@ -18,9 +18,11 @@
         ipc = nixpkgs.lib.nixosSystem {
           system = "i686-linux";
           modules = [
-            (import ./host-ipc.nix { inherit revision; })
+            ./host-ipc.nix
+
             {
               nix.registry.nixpkgs.flake = nixpkgs;
+              system.configurationRevision = revision;
             }
           ];
         };
@@ -28,9 +30,11 @@
         nuc = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            (import ./host-nuc.nix { inherit revision; })
+            ./host-nuc.nix
+
             {
               nix.registry.nixpkgs.flake = nixpkgs;
+              system.configurationRevision = revision;
             }
           ];
         };
@@ -38,7 +42,16 @@
         rp3 = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
-            (import ./host-rp3.nix { inherit revision; })
+            ./host-rp3.nix
+
+            {
+              nix.registry.nixpkgs.flake = nixpkgs;
+
+              system.configurationRevision = revision;
+            }
+          ];
+        };
+
             {
               nix.registry.nixpkgs.flake = nixpkgs;
             }

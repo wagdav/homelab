@@ -1,10 +1,9 @@
-{ revision }:
 { config, ... }:
 
 {
   imports = [
     ./hardware/nuc.nix
-    (import ./modules/common.nix { inherit revision; })
+    ./modules/common.nix
     ./modules/grafana
     ./modules/hydra.nix
     ./modules/loki.nix
