@@ -21,7 +21,15 @@
     }
   ];
 
-  environment.etc."metrics/revision.prom".text = ''
-    node_nixos_configuration{revision="${config.system.configurationRevision}"} 1
-  '';
+  environment.etc."metrics/revision.prom".text =
+    let
+      revision =
+        if config.system.configurationRevision == null
+        then "unknown"
+        else config.system.configurationRevision;
+    in
+
+    ''
+      node_nixos_configuration{revision="${revision}"} 1
+    '';
 }
