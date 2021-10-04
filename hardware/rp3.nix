@@ -45,8 +45,6 @@ in
       fsType = "ext4";
     };
 
-  swapDevices = [{ device = "/swapfile"; size = 1024; }];
-
   networking = {
     hostName = name;
 
