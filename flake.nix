@@ -12,52 +12,19 @@
       pkgs = nixpkgs.legacyPackages.${system};
 
       revision = "latest";
+
+      defaults = {
+        nix.registry.nixpkgs.flake = nixpkgs;
+        system.configurationRevision = revision;
+      };
+
+      mkMachine = system: modules: nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = modules ++ [ defaults ];
+      };
     in
     {
       nixosConfigurations = {
-        ipc = nixpkgs.lib.nixosSystem {
-          system = "i686-linux";
-          modules = [
-            ./host-ipc.nix
-
-            {
-              nix.registry.nixpkgs.flake = nixpkgs;
-              system.configurationRevision = revision;
-            }
-          ];
-        };
-
-        nuc = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./host-nuc.nix
-
-            {
-              nix.registry.nixpkgs.flake = nixpkgs;
-              system.configurationRevision = revision;
-            }
-          ];
-        };
-
-        rp3 = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          modules = [
-            ./host-rp3.nix
-
-            {
-              nix.registry.nixpkgs.flake = nixpkgs;
-
-              system.configurationRevision = revision;
-            }
-          ];
-        };
-
-            {
-              nix.registry.nixpkgs.flake = nixpkgs;
-            }
-          ];
-        };
-
         x230 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
@@ -77,12 +44,25 @@
               nixos-hardware.nixosModules.lenovo-thinkpad-x230
             ];
         };
+
+        ipc = mkMachine "i686-linux" [ ./host-ipc.nix ];
+        nuc = mkMachine "x86_64-linux" [ ./host-nuc.nix ];
+        rp3 = mkMachine "aarch64-linux" [ ./host-rp3.nix ];
       };
 
       nixopsConfigurations.default = {
-        inherit nixpkgs;
-      } // import ./home.nix { inherit revision; };
+        inherit defaults nixpkgs;
 
+        network.description = "My home infrastructure";
+
+        network.storage.legacy = {
+          databasefile = "~/.nixops/deployments.nixops";
+        };
+
+        ipc = ./host-ipc.nix;
+        nuc = ./host-nuc.nix;
+        rp3 = ./host-rp3.nix;
+      };
 
       devShell.${system} = pkgs.mkShell {
         buildInputs = [ nixops.defaultPackage.${system} ];
