@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./consul.nix
     ./node-exporter.nix
     ./promtail.nix
   ];

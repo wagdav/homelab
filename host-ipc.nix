@@ -13,6 +13,7 @@ in
   imports = [
     ./hardware/ipc.nix
     ./modules/common.nix
+    ./modules/consul.nix
     ./modules/git.nix
     ./modules/mqtt.nix
     ./modules/traefik.nix
