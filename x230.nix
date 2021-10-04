@@ -70,7 +70,12 @@
 
     gnupg.agent = { enable = true; enableSSHSupport = true; };
 
-    sway.enable = true;
+    sway = {
+      enable = true;
+      extraSessionCommands = ''
+        export MOZ_ENABLE_WAYLAND=1
+      '';
+    };
 
     neovim = {
       enable = true;
