@@ -39,7 +39,7 @@ configuration is deployed using [nixops](https://github.com/NixOS/nixops).  A
 one-time setup is required if the deployment doesn't exist yet:
 
 ```
-nix develop -c nixops create --name home --flake .
+nix develop -c nixops create --name home
 ```
 
 Then, run the following command to deploy:
