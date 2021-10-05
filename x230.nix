@@ -102,8 +102,18 @@
     enableRedistributableFirmware = true;
     enableAllFirmware = true;
 
+    bluetooth = {
+      enable = true;
+      package = pkgs.bluezFull;
+    };
+
     pulseaudio = {
       enable = true;
+      extraConfig = ''
+        # Automatically switch to newly-connected devices
+        load-module module-switch-on-connect
+      '';
+      package = pkgs.pulseaudioFull;
     };
 
     trackpoint = {
