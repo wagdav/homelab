@@ -48,6 +48,10 @@
         ipc = mkMachine "i686-linux" [ ./host-ipc.nix ];
         nuc = mkMachine "x86_64-linux" [ ./host-nuc.nix ];
         rp3 = mkMachine "aarch64-linux" [ ./host-rp3.nix ];
+        rp4 = mkMachine "aarch64-linux" [
+          ./host-rp4.nix
+          nixos-hardware.nixosModules.raspberry-pi-4
+        ];
       };
 
       nixopsConfigurations.default = {
@@ -62,6 +66,12 @@
         ipc = ./host-ipc.nix;
         nuc = ./host-nuc.nix;
         rp3 = ./host-rp3.nix;
+        rp4 = {
+          imports = [
+            ./host-rp4.nix
+            nixos-hardware.nixosModules.raspberry-pi-4
+          ];
+        };
       };
 
       devShell.${system} = pkgs.mkShell {
@@ -115,6 +125,7 @@
         ipc = self.nixosConfigurations.ipc.config.system.build.toplevel;
         nuc = self.nixosConfigurations.nuc.config.system.build.toplevel;
         rp3 = self.nixosConfigurations.rp3.config.system.build.toplevel;
+        rp4 = self.nixosConfigurations.rp4.config.system.build.toplevel;
         x230 = self.nixosConfigurations.x230.config.system.build.toplevel;
       };
     };
