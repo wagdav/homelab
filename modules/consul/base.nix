@@ -5,9 +5,7 @@
     enable = true;
 
     extraConfig = {
-      server = true;
       retry_join = [ "ipc" "nuc" "rp3" ];
-      bootstrap_expect = 3;
 
       client_addr = [ "0.0.0.0" ];
 
