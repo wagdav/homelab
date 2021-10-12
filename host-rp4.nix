@@ -4,6 +4,7 @@
   imports = [
     ./hardware/rp4.nix
     ./modules/common.nix
+    ./modules/consul/client.nix
   ];
 
   sound.enable = true;
