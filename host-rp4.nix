@@ -22,4 +22,12 @@
     allowedTCPPorts = [ 8080 ];
     allowedUDPPorts = [ 8080 ];
   };
+
+  services.consul.catalog = [
+    {
+      name = "kodi";
+      port = 8080;
+      tags = (import modules/lib/traefik.nix).tagsForHost "tv";
+    }
+  ];
 }
