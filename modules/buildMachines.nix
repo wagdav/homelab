@@ -47,6 +47,7 @@
           maxJobs = 4;
           supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
           inherit sshUser sshKey;
+          speedFactor = 2;
         }
       ];
   };
