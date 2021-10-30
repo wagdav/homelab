@@ -35,4 +35,8 @@ in
       libcec = super.libcec.override { inherit (super) libraspberrypi; };
     })
   ];
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"
+  '';
 }
