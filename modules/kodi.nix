@@ -33,7 +33,6 @@
     (self: super: {
       kodi = super.kodi.override {
         sambaSupport = false;
-        rtmpSupport = false;
         joystickSupport = false;
       };
     })
