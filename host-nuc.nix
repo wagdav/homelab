@@ -8,7 +8,9 @@
     ./modules/grafana
     ./modules/hydra.nix
     ./modules/loki.nix
+    ./modules/mqtt.nix
     ./modules/prometheus.nix
     ./modules/remote-builder
+    ./modules/traefik.nix
   ];
 }

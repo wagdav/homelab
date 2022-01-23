@@ -15,8 +15,6 @@ in
     ./modules/common.nix
     ./modules/consul/server.nix
     ./modules/git.nix
-    ./modules/mqtt.nix
-    ./modules/traefik.nix
   ];
 
   nixpkgs.overlays = [ lokiWithGo116 ];
