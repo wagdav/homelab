@@ -144,7 +144,7 @@ Linksys WRT ACM-3200 running OpenWRT.
 Connect to the router with an Ethernet cable.
 
 Download and install the [OpenWRT
-firmware](https://openwrt.org/toh/linksys/linksys_wrt3200acm) then run:
+firmware](https://openwrt.org/toh/linksys/wrt3200acm) then run:
 
 ```
 router/setup.sh --first-time
