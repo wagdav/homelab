@@ -2,7 +2,7 @@
 set -e
 
 if [ "$1" = "--first-time" ]; then
-    SSH_COMMAND="ssh root@192.168.1.1 -o StrictHostKeyChecking=no -o UserKnownHostsFile /dev/null"
+    SSH_COMMAND="ssh root@192.168.1.1 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 else
     SSH_COMMAND="ssh root@wrt"
 fi
