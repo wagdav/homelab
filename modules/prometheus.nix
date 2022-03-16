@@ -70,6 +70,11 @@ in
       name = "prometheus";
       port = config.services.prometheus.port;
       tags = (import ./lib/traefik.nix).tagsForHost "prometheus";
+      check = {
+        name = "Health endpoint";
+        http = "http://localhost:${toString config.services.prometheus.port}/-/healthy";
+        interval = "10s";
+      };
     }
   ];
 
