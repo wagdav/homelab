@@ -1,8 +1,7 @@
 {
   inputs.neovim.url = "github:neovim/neovim/838631e29ef3051d6117b3d5c340d2be9f1f29b4?dir=contrib";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
   inputs.nixops.url = "github:NixOS/nixops";
-  inputs.nixops.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
 
   outputs = { self, neovim, nixpkgs, nixops, nixos-hardware }:
