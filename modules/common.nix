@@ -12,7 +12,7 @@
     package = pkgs.nixUnstable;
     extraOptions = ''
       builders-use-substitutes = true
-      experimental-features = nix-command flakes ca-references
+      experimental-features = nix-command flakes
     '';
   };
 
