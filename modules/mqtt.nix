@@ -2,6 +2,7 @@
 let
 
   prometheus_client_port = 9883;
+  mqtt_port = 1883;
 
 in
 {
@@ -23,7 +24,7 @@ in
 
     extraConfig = {
       inputs.mqtt_consumer = {
-        servers = [ "tcp://127.0.0.1:${toString config.services.mosquitto.port}" ];
+        servers = [ "tcp://127.0.0.1:${toString mqtt_port}" ];
         topics = [ "tele/+/SENSOR" ];
         data_format = "json";
       };
@@ -40,7 +41,7 @@ in
   services.consul.catalog = [
     {
       name = "mosquitto";
-      port = config.services.mosquitto.port;
+      port = mqtt_port;
     }
     {
       name = "telegraf";
@@ -49,7 +50,7 @@ in
   ];
 
   networking.firewall.allowedTCPPorts = [
-    config.services.mosquitto.port
+    mqtt_port
     prometheus_client_port
   ];
 }
