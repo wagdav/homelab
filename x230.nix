@@ -62,11 +62,13 @@
 
   security.wrappers = {
     pmount.source = "${pkgs.pmount}/bin/pmount";
-    pmount.owner = "dwagner";
-    pmount.group = "users";
+    pmount.owner = "root";
+    pmount.group = "root";
+    pmount.setuid = true;
     pumount.source = "${pkgs.pmount}/bin/pumount";
-    pumount.owner = "dwagner";
-    pumount.group = "users";
+    pumount.owner = "root";
+    pumount.group = "root";
+    pumount.setuid = true;
   };
 
   programs = {
