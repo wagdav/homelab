@@ -7,8 +7,6 @@ wait_for_consul() {
 }
 
 
-nixops reboot --include ipc
-wait_for_consul
 nixops reboot --include nuc
 wait_for_consul
 nixops reboot --include rp3

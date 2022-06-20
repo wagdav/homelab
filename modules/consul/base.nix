@@ -5,7 +5,7 @@
     enable = true;
 
     extraConfig = {
-      retry_join = [ "ipc" "nuc" "rp3" ];
+      retry_join = [ "nuc" "rp3" ];
 
       client_addr = [ "0.0.0.0" ];
 

@@ -8,7 +8,6 @@ let
       static_configs = [
         {
           targets = [
-            "ipc:8500"
             "nuc:8500"
             "rp3:8500"
           ];

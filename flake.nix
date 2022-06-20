@@ -44,7 +44,6 @@
             ];
         };
 
-        ipc = mkMachine "i686-linux" [ ./host-ipc.nix ];
         nuc = mkMachine "x86_64-linux" [ ./host-nuc.nix ];
         rp3 = mkMachine "aarch64-linux" [ ./host-rp3.nix ];
         rp4 = mkMachine "aarch64-linux" [
@@ -62,7 +61,6 @@
           databasefile = "~/.nixops/deployments.nixops";
         };
 
-        ipc = ./host-ipc.nix;
         nuc = ./host-nuc.nix;
         rp3 = ./host-rp3.nix;
         rp4 = {
@@ -121,7 +119,6 @@
       };
 
       hydraJobs = {
-        ipc = self.nixosConfigurations.ipc.config.system.build.toplevel;
         nuc = self.nixosConfigurations.nuc.config.system.build.toplevel;
         rp3 = self.nixosConfigurations.rp3.config.system.build.toplevel;
         rp4 = self.nixosConfigurations.rp4.config.system.build.toplevel;
