@@ -5,6 +5,7 @@
     ./hardware/nuc.nix
     ./modules/common.nix
     ./modules/consul/server.nix
+    ./modules/git.nix
     ./modules/grafana
     ./modules/hydra.nix
     ./modules/loki.nix

@@ -14,7 +14,6 @@ in
     ./hardware/ipc.nix
     ./modules/common.nix
     ./modules/consul/server.nix
-    ./modules/git.nix
   ];
 
   nixpkgs.overlays = [ lokiWithGo116 ];
