@@ -13,7 +13,6 @@ in
   imports = [
     ./hardware/ipc.nix
     ./modules/common.nix
-    ./modules/consul/server.nix
   ];
 
   nixpkgs.overlays = [ lokiWithGo116 ];

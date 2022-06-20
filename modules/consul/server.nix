@@ -8,7 +8,7 @@
   services.consul = {
     extraConfig = {
       server = true;
-      bootstrap_expect = 3;
+      bootstrap_expect = 2;
     };
   };
 }
