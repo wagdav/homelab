@@ -124,5 +124,10 @@
         rp4 = self.nixosConfigurations.rp4.config.system.build.toplevel;
         x230 = self.nixosConfigurations.x230.config.system.build.toplevel;
       };
+
+      mqtt-dash-listen = pkgs.writeScriptBin "mqtt-dash-listen" ''
+        echo 1>&2 "Press Publish Metrics in the MQTT Dash app..."
+        ${pkgs.mosquitto}/bin/mosquitto_sub -h mqtt -t 'metrics/exchange' -C 1 | ${pkgs.jq}/bin/jq -r .
+      '';
     };
 }

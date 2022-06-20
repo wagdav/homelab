@@ -270,3 +270,18 @@ nix build .#sensors && ./result/tasmota_082320.sh
 
 This will reconfigure the specified sensor by sending
 [commands](https://tasmota.github.io/docs/Commands/) over MQTT.
+
+### Dashboard
+
+On my mobile I created a dashboard using [MQTT Dash](https://play.google.com/store/apps/details?id=net.routix.mqttdash&gl=US).
+
+To update the [dashboard configuration](nodemcu/mqtt-dash.json) file, use the
+Import/Export functionality of the app and publish the dashboard state to an
+MQTT topic (the default is `metrics/exchange`).
+
+The following command listens to the published configuration and updates the
+dashboard configuration in this repository:
+
+```
+nix run .#mqtt-dash-listen > nodemcu/mqtt-dash.json
+```
