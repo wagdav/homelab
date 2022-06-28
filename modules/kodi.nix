@@ -28,13 +28,4 @@
       tags = (import lib/traefik.nix).tagsForHost "tv";
     }
   ];
-
-  nixpkgs.overlays = [
-    (self: super: {
-      kodi = super.kodi.override {
-        sambaSupport = false;
-        joystickSupport = false;
-      };
-    })
-  ];
 }
