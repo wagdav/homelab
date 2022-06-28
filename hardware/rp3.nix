@@ -10,7 +10,6 @@ in
   nixpkgs.system = "aarch64-linux";
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_5_4;
     initrd = {
       availableKernelModules = [
         "bcm2835_dma"
