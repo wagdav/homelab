@@ -3,12 +3,11 @@
     url = "github:edolstra/flake-compat";
     flake = false;
   };
-  inputs.neovim.url = "github:neovim/neovim/838631e29ef3051d6117b3d5c340d2be9f1f29b4?dir=contrib";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
   inputs.nixops.url = "github:NixOS/nixops";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-  outputs = { self, flake-compat, neovim, nixpkgs, nixops, nixos-hardware }:
+  outputs = { self, flake-compat, nixpkgs, nixops, nixos-hardware }:
     let
       system = "x86_64-linux";
 
@@ -39,8 +38,6 @@
                 nix.registry.nixpkgs.flake = nixpkgs;
 
                 system.configurationRevision = revision;
-
-                programs.neovim.package = neovim.defaultPackage.x86_64-linux;
               }
 
               nixpkgs.nixosModules.notDetected
