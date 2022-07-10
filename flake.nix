@@ -58,9 +58,7 @@
 
         network.description = "My home infrastructure";
 
-        network.storage.legacy = {
-          databasefile = "~/.nixops/deployments.nixops";
-        };
+        network.storage.memory = { };
 
         nuc = ./host-nuc.nix;
         rp3 = ./host-rp3.nix;
