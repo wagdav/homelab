@@ -44,6 +44,7 @@
     fim
     firefox
     flameshot
+    fzf
     git
     httpie
     moreutils
@@ -94,7 +95,7 @@
       ohMyZsh = {
         enable = true;
         theme = "robbyrussell";
-        plugins = [ "autojump" "dirhistory" "git" "pass" "sudo" ];
+        plugins = [ "autojump" "dirhistory" "fzf" "git" "pass" "sudo" ];
       };
     };
   };
