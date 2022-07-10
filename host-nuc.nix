@@ -7,7 +7,6 @@
     ./modules/consul/server.nix
     ./modules/git.nix
     ./modules/grafana
-    ./modules/hydra.nix
     ./modules/loki.nix
     ./modules/mqtt.nix
     ./modules/prometheus.nix
