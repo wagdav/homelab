@@ -105,6 +105,8 @@
     mediaKeys.enable = true;
   };
 
+  xdg.portal.wlr.enable = true;
+
   hardware = {
     enableRedistributableFirmware = true;
     enableAllFirmware = true;
@@ -134,6 +136,8 @@
     illum.enable = true; # Enable the brightness buttons
 
     openssh.enable = true;
+
+    pipewire.enable = true;
 
     printing.enable = true;
 
