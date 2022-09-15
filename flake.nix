@@ -24,6 +24,12 @@
         inherit system;
         modules = modules ++ [ defaults ];
       };
+
+      mqtt-dash-listen = pkgs.writeScriptBin "mqtt-dash-listen" ''
+        echo 1>&2 "Press Publish Metrics in the MQTT Dash app..."
+        ${pkgs.mosquitto}/bin/mosquitto_sub -h mqtt -t 'metrics/exchange' -C 1 | ${pkgs.jq}/bin/jq -r .
+      '';
+
     in
     {
       nixosConfigurations = {
@@ -70,7 +76,12 @@
         };
       };
 
-      devShell.${system} = pkgs.mkShell {
+      apps.${system}.mqtt-dash-listen = {
+        type = "app";
+        program = "${mqtt-dash-listen}/bin/mqtt-dash-listen";
+      };
+
+      devShells.${system}.default = pkgs.mkShell {
         buildInputs = [ nixops.defaultPackage.${system} ];
       };
 
@@ -128,10 +139,5 @@
           rp4 = self.nixosConfigurations.rp4.config.system.build.toplevel;
         };
       };
-
-      mqtt-dash-listen = pkgs.writeScriptBin "mqtt-dash-listen" ''
-        echo 1>&2 "Press Publish Metrics in the MQTT Dash app..."
-        ${pkgs.mosquitto}/bin/mosquitto_sub -h mqtt -t 'metrics/exchange' -C 1 | ${pkgs.jq}/bin/jq -r .
-      '';
     };
 }
