@@ -141,6 +141,8 @@
 
     printing.enable = true;
 
+    tailscale.enable = true;
+
     greetd = {
       enable = true;
       settings = {
