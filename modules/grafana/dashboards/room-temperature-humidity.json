@@ -4,23 +4,36 @@
       {
         "$$hashKey": "object:205",
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bRc0IA0Mz"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -33,7 +46,10 @@
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bRc0IA0Mz"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -49,7 +65,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "stepAfter",
             "lineWidth": 1,
@@ -58,7 +75,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "decimals": 1,
           "mappings": [],
@@ -85,7 +109,7 @@
         "x": 0,
         "y": 1
       },
-      "id": 2,
+      "id": 19,
       "options": {
         "graph": {},
         "legend": {
@@ -93,277 +117,58 @@
           "displayMode": "list",
           "placement": "bottom"
         },
-        "tooltipOptions": {
-          "mode": "single"
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.4.1",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bRc0IA0Mz"
+          },
+          "editorMode": "code",
           "expr": "mqtt_consumer_AM2301_Temperature{topic=\"tele/tasmota_0E63DE/SENSOR\"}",
           "instant": false,
           "interval": "",
-          "legendFormat": "{{ topic }}",
+          "legendFormat": "Bedroom",
           "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Temperature",
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "graph": false,
-              "legend": false,
-              "tooltip": false
-            },
-            "lineInterpolation": "stepAfter",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percent"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
-        "y": 1
-      },
-      "id": 12,
-      "options": {
-        "graph": {},
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltipOptions": {
-          "mode": "single"
-        }
-      },
-      "pluginVersion": "7.4.1",
-      "targets": [
         {
-          "expr": "mqtt_consumer_AM2301_Humidity{topic=\"tele/tasmota_0E63DE/SENSOR\"}",
-          "interval": "",
-          "legendFormat": "{{ topic }}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Humidity",
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bRc0IA0Mz"
           },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "graph": false,
-              "legend": false,
-              "tooltip": false
-            },
-            "lineInterpolation": "stepAfter",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 1
-      },
-      "id": 6,
-      "options": {
-        "graph": {},
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltipOptions": {
-          "mode": "single"
-        }
-      },
-      "pluginVersion": "7.4.1",
-      "targets": [
-        {
-          "expr": "mqtt_consumer_AM2301_DewPoint{topic=\"tele/tasmota_0E63DE/SENSOR\"}",
-          "interval": "",
-          "legendFormat": "{{ topic }}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Dew Point",
-      "type": "timeseries"
-    },
-    {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 8
-      },
-      "id": 10,
-      "panels": [],
-      "title": "Living room",
-      "type": "row"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "graph": false,
-              "legend": false,
-              "tooltip": false
-            },
-            "lineInterpolation": "stepAfter",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false
-          },
-          "decimals": 1,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "celsius"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 0,
-        "y": 9
-      },
-      "id": 11,
-      "options": {
-        "graph": {},
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltipOptions": {
-          "mode": "single"
-        }
-      },
-      "pluginVersion": "7.4.1",
-      "targets": [
-        {
+          "editorMode": "code",
           "expr": "mqtt_consumer_AM2301_Temperature{topic=\"tele/tasmota_082320/SENSOR\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "{{ topic }}",
-          "refId": "A"
+          "hide": false,
+          "legendFormat": "Living room",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bRc0IA0Mz"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_consumer_SI7021_Temperature{topic=\"tele/tasmota_D892EA/SENSOR\"}",
+          "hide": false,
+          "legendFormat": "Study",
+          "range": true,
+          "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Temperature",
+      "title": "Room temperature",
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bRc0IA0Mz"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -379,7 +184,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "stepAfter",
             "lineWidth": 1,
@@ -388,8 +194,16 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
+          "decimals": 1,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -412,9 +226,9 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 9
+        "y": 1
       },
-      "id": 4,
+      "id": 20,
       "options": {
         "graph": {},
         "legend": {
@@ -422,118 +236,58 @@
           "displayMode": "list",
           "placement": "bottom"
         },
-        "tooltipOptions": {
-          "mode": "single"
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.4.1",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bRc0IA0Mz"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_consumer_AM2301_Humidity{topic=\"tele/tasmota_0E63DE/SENSOR\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Bedroom",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bRc0IA0Mz"
+          },
+          "editorMode": "code",
           "expr": "mqtt_consumer_AM2301_Humidity{topic=\"tele/tasmota_082320/SENSOR\"}",
-          "interval": "",
-          "legendFormat": "{{ topic }}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Humidity",
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "graph": false,
-              "legend": false,
-              "tooltip": false
-            },
-            "lineInterpolation": "stepAfter",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "celsius"
+          "hide": false,
+          "legendFormat": "Living room",
+          "range": true,
+          "refId": "B"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 9
-      },
-      "id": 13,
-      "options": {
-        "graph": {},
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltipOptions": {
-          "mode": "single"
-        }
-      },
-      "pluginVersion": "7.4.1",
-      "targets": [
         {
-          "expr": "mqtt_consumer_AM2301_DewPoint{topic=\"tele/tasmota_082320/SENSOR\"}",
-          "interval": "",
-          "legendFormat": "{{ topic }}",
-          "refId": "A"
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bRc0IA0Mz"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_consumer_SI7021_Humidity{topic=\"tele/tasmota_D892EA/SENSOR\"}",
+          "hide": false,
+          "legendFormat": "Study",
+          "range": true,
+          "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Dew Point",
+      "title": "Room humidity",
       "type": "timeseries"
     },
     {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 16
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bRc0IA0Mz"
       },
-      "id": 16,
-      "panels": [],
-      "title": "Study",
-      "type": "row"
-    },
-    {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -549,7 +303,8 @@
             "hideFrom": {
               "graph": false,
               "legend": false,
-              "tooltip": false
+              "tooltip": false,
+              "viz": false
             },
             "lineInterpolation": "stepAfter",
             "lineWidth": 1,
@@ -558,7 +313,14 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
           },
           "decimals": 1,
           "mappings": [],
@@ -582,10 +344,10 @@
       "gridPos": {
         "h": 7,
         "w": 8,
-        "x": 0,
-        "y": 17
+        "x": 16,
+        "y": 1
       },
-      "id": 14,
+      "id": 21,
       "options": {
         "graph": {},
         "legend": {
@@ -593,191 +355,63 @@
           "displayMode": "list",
           "placement": "bottom"
         },
-        "tooltipOptions": {
-          "mode": "single"
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "7.4.1",
       "targets": [
         {
-          "expr": "mqtt_consumer_SI7021_Temperature{topic=\"tele/tasmota_D892EA/SENSOR\"}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bRc0IA0Mz"
+          },
+          "editorMode": "code",
+          "expr": "mqtt_consumer_AM2301_DewPoint{topic=\"tele/tasmota_0E63DE/SENSOR\"}",
           "instant": false,
           "interval": "",
-          "legendFormat": "{{ topic }}",
+          "legendFormat": "Bedroom",
           "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Temperature",
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "graph": false,
-              "legend": false,
-              "tooltip": false
-            },
-            "lineInterpolation": "stepAfter",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "percent"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 8,
-        "y": 17
-      },
-      "id": 17,
-      "options": {
-        "graph": {},
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltipOptions": {
-          "mode": "single"
-        }
-      },
-      "pluginVersion": "7.4.1",
-      "targets": [
         {
-          "expr": "mqtt_consumer_SI7021_Humidity{topic=\"tele/tasmota_D892EA/SENSOR\"}",
-          "interval": "",
-          "legendFormat": "{{ topic }}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Humidity",
-      "type": "timeseries"
-    },
-    {
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bRc0IA0Mz"
           },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "graph": false,
-              "legend": false,
-              "tooltip": false
-            },
-            "lineInterpolation": "stepAfter",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "celsius"
+          "editorMode": "code",
+          "expr": "mqtt_consumer_AM2301_DewPoint{topic=\"tele/tasmota_082320/SENSOR\"}",
+          "hide": false,
+          "legendFormat": "Living room",
+          "range": true,
+          "refId": "B"
         },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 8,
-        "x": 16,
-        "y": 17
-      },
-      "id": 18,
-      "options": {
-        "graph": {},
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom"
-        },
-        "tooltipOptions": {
-          "mode": "single"
-        }
-      },
-      "pluginVersion": "7.4.1",
-      "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bRc0IA0Mz"
+          },
+          "editorMode": "code",
           "expr": "mqtt_consumer_SI7021_DewPoint{topic=\"tele/tasmota_D892EA/SENSOR\"}",
-          "interval": "",
-          "legendFormat": "{{ topic }}",
-          "refId": "A"
+          "hide": false,
+          "legendFormat": "Study",
+          "range": true,
+          "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Dew Point",
+      "title": "Room Dew Point",
       "type": "timeseries"
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 27,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -797,5 +431,6 @@
   "timezone": "",
   "title": "Room temperature & humidity",
   "uid": "-Jz7HnRMz",
-  "version": 1
+  "version": 3,
+  "weekStart": ""
 }
