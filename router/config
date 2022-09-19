@@ -85,6 +85,9 @@ opkg install \
     prometheus-node-exporter-lua-wifi_stations
 uci set prometheus-node-exporter-lua.main.listen_interface='lan'
 
+# Tailscale
+opkg install tailscale
+
 CHANGES=$(uci changes)
 if [ -n "$CHANGES" ]; then
     echo "Changes:"
