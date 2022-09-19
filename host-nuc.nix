@@ -12,5 +12,6 @@
     ./modules/prometheus.nix
     ./modules/remote-builder
     ./modules/traefik.nix
+    ./modules/vpn.nix
   ];
 }
