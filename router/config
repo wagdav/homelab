@@ -83,7 +83,7 @@ opkg install \
     prometheus-node-exporter-lua-openwrt \
     prometheus-node-exporter-lua-wifi \
     prometheus-node-exporter-lua-wifi_stations
-uci set prometheus-node-exporter-lua.main.listen_interface='lan'
+uci set prometheus-node-exporter-lua.main.listen_interface='*'
 
 # Tailscale
 opkg install tailscale
