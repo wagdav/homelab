@@ -48,6 +48,20 @@ in
             }
           ];
         }
+        {
+          mapping = [
+            {
+              field = "device";
+              dest = "room";
+              value_mappings = {
+                "tasmota_082320" = "Living room";
+                "tasmota_0E63DE" = "Bedroom";
+                "tasmota_96804E" = "Living room";
+                "tasmota_D892EA" = "Study";
+              };
+            }
+          ];
+        }
       ];
 
       outputs.prometheus_client = {
