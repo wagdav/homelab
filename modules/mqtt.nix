@@ -28,6 +28,12 @@ in
         topics = [ "tele/+/SENSOR" "tele/+/STATE" ];
         data_format = "json";
         json_string_fields = [ "POWER" ];
+        topic_parsing = [
+          {
+            topic = "tele/+/+";
+            fields = "_/device/_";
+          }
+        ];
       };
 
       processors.enum = [
