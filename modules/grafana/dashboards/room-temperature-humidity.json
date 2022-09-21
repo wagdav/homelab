@@ -29,23 +29,6 @@
   "liveNow": false,
   "panels": [
     {
-      "collapsed": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "bRc0IA0Mz"
-      },
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 8,
-      "panels": [],
-      "title": "Bedroom",
-      "type": "row"
-    },
-    {
       "datasource": {
         "type": "prometheus",
         "uid": "bRc0IA0Mz"
@@ -107,7 +90,7 @@
         "h": 7,
         "w": 8,
         "x": 0,
-        "y": 1
+        "y": 0
       },
       "id": 19,
       "options": {
@@ -226,7 +209,7 @@
         "h": 7,
         "w": 8,
         "x": 8,
-        "y": 1
+        "y": 0
       },
       "id": 20,
       "options": {
@@ -345,7 +328,7 @@
         "h": 7,
         "w": 8,
         "x": 16,
-        "y": 1
+        "y": 0
       },
       "id": 21,
       "options": {
@@ -401,6 +384,88 @@
       ],
       "title": "Room Dew Point",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bRc0IA0Mz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "custom": {
+            "fillOpacity": 70,
+            "lineWidth": 0,
+            "spanNulls": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "OFF"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "ON"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 7
+      },
+      "id": 23,
+      "options": {
+        "alignValue": "left",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "mergeValues": true,
+        "rowHeight": 0.9,
+        "showValue": "auto",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bRc0IA0Mz"
+          },
+          "expr": "mqtt_consumer_POWER",
+          "refId": "A"
+        }
+      ],
+      "title": "ON/OFF status",
+      "type": "state-timeline"
     }
   ],
   "refresh": "30s",
@@ -431,6 +496,6 @@
   "timezone": "",
   "title": "Room temperature & humidity",
   "uid": "-Jz7HnRMz",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
