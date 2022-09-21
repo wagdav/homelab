@@ -25,9 +25,24 @@ in
     extraConfig = {
       inputs.mqtt_consumer = {
         servers = [ "tcp://127.0.0.1:${toString mqtt_port}" ];
-        topics = [ "tele/+/SENSOR" ];
+        topics = [ "tele/+/SENSOR" "tele/+/STATE" ];
         data_format = "json";
+        json_string_fields = [ "POWER" ];
       };
+
+      processors.enum = [
+        {
+          mapping = [
+            {
+              field = "POWER";
+              value_mappings = {
+                ON = 1;
+                OFF = 0;
+              };
+            }
+          ];
+        }
+      ];
 
       outputs.prometheus_client = {
         listen = ":${toString prometheus_client_port}";
