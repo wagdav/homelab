@@ -113,10 +113,10 @@
             "uid": "bRc0IA0Mz"
           },
           "editorMode": "code",
-          "expr": "mqtt_consumer_AM2301_Temperature{topic=\"tele/tasmota_0E63DE/SENSOR\"}",
+          "expr": "mqtt_consumer_AM2301_Temperature",
           "instant": false,
           "interval": "",
-          "legendFormat": "Bedroom",
+          "legendFormat": "{{ room }}",
           "refId": "A"
         },
         {
@@ -125,23 +125,11 @@
             "uid": "bRc0IA0Mz"
           },
           "editorMode": "code",
-          "expr": "mqtt_consumer_AM2301_Temperature{topic=\"tele/tasmota_082320/SENSOR\"}",
+          "expr": "mqtt_consumer_SI7021_Temperature",
           "hide": false,
-          "legendFormat": "Living room",
+          "legendFormat": "{{ room }}",
           "range": true,
           "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bRc0IA0Mz"
-          },
-          "editorMode": "code",
-          "expr": "mqtt_consumer_SI7021_Temperature{topic=\"tele/tasmota_D892EA/SENSOR\"}",
-          "hide": false,
-          "legendFormat": "Study",
-          "range": true,
-          "refId": "C"
         }
       ],
       "title": "Room temperature",
@@ -232,10 +220,10 @@
             "uid": "bRc0IA0Mz"
           },
           "editorMode": "code",
-          "expr": "mqtt_consumer_AM2301_Humidity{topic=\"tele/tasmota_0E63DE/SENSOR\"}",
+          "expr": "mqtt_consumer_AM2301_Humidity",
           "instant": false,
           "interval": "",
-          "legendFormat": "Bedroom",
+          "legendFormat": "{{ room }}",
           "refId": "A"
         },
         {
@@ -244,23 +232,11 @@
             "uid": "bRc0IA0Mz"
           },
           "editorMode": "code",
-          "expr": "mqtt_consumer_AM2301_Humidity{topic=\"tele/tasmota_082320/SENSOR\"}",
+          "expr": "mqtt_consumer_SI7021_Humidity",
           "hide": false,
-          "legendFormat": "Living room",
+          "legendFormat": "{{ room }}",
           "range": true,
           "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bRc0IA0Mz"
-          },
-          "editorMode": "code",
-          "expr": "mqtt_consumer_SI7021_Humidity{topic=\"tele/tasmota_D892EA/SENSOR\"}",
-          "hide": false,
-          "legendFormat": "Study",
-          "range": true,
-          "refId": "C"
         }
       ],
       "title": "Room humidity",
@@ -351,10 +327,10 @@
             "uid": "bRc0IA0Mz"
           },
           "editorMode": "code",
-          "expr": "mqtt_consumer_AM2301_DewPoint{topic=\"tele/tasmota_0E63DE/SENSOR\"}",
+          "expr": "mqtt_consumer_AM2301_DewPoint",
           "instant": false,
           "interval": "",
-          "legendFormat": "Bedroom",
+          "legendFormat": "{{ room }}",
           "refId": "A"
         },
         {
@@ -363,23 +339,11 @@
             "uid": "bRc0IA0Mz"
           },
           "editorMode": "code",
-          "expr": "mqtt_consumer_AM2301_DewPoint{topic=\"tele/tasmota_082320/SENSOR\"}",
+          "expr": "mqtt_consumer_SI7021_DewPoint",
           "hide": false,
-          "legendFormat": "Living room",
+          "legendFormat": "{{ room }}",
           "range": true,
           "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "bRc0IA0Mz"
-          },
-          "editorMode": "code",
-          "expr": "mqtt_consumer_SI7021_DewPoint{topic=\"tele/tasmota_D892EA/SENSOR\"}",
-          "hide": false,
-          "legendFormat": "Study",
-          "range": true,
-          "refId": "C"
         }
       ],
       "title": "Room Dew Point",
@@ -434,7 +398,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 7,
         "w": 8,
         "x": 0,
         "y": 7
@@ -460,7 +424,10 @@
             "type": "prometheus",
             "uid": "bRc0IA0Mz"
           },
+          "editorMode": "code",
           "expr": "mqtt_consumer_POWER",
+          "legendFormat": "{{ room }}",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -486,11 +453,12 @@
       "30s",
       "1m",
       "5m",
-      "15m"]
+      "15m"
+    ]
   },
   "timezone": "",
   "title": "Room temperature & humidity",
   "uid": "-Jz7HnRMz",
-  "version": 4,
+  "version": 6,
   "weekStart": ""
 }
