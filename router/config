@@ -86,7 +86,7 @@ opkg install \
 uci set prometheus-node-exporter-lua.main.listen_interface='*'
 
 # Tailscale
-opkg install tailscale
+opkg install iptables tailscale
 
 CHANGES=$(uci changes)
 if [ -n "$CHANGES" ]; then
