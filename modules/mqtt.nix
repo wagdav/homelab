@@ -58,6 +58,7 @@ in
                 "tasmota_0E63DE" = "Bedroom";
                 "tasmota_96804E" = "Living room";
                 "tasmota_D892EA" = "Study";
+                "tasmota_D8A2DD" = "Kitchen";
               };
             }
           ];
