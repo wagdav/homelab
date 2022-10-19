@@ -8,6 +8,7 @@
   imports = [
     ./hardware/x230.nix
     ./modules/buildMachines.nix
+    ./modules/vpn.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -140,8 +141,6 @@
     pipewire.enable = true;
 
     printing.enable = true;
-
-    tailscale.enable = true;
 
     greetd = {
       enable = true;
