@@ -8,4 +8,6 @@
     ./modules/kodi.nix
     ./modules/remote-builder
   ];
+
+  system.stateVersion = "22.05";
 }

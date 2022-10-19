@@ -14,4 +14,6 @@
     ./modules/traefik.nix
     ./modules/vpn.nix
   ];
+
+  system.stateVersion = "22.05";
 }
