@@ -16,7 +16,7 @@
 
       cachix-deploy-lib = cachix-deploy.lib pkgs;
 
-      revision = "latest";
+      revision = "${self.lastModifiedDate}-${self.shortRev or "dirty"}";
 
       defaults = {
         nix.registry.nixpkgs.flake = nixpkgs;
