@@ -51,7 +51,7 @@ nix develop -c nixops deploy
 This builds the system configurations locally and copies the resulting closures
 to the remote machines.
 
-## Logs
+### Logs
 
 All server send their logs to [Loki](https://grafana.com/oss/loki/).  To see
 all logs live:
@@ -64,6 +64,29 @@ nix shell nixpkgs#grafana-loki --command \
 
 The `query` command takes a
 [LogQL](https://grafana.com/docs/loki/latest/logql/) expression as an argument.
+
+### Continuous deployment
+
+Each commit on the master branch is automatically deployed using [Cachix
+Deploy](https://blog.cachix.org/posts/2022-07-29-cachix-deploy-public-beta/)
+(currently only to the `nuc` machine).
+
+The deployment steps are defined in [this file](.github/workflows/check.yml).
+The Cachix Deploy documentation describe how to configure the target machines
+and GitHub Actions.  The setup requires to provision a few secrets.
+
+Create secret `CACHIX_AGENT_TOKEN` and store it in `/etc/cachix-agent.token` in
+the format:
+
+```
+CACHIX_AGENT_TOKEN=<token>
+```
+
+Follow the Cachix documentation and store the following values as [action
+secrets](https://github.com/wagdav/homelab/settings/secrets/actions):
+
+* `CACHIX_AUTH_TOKEN`
+* `CACHIX_ACTIVATE_TOKEN`
 
 ## Installing a new NixOS system
 
@@ -91,7 +114,7 @@ system is done.
 
 Continue the system's management using NixOps.
 
-### Useful commands
+## Useful commands
 
 The configuration.nix(5) man page documents all the available options for
 configuring the system:

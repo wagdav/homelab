@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware/nuc.nix
+    ./modules/cachix.nix
     ./modules/common.nix
     ./modules/consul/server.nix
     ./modules/git.nix

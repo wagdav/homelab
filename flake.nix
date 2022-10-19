@@ -6,12 +6,15 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
   inputs.nixops.url = "github:NixOS/nixops";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
+  inputs.cachix-deploy.url = "github:cachix/cachix-deploy-flake";
 
-  outputs = { self, flake-compat, nixpkgs, nixops, nixos-hardware }:
+  outputs = { self, flake-compat, nixpkgs, nixops, nixos-hardware, cachix-deploy }:
     let
       system = "x86_64-linux";
 
       pkgs = nixpkgs.legacyPackages.${system};
+
+      cachix-deploy-lib = cachix-deploy.lib pkgs;
 
       revision = "latest";
 
@@ -87,6 +90,11 @@
 
       packages.${system} = with pkgs; {
         sensors = callPackage ./nodemcu/provision.nix { };
+        cachix-deploy-spec = cachix-deploy-lib.spec {
+          agents = {
+            nuc = self.nixosConfigurations.nuc.config.system.build.toplevel;
+          };
+        };
       };
 
       checks.${system} = with pkgs; {
