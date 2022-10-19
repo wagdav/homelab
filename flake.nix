@@ -128,11 +128,12 @@
 
         yamllint = runCommand "yamllint"
           {
-            buildInputs = [ yamllint ];
+            buildInputs = [ actionlint yamllint ];
           }
           ''
             mkdir $out
             yamllint --strict ${./.github/workflows}
+            actionlint ${./.github/workflows}/*.yml
           '';
       };
 
