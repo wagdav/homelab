@@ -10,6 +10,9 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment:
+      name: Homelab
+      url: "https://app.cachix.org/deploy/workspace/lab.thewagner.home/"
     steps:
       - uses: actions/checkout@v3
         with:
