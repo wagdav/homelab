@@ -13,6 +13,8 @@
         disable_hostname = true;
         prometheus_retention_time = "2m";
       };
+
+      disable_update_check = true;
     };
   };
 
