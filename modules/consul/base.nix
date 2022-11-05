@@ -5,7 +5,7 @@
     enable = true;
 
     extraConfig = {
-      retry_join = [ "nuc" ];
+      retry_join = [ "nuc.thewagner.home" ];
 
       client_addr = [ "0.0.0.0" ];
 
