@@ -8,17 +8,8 @@
   services.xserver.enable = true;
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "zsnes";
-  services.xserver.displayManager.defaultSession = "zsnes";
-  services.xserver.displayManager.session = [
-    {
-      manage = "desktop";
-      name = "zsnes";
-      start = ''
-        ${pkgs.retroarchFull}/bin/retroarch --fullscreen &
-        waitPID=$!
-      '';
-    }
-  ];
+  services.xserver.desktopManager.retroarch.enable = true;
+  services.xserver.desktopManager.retroarch.package = pkgs.retroarchFull;
 
   nixpkgs.overlays = [
     (self: super: {
