@@ -39,7 +39,7 @@
     alacritty
     curl
     dmenu
-    dropbox-cli
+    #dropbox-cli
     fd
     file
     fim
