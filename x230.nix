@@ -58,6 +58,7 @@
     unzip
     vcsh
     wget
+    xdg-utils
     zathura
     zoom-us
   ];
