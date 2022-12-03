@@ -129,7 +129,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.13",
+      "pluginVersion": "8.5.15",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -175,6 +175,43 @@
       "yaxis": {
         "align": false
       }
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "Lg50IAAMz"
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 6,
+      "options": {
+        "dedupStrategy": "signature",
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": true,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "pluginVersion": "8.5.15",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "Lg50IAAMz"
+          },
+          "expr": "{service=\"cachix-agent\"} | pattern `[<_>][<_>][<level>][<_>][<_>][<_>][<_>] <msg>` | line_format \"{{.msg}}\"",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Cachix Agent Logs",
+      "type": "logs"
     }
   ],
   "refresh": "30s",
@@ -192,6 +229,6 @@
   "timezone": "",
   "title": "NixOS",
   "uid": "IvnY58oMz",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
