@@ -37,6 +37,7 @@
   environment.systemPackages = with pkgs; [
     acpi
     alacritty
+    bat
     curl
     dmenu
     #dropbox-cli
