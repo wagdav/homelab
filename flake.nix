@@ -93,6 +93,7 @@
         cachix-deploy-spec = cachix-deploy-lib.spec {
           agents = {
             nuc = self.nixosConfigurations.nuc.config.system.build.toplevel;
+            x230 = self.nixosConfigurations.x230.config.system.build.toplevel;
           };
         };
       };
