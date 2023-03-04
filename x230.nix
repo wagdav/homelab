@@ -8,6 +8,7 @@
   imports = [
     ./hardware/x230.nix
     ./modules/buildMachines.nix
+    ./modules/cachix.nix
     ./modules/vpn.nix
   ];
 
