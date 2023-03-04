@@ -181,7 +181,7 @@
       experimental-features = nix-command flakes
     '';
 
-    trustedUsers = [ "root" "@wheel" ];
+    settings.trusted-users = [ "root" "@wheel" ];
   };
 
   # This value determines the NixOS release with which your system is to be

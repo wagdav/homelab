@@ -5,13 +5,15 @@
 
   services.grafana = {
     enable = true;
-    addr = "0.0.0.0";
-    auth.anonymous.enable = true;
-    auth.anonymous.org_role = "Editor";
+    settings.server.http_addr = "0.0.0.0";
+    settings."auth.anonymous" = {
+      enabled = true;
+      org_role = "Editor";
+    };
 
     provision = {
       enable = true;
-      datasources = [
+      datasources.settings.datasources = [
         {
           name = "Prometheus";
           isDefault = true;
@@ -25,7 +27,7 @@
         }
       ];
 
-      dashboards = [
+      dashboards.settings.providers = [
         {
           options.path = "/etc/dashboards";
         }
@@ -43,12 +45,12 @@
     )
     (builtins.readDir ./dashboards);
 
-  networking.firewall.allowedTCPPorts = [ config.services.grafana.port ];
+  networking.firewall.allowedTCPPorts = [ config.services.grafana.settings.server.http_port ];
 
   services.consul.catalog = [
     {
       name = "grafana";
-      port = config.services.grafana.port;
+      port = config.services.grafana.settings.server.http_port;
       tags = (import ../lib/traefik.nix).tagsForHost "metrics";
     }
   ];

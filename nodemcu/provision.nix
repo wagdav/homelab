@@ -231,7 +231,7 @@ let
 
   ruleMessage = with builtins; keyMap:
     let
-      lengthLimit = 511;  # https://tasmota.github.io/docs/Rules/#rule-syntax
+      lengthLimit = 511; # https://tasmota.github.io/docs/Rules/#rule-syntax
 
       mkRule = code: command: "ON IrReceived#Data=${code} DO ${command} ENDON";
 
