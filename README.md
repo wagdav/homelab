@@ -68,21 +68,20 @@ The `query` command takes a
 ### Continuous deployment
 
 Each commit on the master branch is automatically deployed using [Cachix
-Deploy](https://blog.cachix.org/posts/2022-07-29-cachix-deploy-public-beta/)
-(currently only to the `nuc` machine).
+Deploy](https://blog.cachix.org/posts/2022-07-29-cachix-deploy-public-beta/).
+
+To prepare a machine for automatic deployment:
+
+1. Add the system's derivation to the `cachix-deploy` package in
+   [flake.nix](./flake.nix)
+1. Install `cachix-agent` by including [this module](./modules/cachix.nix)
+1. In the Cachix Deploy console follow the "Add Agent" steps
+1. Save the generated agent token in `/etc/cachix-agent.token` using the format
+   `CACHIX_AGENT_TOKEN=<token>`
 
 The deployment steps are defined in [this file](.github/workflows/check.yml).
-The Cachix Deploy documentation describe how to configure the target machines
-and GitHub Actions.  The setup requires to provision a few secrets.
-
-Create secret `CACHIX_AGENT_TOKEN` and store it in `/etc/cachix-agent.token` in
-the format:
-
-```
-CACHIX_AGENT_TOKEN=<token>
-```
-
-Follow the Cachix documentation and store the following values as [action
+The Cachix Deploy documentation describe how to configure GitHub Actions.  The
+pipeline uses the following values as [action
 secrets](https://github.com/wagdav/homelab/settings/secrets/actions):
 
 * `CACHIX_AUTH_TOKEN`
