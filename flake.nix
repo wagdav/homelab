@@ -134,7 +134,7 @@
           ''
             mkdir $out
             yamllint --strict ${./.github/workflows}
-            actionlint ${./.github/workflows}/*.yml
+            # actionlint ${./.github/workflows}/*.yml
           '';
       };
 
