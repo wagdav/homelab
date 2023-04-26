@@ -52,6 +52,7 @@
     httpie
     moreutils
     mpv
+    ntfs3g
     pass
     pavucontrol
     pmount
