@@ -4,11 +4,10 @@
     flake = false;
   };
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-  inputs.nixops.url = "github:NixOS/nixops";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
   inputs.cachix-deploy.url = "github:cachix/cachix-deploy-flake";
 
-  outputs = { self, flake-compat, nixpkgs, nixops, nixos-hardware, cachix-deploy }:
+  outputs = { self, flake-compat, nixpkgs, nixos-hardware, cachix-deploy }:
     let
       system = "x86_64-linux";
 
@@ -62,30 +61,9 @@
         ];
       };
 
-      nixopsConfigurations.default = {
-        inherit defaults nixpkgs;
-
-        network.description = "My home infrastructure";
-
-        network.storage.memory = { };
-
-        nuc = ./host-nuc.nix;
-        rp3 = ./host-rp3.nix;
-        rp4 = {
-          imports = [
-            ./host-rp4.nix
-            nixos-hardware.nixosModules.raspberry-pi-4
-          ];
-        };
-      };
-
       apps.${system}.mqtt-dash-listen = {
         type = "app";
         program = "${mqtt-dash-listen}/bin/mqtt-dash-listen";
-      };
-
-      devShells.${system}.default = pkgs.mkShell {
-        buildInputs = [ nixops.defaultPackage.${system} ];
       };
 
       packages.${system} = with pkgs; {

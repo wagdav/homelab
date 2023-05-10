@@ -34,22 +34,13 @@ I also use them on my work computer which doesn't run NixOS.
 
 ## Servers
 
-The entrypoint for my home server setup is [home.nix](home.nix).  This
-configuration is deployed using [nixops](https://github.com/NixOS/nixops).  A
-one-time setup is required if the deployment doesn't exist yet:
+The server's configuration is in the `nixosConfigurations` attribute of
+[flake.nix](flake.nix).  Use [this  script](./scripts/switch.ch), a thin
+wrapper around `nixos-rebuild`, to build and activate a server's configuration:
 
 ```
-nix develop -c nixops create --name home
+./scripts/switch.sh nuc  # redeploy the server nuc
 ```
-
-Then, run the following command to deploy:
-
-```
-nix develop -c nixops deploy
-```
-
-This builds the system configurations locally and copies the resulting closures
-to the remote machines.
 
 ### Logs
 
