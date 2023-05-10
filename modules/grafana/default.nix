@@ -35,6 +35,11 @@
     };
   };
 
+  services.grafana-image-renderer = {
+    enable = true;
+    provisionGrafana = true;
+  };
+
   # Provision each dashboard in /etc/dashboard
   environment.etc = builtins.mapAttrs
     (
