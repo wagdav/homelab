@@ -32,6 +32,8 @@
         ${pkgs.mosquitto}/bin/mosquitto_sub -h mqtt -t 'metrics/exchange' -C 1 | ${pkgs.jq}/bin/jq -r .
       '';
 
+      dashboard-linter = pkgs.callPackage ./modules/grafana/dashboard-linter.nix { };
+
     in
     {
       nixosConfigurations = {
@@ -61,9 +63,16 @@
         ];
       };
 
-      apps.${system}.mqtt-dash-listen = {
-        type = "app";
-        program = "${mqtt-dash-listen}/bin/mqtt-dash-listen";
+      apps.${system} = {
+        mqtt-dash-listen = {
+          type = "app";
+          program = "${mqtt-dash-listen}/bin/mqtt-dash-listen";
+        };
+
+        dashboard-linter = {
+          type = "app";
+          program = "${dashboard-linter}/bin/dashboard-linter";
+        };
       };
 
       packages.${system} = with pkgs; {
