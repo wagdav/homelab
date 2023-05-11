@@ -23,6 +23,7 @@ let
           server = consulAgent;
           services = [
             "grafana"
+            "grafana-image-renderer"
             "hydra"
             "loki"
             "node-exporter"

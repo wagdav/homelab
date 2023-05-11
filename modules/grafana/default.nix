@@ -38,6 +38,7 @@
   services.grafana-image-renderer = {
     enable = true;
     provisionGrafana = true;
+    settings.service.metrics.enabled = true;
   };
 
   # Provision each dashboard in /etc/dashboard
@@ -50,13 +51,20 @@
     )
     (builtins.readDir ./dashboards);
 
-  networking.firewall.allowedTCPPorts = [ config.services.grafana.settings.server.http_port ];
+  networking.firewall.allowedTCPPorts = [
+    config.services.grafana.settings.server.http_port
+    config.services.grafana-image-renderer.settings.service.port
+  ];
 
   services.consul.catalog = [
     {
       name = "grafana";
       port = config.services.grafana.settings.server.http_port;
       tags = (import ../lib/traefik.nix).tagsForHost "metrics";
+    }
+    {
+      name = "grafana-image-renderer";
+      port = config.services.grafana-image-renderer.settings.service.port;
     }
   ];
 }
