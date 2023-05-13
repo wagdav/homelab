@@ -32,6 +32,31 @@
         "type": "prometheus",
         "uid": "bRc0IA0Mz"
       },
+      "gridPos": {
+        "h": 9,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "* [Grafana](http://nuc:3000)\n* [Gitolite](http://nuc:8022)\n* [Node Exporter (nuc)](http://nuc:9100)\n* [Prometheus](http://nuc:9090)",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.9",
+      "title": "Homelab",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "bRc0IA0Mz"
+      },
       "description": "[wagdav/homelab @GitHub](https://github.com/wagdav/homelab)",
       "fieldConfig": {
         "defaults": {
@@ -62,8 +87,8 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 0,
+        "w": 8,
+        "x": 4,
         "y": 0
       },
       "id": 2,
@@ -71,7 +96,8 @@
         "alignValue": "left",
         "legend": {
           "displayMode": "list",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "mergeValues": true,
         "rowHeight": 0.9,
@@ -129,7 +155,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.5.15",
+      "pluginVersion": "9.4.9",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -215,7 +241,8 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 36,
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -229,6 +256,6 @@
   "timezone": "",
   "title": "NixOS",
   "uid": "IvnY58oMz",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
