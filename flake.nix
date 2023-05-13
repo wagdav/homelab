@@ -19,7 +19,6 @@
 
       defaults = {
         nix.registry.nixpkgs.flake = nixpkgs;
-        system.configurationRevision = revision;
       };
 
       mkMachine = system: modules: nixpkgs.lib.nixosSystem {
@@ -46,8 +45,6 @@
 
               {
                 nix.registry.nixpkgs.flake = nixpkgs;
-
-                system.configurationRevision = revision;
               }
 
               nixpkgs.nixosModules.notDetected
