@@ -18,6 +18,17 @@
           "type": "dashboard"
         },
         "type": "dashboard"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "bRc0IA0Mz"
+        },
+        "enable": true,
+        "expr": "changes(nixos_system_version[5m])",
+        "iconColor": "orange",
+        "name": "Deployments",
+        "titleFormat": "Host {{ hostname }} deployed"
       }
     ]
   },
@@ -53,73 +64,6 @@
       "type": "text"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "bRc0IA0Mz"
-      },
-      "description": "[wagdav/homelab @GitHub](https://github.com/wagdav/homelab)",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "continuous-GrYlRd"
-          },
-          "custom": {
-            "fillOpacity": 70,
-            "lineWidth": 0,
-            "spanNulls": false
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 8,
-        "x": 4,
-        "y": 0
-      },
-      "id": 2,
-      "options": {
-        "alignValue": "left",
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "mergeValues": true,
-        "rowHeight": 0.9,
-        "showValue": "auto",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "8.5.13",
-      "targets": [
-        {
-          "expr": "sum by (revision) (node_nixos_configuration)",
-          "interval": "",
-          "legendFormat": "{{ revision }}",
-          "refId": "A"
-        }
-      ],
-      "title": "Configuration revision",
-      "type": "state-timeline"
-    },
-    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -133,8 +77,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
+        "w": 20,
+        "x": 4,
         "y": 0
       },
       "hiddenSeries": false,
@@ -256,6 +200,6 @@
   "timezone": "",
   "title": "NixOS",
   "uid": "IvnY58oMz",
-  "version": 3,
+  "version": 5,
   "weekStart": ""
 }
