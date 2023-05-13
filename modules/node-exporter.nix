@@ -7,7 +7,9 @@
     enable = true;
     enabledCollectors = [ "cpu" "filesystem" "loadavg" "systemd" ];
     disabledCollectors = [ "rapl" ];
-    extraFlags = [ "--collector.textfile.directory=/etc/metrics" ];
+    extraFlags = [
+      "--collector.textfile.directory=/var/lib/prometheus-node-exporter-text-files"
+    ];
   };
 
   networking.firewall.allowedTCPPorts = [
@@ -21,15 +23,15 @@
     }
   ];
 
-  environment.etc."metrics/revision.prom".text =
-    let
-      revision =
-        if config.system.configurationRevision == null
-        then "unknown"
-        else config.system.configurationRevision;
-    in
-
-    ''
-      node_nixos_configuration{revision="${revision}"} 1
-    '';
+  system.activationScripts.node-exporter-system-version = ''
+    mkdir -pm 0775 /var/lib/prometheus-node-exporter-text-files
+    (
+      cd /var/lib/prometheus-node-exporter-text-files
+      (
+        echo -n "nixos_system_version ";
+        readlink /nix/var/nix/profiles/system | cut -d- -f2
+      ) > system-version.prom.next
+      mv system-version.prom.next system-version.prom
+    )
+  '';
 }
