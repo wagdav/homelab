@@ -37,6 +37,7 @@ in
       };
 
       processors.enum = [
+        { }
         {
           mapping = [
             {

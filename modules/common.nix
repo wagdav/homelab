@@ -33,7 +33,7 @@
     openssh = {
       enable = true;
       allowSFTP = false;
-      passwordAuthentication = false;
+      settings.PasswordAuthentication = false;
     };
   };
 
