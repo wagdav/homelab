@@ -37,10 +37,8 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     acpi
-    alacritty
     bat
     curl
-    dmenu
     #dropbox-cli
     fd
     file
@@ -84,9 +82,7 @@
 
     sway = {
       enable = true;
-      extraSessionCommands = ''
-        export MOZ_ENABLE_WAYLAND=1
-      '';
+      extraPackages = with pkgs; [ swaylock swayidle alacritty dmenu ];
     };
 
     neovim = {
