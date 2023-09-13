@@ -47,6 +47,7 @@
     flameshot
     fzf
     git
+    gh
     httpie
     moreutils
     mpv
