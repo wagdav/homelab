@@ -24,25 +24,24 @@
       let
         sshUser = "root";
         sshKey = "/root/remote-builder";
-        domain = "thewagner.home";
       in
-      lib.filter (m: m.hostName != "${config.networking.hostName}.${domain}") [
+      lib.filter (m: m.hostName != "${config.networking.hostName}") [
         {
-          hostName = "nuc.${domain}";
+          hostName = "nuc";
           systems = [ "x86_64-linux" "i686-linux" "aarch64-linux" ];
           maxJobs = 4;
           supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
           inherit sshUser sshKey;
         }
         {
-          hostName = "rp3.${domain}";
+          hostName = "rp3";
           system = "aarch64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
           inherit sshUser sshKey;
         }
         {
-          hostName = "rp4.${domain}";
+          hostName = "rp4";
           system = "aarch64-linux";
           maxJobs = 4;
           supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
