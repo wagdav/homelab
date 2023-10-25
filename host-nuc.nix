@@ -11,6 +11,7 @@
     ./modules/loki.nix
     ./modules/mqtt.nix
     ./modules/prometheus.nix
+    ./modules/push-notifications.nix
     ./modules/remote-builder
     ./modules/traefik.nix
     ./modules/vpn.nix
