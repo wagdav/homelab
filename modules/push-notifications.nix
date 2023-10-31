@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   services.ntfy-sh = {
@@ -19,10 +19,24 @@
 
   users.groups."ntfy" = { };
 
-  services.cron = {
-    enable = true;
-    systemCronJobs = [
-      "0 9,12,22 * * * ntfy . ${../scripts/push-room-humidity.sh} >> /tmp/cron-ntfy.log 2>&1"
-    ];
+  systemd.services."send-room-humidity" = {
+    path = [ pkgs.curl ];
+    script = ''
+      set -eu
+      ${../scripts/push-room-humidity.sh}
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "ntfy";
+    };
+  };
+
+  systemd.timers."send-room-humidity" = {
+    wantedBy = [ "timers.target" ];
+    after = [ "network-online.target" ];
+    timerConfig = {
+      OnCalendar = [ "*-*-*  8:00" "*-*-* 22:00" ];
+      Unit = "send-room-humidity.service";
+    };
   };
 }
