@@ -1,6 +1,7 @@
 ---
 name: "Build and Deploy"
 on:  # yamllint disable-line rule:truthy
+  workflow_dispatch:  # allows manual triggering
   push:
     branches:
       - master
