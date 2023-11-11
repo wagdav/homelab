@@ -5,7 +5,8 @@
     ./hardware/rp3.nix
     ./modules/common.nix
     ./modules/remote-builder
+    ./modules/consul/client.nix
   ];
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.11";
 }

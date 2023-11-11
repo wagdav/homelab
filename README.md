@@ -175,43 +175,59 @@ router/setup.sh
 
 ## Raspberry Pi 3 Model B
 
-### Raspbian
-
-Setup SD card:
-
-```
-wget https://downloads.raspberrypi.org/raspbian_lite_latest
-unzip -p raspbian_lite_latest | sudo dd of=/dev/mmcblk0 bs=4M conv=fsync status=progress
-# remove then reinsert SD card
-pmount /dev/mmcblk0p1
-touch /media/mmcblk0p1/ssh
-pumount /dev/mmcblk0p1
-```
-
 ### NixOS
 
-The official NixOS images boot without any problems.  Download the latest
-aarch64 SD card image from
-[Hydra](https://hydra.nixos.org/search?query=sd_image).
+The installation instructions are based those from
+[nix.dev](https://nix.dev/tutorials/nixos/installing-nixos-on-a-raspberry-pi.html).
 
-Flash the image to an SD card as described in the [previous section](#raspbian).
-
-Boot the system then start an SSH server and set a temporary password for the
-root user:
+Download the latest aarch64 SD card image from
+[Hydra](https://hydra.nixos.org/search?query=sd_image) and flash it on an SD
+card:
 
 ```
-systemctl start sshd
+wget https://hydra.nixos.org/build/226381178/download/1/nixos-sd-image-23.11pre500597.0fbe93c5a7c-aarch64-linux.img.zst
+unzstd nixos-sd-image-23.11pre500597.0fbe93c5a7c-aarch64-linux.img
+sudo dd \
+  if=nixos-sd-image-23.11pre500597.0fbe93c5a7c-aarch64-linux.img \
+  of=/dev/mmcblk0 bs=4096 conv=fsync status=progress
+```
+
+Insert the SD card in the Raspberry Pi and power it up.  The installer runs
+already an SSH server. Set a temporary password for the root user:
+
+```
 passwd root
 ```
 
 The password is only used for the first time access.  Password authentication
 will be disabled later.  Connect to the freshly booted system using SSH.
 
-If you want to manage Pi using NixOps, there's some extra steps required.
+Folow [these instructions][NixOSBootWifi] to connect to a Wifi network.  When
+connected the system will have the hostname `nixos`.
 
-NixOps compiles all managed systems on the control PC where it runs. Then, it
-copies the binaries to the target systems.  This works well for i686 and amd64
-architectures but it doesn't work for aarch64.
+Using the password authentication, deploy your SSH public keys:
+
+```
+ssh-copy-id root@nixos
+```
+
+On the Raspberry Pi, store the WIFI SSID and password in the file
+`/etc/secrets/wireless.env` with the following format:
+
+```
+WIFI_SSID=...
+WIFI_KEY=...
+```
+
+Finally, build the system with the custom configuration:
+
+```
+nixos-rebuild switch
+    --flake ".#rp3" \
+    --target-host "root@nixos" \
+    --build-host "root@nixos" \
+    --fast
+```
 
 I tried to setup cross-compilation to aarch64, but it didn't work.
 
@@ -298,3 +314,5 @@ dashboard configuration in this repository:
 ```
 nix run .#mqtt-dash-listen > nodemcu/mqtt-dash.json
 ```
+
+[NixOSBootWifi]: https://nixos.org/manual/nixos/stable/#sec-installation-booting-networking

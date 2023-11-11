@@ -10,28 +10,26 @@ in
   nixpkgs.system = "aarch64-linux";
 
   boot = {
-    initrd = {
-      availableKernelModules = [
-        "bcm2835_dma"
-        "i2c_bcm2835"
-        "usbhid"
-        "vc4"
-      ];
-      kernelModules = [ ];
-    };
+    initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
+    loader = {
+      grub.enable = false;
 
-    kernelParams = [ "cma=32M" ];
-
-    extraModulePackages = [ ];
-
-    loader.grub.enable = false;
-
-    loader.raspberryPi = {
-      enable = true;
-      uboot.enable = true;
-      version = 3;
+      raspberryPi = {
+        enable = true;
+        uboot.enable = true;
+        version = 3;
+      };
     };
   };
+
+  networking.wireless = {
+    enable = true;
+    environmentFile = "/etc/secrets/wireless.env";
+    networks."@WIFI_SSID@".psk = "@WIFI_KEY@";
+    interfaces = [ "wlan0" ];
+  };
+
+  hardware.enableRedistributableFirmware = true;
 
   environment.systemPackages = with pkgs; [
     libraspberrypi

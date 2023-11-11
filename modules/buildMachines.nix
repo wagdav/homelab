@@ -9,7 +9,7 @@
 
     rp3 = {
       hostNames = [ "rp3" "rp3.thewagner.home" ];
-      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILK0illQrUbCmn+UHgM79tDecSItLUVNuWi/Sg+DW2tr";
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJgVezT5bpUOihQmNEV6XC/RsUtFDcd9vcLZ7cUKPp83";
     };
 
     rp4 = {
