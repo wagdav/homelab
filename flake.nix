@@ -78,6 +78,7 @@
           agents = {
             nuc = self.nixosConfigurations.nuc.config.system.build.toplevel;
             x230 = self.nixosConfigurations.x230.config.system.build.toplevel;
+            rp3 = self.nixosConfigurations.rp3.config.system.build.toplevel;
           };
         };
       };
