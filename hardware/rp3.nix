@@ -48,12 +48,5 @@ in
 
   networking = {
     hostName = name;
-
-    useDHCP = false;
-
-    interfaces = {
-      eth0.useDHCP = true;
-      wlan0.useDHCP = true;
-    };
   };
 }
