@@ -22,7 +22,6 @@ in
         {
           job_name = "journal";
           journal = {
-            path = "/var/log/journal";
             max_age = "12h";
             labels = {
               job = "systemd-journal";
