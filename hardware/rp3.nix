@@ -35,6 +35,11 @@ in
     libraspberrypi
   ];
 
+  services.journald.extraConfig = ''
+    Storage = volatile
+    RuntimeMaxFileSize = 10M;
+  '';
+
   fileSystems."/" =
     {
       device = "/dev/disk/by-label/NIXOS_SD";
