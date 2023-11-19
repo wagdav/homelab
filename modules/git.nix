@@ -11,7 +11,7 @@ in
   services = {
     gitolite = {
       enable = true;
-      adminPubkey = (import ./keys.nix).dwagner;
+      adminPubkey = builtins.head (import ./keys.nix).dwagner;
 
       inherit user group;
     };

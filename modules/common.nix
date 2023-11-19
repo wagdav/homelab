@@ -39,6 +39,6 @@
 
   users = {
     mutableUsers = false;
-    users.root.openssh.authorizedKeys.keys = [ (import ./keys.nix).dwagner ];
+    users.root.openssh.authorizedKeys.keys = (import ./keys.nix).dwagner;
   };
 }
