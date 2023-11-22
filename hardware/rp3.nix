@@ -11,14 +11,10 @@ in
 
   boot = {
     initrd.kernelModules = [ "vc4" "bcm2835_dma" "i2c_bcm2835" ];
+    kernelModules = [ "bcm2835-v4l2" ];
     loader = {
       grub.enable = false;
-
-      raspberryPi = {
-        enable = true;
-        uboot.enable = true;
-        version = 3;
-      };
+      generic-extlinux-compatible.enable = true;
     };
   };
 
@@ -32,6 +28,7 @@ in
   hardware.enableRedistributableFirmware = true;
 
   environment.systemPackages = with pkgs; [
+    libcamera
     libraspberrypi
   ];
 
