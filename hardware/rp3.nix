@@ -37,7 +37,7 @@ in
 
   services.journald.extraConfig = ''
     Storage = volatile
-    RuntimeMaxFileSize = 10M;
+    RuntimeMaxFileSize = 10M
   '';
 
   fileSystems."/" =
