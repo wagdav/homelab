@@ -35,7 +35,7 @@ I also use them on my work computer which doesn't run NixOS.
 ## Servers
 
 The server's configuration is in the `nixosConfigurations` attribute of
-[flake.nix](flake.nix).  Use [this  script](./scripts/switch.ch), a thin
+[flake.nix](flake.nix).  Use [this  script](./scripts/switch.sh), a thin
 wrapper around `nixos-rebuild`, to build and activate a server's configuration:
 
 ```
