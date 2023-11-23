@@ -175,8 +175,6 @@ router/setup.sh
 
 ## Raspberry Pi 3 Model B
 
-### NixOS
-
 The installation instructions are based those from
 [nix.dev](https://nix.dev/tutorials/nixos/installing-nixos-on-a-raspberry-pi.html).
 
