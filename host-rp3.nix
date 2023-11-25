@@ -7,6 +7,7 @@
     ./modules/cachix.nix
     ./modules/remote-builder
     ./modules/consul/client.nix
+    ./modules/vpn.nix
   ];
 
   system.stateVersion = "23.11";
