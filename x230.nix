@@ -60,6 +60,7 @@
     unzip
     vcsh
     wget
+    wl-clipboard
     xdg-utils
     zathura
     zoom-us
