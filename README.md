@@ -60,6 +60,8 @@ The `query` command takes a
 
 Each commit on the master branch is automatically deployed using [Cachix
 Deploy](https://blog.cachix.org/posts/2022-07-29-cachix-deploy-public-beta/).
+For a detailed description see [this blog
+post](https://thewagner.net/blog/2023/11/25/homelab-deployment/).
 
 To prepare a machine for automatic deployment:
 
