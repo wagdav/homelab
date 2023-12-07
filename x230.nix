@@ -19,12 +19,6 @@
   networking = {
     hostName = "x230";
     networkmanager.enable = true;
-
-    useDHCP = false;
-    interfaces = {
-      enp0s25.useDHCP = true;
-      wlp3s0.useDHCP = true;
-    };
   };
 
   # Set your time zone.
