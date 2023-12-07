@@ -116,7 +116,6 @@
 
     bluetooth = {
       enable = true;
-      package = pkgs.bluezFull;
     };
 
     pulseaudio = {

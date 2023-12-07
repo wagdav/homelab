@@ -4,6 +4,7 @@
   services.ntfy-sh = {
     enable = true;
     settings = {
+      base-url = "http://nuc";
       listen-http = ":8080";
     };
   };
