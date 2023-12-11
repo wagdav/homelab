@@ -37,7 +37,7 @@
     fd
     file
     fim
-    firefox
+    firefox-wayland
     flameshot
     fzf
     git
