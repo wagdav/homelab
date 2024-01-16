@@ -56,13 +56,23 @@ let
     }
   ];
 
+  alertmanagers = [
+    {
+      static_configs = [
+        {
+          targets = [ "alertmanager.thewagner.home" ];
+        }
+      ];
+    }
+  ];
+
 in
 {
   imports = [ ./consul-catalog.nix ];
 
   services.prometheus = {
     enable = true;
-    inherit scrapeConfigs;
+    inherit alertmanagers scrapeConfigs;
   };
 
   services.consul.catalog = [

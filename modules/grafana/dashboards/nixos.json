@@ -56,7 +56,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "* [Grafana](http://nuc:3000)\n* [Gitolite](http://nuc:8022)\n* [Node Exporter (nuc)](http://nuc:9100)\n* [Ntfy (nuc)](http://nuc:8080)\n* [Prometheus](http://nuc:9090)",
+        "content": "* [Alertmanager](http://nuc:9093)\n* [Grafana](http://nuc:3000)\n* [Gitolite](http://nuc:8022)\n* [Node Exporter (nuc)](http://nuc:9100)\n* [Ntfy (nuc)](http://nuc:8080)\n* [Prometheus](http://nuc:9090)",
         "mode": "markdown"
       },
       "pluginVersion": "9.4.9",

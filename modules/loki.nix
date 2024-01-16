@@ -46,6 +46,17 @@ let
       reject_old_samples = true;
       reject_old_samples_max_age = "168h";
     };
+
+    ruler = {
+      storage = {
+        type = "local";
+        local.directory = "/tmp/rules";
+      };
+      rule_path = "/tmp/scratch";
+      alertmanager_url = "http://alertmanager.thewagner.home";
+      ring.kvstore.store = "inmemory";
+      enable_api = true;
+    };
   };
 
 in

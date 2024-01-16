@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware/nuc.nix
+    ./modules/alertmanager.nix
     ./modules/cachix.nix
     ./modules/common.nix
     ./modules/consul/server.nix
@@ -15,6 +16,7 @@
     ./modules/remote-builder
     ./modules/traefik.nix
     ./modules/vpn.nix
+    ./modules/webhook.nix
   ];
 
   system.stateVersion = "22.05";

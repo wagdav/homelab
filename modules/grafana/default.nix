@@ -25,6 +25,13 @@
           type = "loki";
           url = "http://loki.thewagner.home";
         }
+        {
+          name = "Alertmanager";
+          type = "alertmanager";
+          url = "http://alertmanager.thewagner.home";
+          jsonData.implementation = "prometheus";
+          jsonData.handleGrafanaManagedAlerts = true;
+        }
       ];
 
       dashboards.settings.providers = [
