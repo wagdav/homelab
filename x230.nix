@@ -38,7 +38,6 @@
     file
     fim
     firefox-wayland
-    flameshot
     fzf
     git
     gh
@@ -83,7 +82,7 @@
 
     sway = {
       enable = true;
-      extraPackages = with pkgs; [ swaylock swayidle alacritty dmenu ];
+      extraPackages = with pkgs; [ swaylock swayidle alacritty dmenu sway-contrib.grimshot ];
     };
 
     neovim = {
