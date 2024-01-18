@@ -7,6 +7,7 @@ let
     auth_enabled = false;
 
     server.http_listen_port = httpPort;
+    server.log_level = "warn";
 
     ingester = {
       lifecycler = {
