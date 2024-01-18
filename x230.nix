@@ -60,6 +60,11 @@
     zoom-us
   ];
 
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-emoji
+  ];
+
   security.wrappers = {
     pmount.source = "${pkgs.pmount}/bin/pmount";
     pmount.owner = "root";
