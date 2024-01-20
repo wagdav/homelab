@@ -6,8 +6,9 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
   inputs.cachix-deploy.url = "github:cachix/cachix-deploy-flake";
+  inputs.nixos-generators.url = "github:nix-community/nixos-generators";
 
-  outputs = { self, flake-compat, nixpkgs, nixos-hardware, cachix-deploy }:
+  outputs = { self, flake-compat, nixpkgs, nixos-generators, nixos-hardware, cachix-deploy }:
     let
       system = "x86_64-linux";
 
@@ -80,6 +81,16 @@
             x230 = self.nixosConfigurations.x230.config.system.build.toplevel;
             rp3 = self.nixosConfigurations.rp3.config.system.build.toplevel;
           };
+        };
+      };
+
+      packages.aarch64-linux = {
+        sdcard = nixos-generators.nixosGenerate {
+          system = "aarch64-linux";
+          format = "sd-aarch64";
+          modules = [
+            ./host-rp3.nix
+          ];
         };
       };
 
