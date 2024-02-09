@@ -1,53 +1,41 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
-  user = "git";
-  group = "gitolite";
   httpPort = 8022;
 
 in
 {
   imports = [ ./consul-catalog.nix ];
 
+  users.users.git = {
+    isNormalUser = true;
+    shell = "${pkgs.git}/bin/git-shell";
+    openssh.authorizedKeys.keys = (import ./keys.nix).dwagner;
+  };
+
   services = {
-    gitolite = {
+    cgit.git = {
       enable = true;
-      adminPubkey = builtins.head (import ./keys.nix).dwagner;
-
-      inherit user group;
-    };
-
-    gitweb = {
-      projectroot = "${config.services.gitolite.dataDir}/repositories";
-    };
-
-    nginx = {
-      enable = true;
-
-      recommendedOptimisation = true;
-      recommendedGzipSettings = true;
-      recommendedProxySettings = true;
-
-      virtualHosts."_".listen = [
-        {
-          addr = "0.0.0.0";
-          port = httpPort;
-        }
-        {
-          addr = "[::]";
-          port = httpPort;
-        }
-      ];
-
-      gitweb = {
-        enable = true;
-        inherit group;
-        location = "";
+      scanPath = "/srv/git";
+      settings = {
+        enable-git-config = true;
+        clone-url = "git@nuc:/srv/git/$CGIT_REPO_URL";
       };
     };
 
+    nginx.virtualHosts.git.listen = [
+      {
+        addr = "0.0.0.0";
+        port = httpPort;
+      }
+      {
+        addr = "[::]";
+        port = httpPort;
+      }
+    ];
+
     consul.catalog = [
       {
-        name = "gitweb";
+        name = "cgit";
         port = httpPort;
         tags = (import ./lib/traefik.nix).tagsForHost "git";
       }
