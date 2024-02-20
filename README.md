@@ -72,9 +72,10 @@ To prepare a machine for automatic deployment:
 1. Save the generated agent token in `/etc/cachix-agent.token` using the format
    `CACHIX_AGENT_TOKEN=<token>`
 
-The deployment steps are defined in [this file](.github/workflows/check.yml).
-The Cachix Deploy documentation describe how to configure GitHub Actions.  The
-pipeline uses the following values as [action
+The deployment steps are defined in [this
+file](.github/workflows/build-and-deploy.yml).  The Cachix Deploy documentation
+describe how to configure GitHub Actions.  The pipeline uses the following
+values as [action
 secrets](https://github.com/wagdav/homelab/settings/secrets/actions):
 
 * `CACHIX_AUTH_TOKEN`
