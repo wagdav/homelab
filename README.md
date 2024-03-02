@@ -178,71 +178,61 @@ router/setup.sh
 
 ## Raspberry Pi 3 Model B
 
-The installation instructions are based those from
-[nix.dev](https://nix.dev/tutorials/nixos/installing-nixos-on-a-raspberry-pi.html).
+### SD card image
 
-Download the latest aarch64 SD card image from
-[Hydra](https://hydra.nixos.org/search?query=sd_image) and flash it on an SD
-card:
+Build the Raspberry Pi's SD card image using QEMU's aarch64 emulator.
 
-```
-wget https://hydra.nixos.org/build/226381178/download/1/nixos-sd-image-23.11pre500597.0fbe93c5a7c-aarch64-linux.img.zst
-unzstd nixos-sd-image-23.11pre500597.0fbe93c5a7c-aarch64-linux.img
-sudo dd \
-  if=nixos-sd-image-23.11pre500597.0fbe93c5a7c-aarch64-linux.img \
-  of=/dev/mmcblk0 bs=4096 conv=fsync status=progress
-```
-
-Insert the SD card in the Raspberry Pi and power it up.  The installer runs
-already an SSH server. Set a temporary password for the root user:
+On `x230`, because `nuc` [is configured](./hardware/nuc.nix) as a remote builder
+for `aarch64` packages, just run:
 
 ```
-passwd root
+nix build .#packages.aarch64-linux.sdcard
 ```
 
-The password is only used for the first time access.  Password authentication
-will be disabled later.  Connect to the freshly booted system using SSH.
-
-Folow [these instructions][NixOSBootWifi] to connect to a Wifi network.  When
-connected the system will have the hostname `nixos`.
-
-Using the password authentication, deploy your SSH public keys:
+On other hosts, specify `nuc` explicitly as a remote builder:
 
 ```
-ssh-copy-id root@nixos
+nix build -L .#packages.aarch64-linux.sdcard \
+  --builders "ssh://root@nuc aarch64-linux $HOME/.ssh/remote-builder 4 1 - - c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUlLYUV0YzhQTnFoeEFRMjRnWTV0MjVZLzhIVTZTdFVCNmttVTF4bVZ0YTcgcm9vdEBudWMK"
 ```
 
-On the Raspberry Pi, store the WIFI SSID and password in the file
-`/etc/secrets/wireless.env` with the following format:
+The elements of `--builders` argument are described [here][NixOSRemoteBuilds].
+
+Uncompress the built image and write it to an SD card:
+
+```
+unzstd nixos-sd-image.img.zst
+sudo dd  if=nixos-sd-image.img of=/dev/mmcblk0 bs=4096 conv=fsync status=progress
+```
+
+Insert the SD card in the Raspberry Pi and power it up.  The system is
+configured as defined in [host-rp3.nix](./host-rp3.nix).
+
+### Secrets
+
+If the SD card is build from scratch, change or provision the following
+secrets:
+
+* Host's identity (automatically generated on first boot)
+* WiFi SSID and password in `/etc/secrets/wireless.env`
+* Tailscale authentication token
+* Cachix authentication token
+
+If this is a complete reinstall, update the host's public key in
+[program.ssh.knownHosts](./modules/buildMachines.nix).  Run `ssh-keygen rp3` to
+obtain the host key's signature.
+
+Store the WIFI SSID and password in the file `/etc/secrets/wireless.env` with
+the following format:
 
 ```
 WIFI_SSID=...
 WIFI_KEY=...
 ```
 
-Finally, build the system with the custom configuration:
+Connect the host to the tailnet with `tailscale login`.
 
-```
-nixos-rebuild switch
-    --flake ".#rp3" \
-    --target-host "root@nixos" \
-    --build-host "root@nixos" \
-    --fast
-```
-
-I tried to setup cross-compilation to aarch64, but it didn't work.
-
-The trick is to add the newly created Raspberry Pi as an aarch64 [remote build
-machine for Nix](https://nixos.org/nix/manual/#chap-distributed-builds).  This
-way the required packages will be built natively on the Pi itself (or other
-aarch64 remote build nodes, if you have any).  In practice, almost nothing is
-built from source, because the required derivations are pulled from the offical
-Nix binary cache.
-
-See the section `nix.buildMachines` in [x230.nix](x230.nix), which shows how to
-add the Pi to your control PC's remote build pool.  Enable some Raspberry Pi
-specific arguments in the [hardware specification](hardware/rp3.nix) and use
-NixOps as usual.
+To connect Cachix, follow [these instructions](#continuous-deployment).
 
 ### Raspberry Pi Camera 1.3
 
@@ -276,6 +266,15 @@ ssh root@rp3 \
         -f matroska - | \
     nix run nixpkgs#mpv -- --demuxer=mkv /dev/stdin
 ```
+
+### Reference
+
+I found the following links useful:
+
+* [nix.dev](https://nix.dev/tutorials/nixos/installing-nixos-on-a-raspberry-pi.html)
+  on installing NixOS on the Raspberry Pi.
+* [Hydra](https://hydra.nixos.org/search?query=sd_image) hosts the official
+  NixOS SD card images.
 
 ## NodeMCU
 
@@ -350,3 +349,4 @@ nix run .#mqtt-dash-listen > nodemcu/mqtt-dash.json
 ```
 
 [NixOSBootWifi]: https://nixos.org/manual/nixos/stable/#sec-installation-booting-networking
+[NixOSRemoteBuilds]: https://nixos.org/manual/nix/stable/advanced-topics/distributed-builds.html?highlight=builders#remote-builds).
