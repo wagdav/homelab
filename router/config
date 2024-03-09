@@ -15,28 +15,28 @@ uci set system.@system[0].zonename="Europe/Zurich"
 # LAN
 uci set network.lan.ipaddr=172.16.0.1
 
-uci set wireless.radio0.country="CH"
-uci set wireless.radio1.country="CH"
-uci set wireless.radio2.country="CH"
+# WIRELESS
+
+# https://openwrt.org/toh/linksys/wrt3200acm#wifi_driver_bug_and_workaround
+opkg remove kmod-mwifiex-sdio
+
+wifi config > /etc/config/wireless
 
 # 5 GHz
-uci set wireless.@wifi-device[0].disabled=0;
-uci set wireless.@wifi-device[0].channel="auto";
-
-uci set wireless.@wifi-iface[0].disabled=0
-uci set wireless.@wifi-iface[0].ssid="${WIFI_SSID}_5GHz"
-uci set wireless.@wifi-iface[0].encryption="psk"
-uci set wireless.@wifi-iface[0].key="$WIFI_KEY"
+uci set wireless.radio0.disabled="0"
+uci set wireless.radio0.country="CH"
+uci set wireless.radio0.cell_density="0"
+uci set wireless.default_radio0.ssid="${WIFI_SSID}_5GHz"
+uci set wireless.default_radio0.encryption='psk2'
+uci set wireless.default_radio0.key="$WIFI_KEY"
 
 # 2.4 GHz
-
-uci set wireless.@wifi-device[1].disabled=0;
-uci set wireless.@wifi-device[1].channel="auto";
-
-uci set wireless.@wifi-iface[1].disabled=0
-uci set wireless.@wifi-iface[1].ssid="$WIFI_SSID"
-uci set wireless.@wifi-iface[1].encryption="psk"
-uci set wireless.@wifi-iface[1].key="$WIFI_KEY"
+uci set wireless.radio1.disabled="0"
+uci set wireless.radio1.country="CH"
+uci set wireless.radio1.cell_density="0"
+uci set wireless.default_radio1.ssid="${WIFI_SSID}"
+uci set wireless.default_radio1.encryption='psk2'
+uci set wireless.default_radio1.key="$WIFI_KEY"
 
 # Local domain
 uci set dhcp.@dnsmasq[0].domain='thewagner.home'
