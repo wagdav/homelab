@@ -151,6 +151,21 @@ built:
 nixos-version --json
 ```
 
+See which version of a given package will be installed:
+
+```
+$ nix eval .#nixosConfigurations.nuc.pkgs.grafana.version
+"10.2.4"
+```
+
+Evaluate configuration parameters:
+
+```
+$ nix eval .#nixosConfigurations.nuc.config.networking.firewall.allowedTCPPorts
+[ 22 80 1883 3000 3100 8022 8080 8081 8300 8301 8302 8500 8600 9000 9080 9090
+9093 9100 9883 ]
+```
+
 ## Router
 
 Linksys WRT ACM-3200 running OpenWRT.
