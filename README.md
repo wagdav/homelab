@@ -364,4 +364,4 @@ nix run .#mqtt-dash-listen > nodemcu/mqtt-dash.json
 ```
 
 [NixOSBootWifi]: https://nixos.org/manual/nixos/stable/#sec-installation-booting-networking
-[NixOSRemoteBuilds]: https://nixos.org/manual/nix/stable/advanced-topics/distributed-builds.html?highlight=builders#remote-builds).
+[NixOSRemoteBuilds]: https://nixos.org/manual/nix/stable/advanced-topics/distributed-builds.html?highlight=builders#remote-builds
