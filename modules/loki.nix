@@ -58,6 +58,10 @@ let
       ring.kvstore.store = "inmemory";
       enable_api = true;
     };
+
+    query_scheduler = {
+      max_outstanding_requests_per_tenant = 2048;
+    };
   };
 
 in
