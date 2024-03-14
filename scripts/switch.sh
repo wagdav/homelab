@@ -12,7 +12,7 @@ if [ "$host" = "$(hostname)" ]; then
     sudo nixos-rebuild switch \
         --flake ".#$host"
 else
-    nixos-rebuild switch \
+    nix run 'nixpkgs#nixos-rebuild' -- switch \
         --flake ".#$host" \
         --target-host "root@$host" \
         --build-host  "root@$host" \
