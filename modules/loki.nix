@@ -54,7 +54,7 @@ let
         local.directory = "/tmp/rules";
       };
       rule_path = "/tmp/scratch";
-      alertmanager_url = "http://alertmanager.thewagner.home";
+      alertmanager_url = "http://nuc:9093";
       ring.kvstore.store = "inmemory";
       enable_api = true;
     };

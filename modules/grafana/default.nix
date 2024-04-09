@@ -18,17 +18,17 @@
           name = "Prometheus";
           isDefault = true;
           type = "prometheus";
-          url = "http://prometheus.thewagner.home";
+          url = "http://nuc:9090";
         }
         {
           name = "Loki";
           type = "loki";
-          url = "http://loki.thewagner.home";
+          url = "http://nuc:3100";
         }
         {
           name = "Alertmanager";
           type = "alertmanager";
-          url = "http://alertmanager.thewagner.home";
+          url = "http://nuc:9093";
           jsonData.implementation = "prometheus";
           jsonData.handleGrafanaManagedAlerts = true;
         }

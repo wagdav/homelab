@@ -52,7 +52,7 @@ mkShell {
       echo -n "SSID1 $WIFI_SSID;"
       echo -n "Password1 $WIFI_KEY;"
 
-      echo -n "MqttHost mqtt.thewagner.home;"
+      echo -n "MqttHost nuc;"
       echo -n "MqttUser 0;"
       echo -n "MqttPassword 0;"
 

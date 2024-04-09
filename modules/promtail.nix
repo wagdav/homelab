@@ -14,7 +14,7 @@ in
       server.grpc_listen_port = 0;
       clients = [
         {
-          url = "http://loki.thewagner.home/loki/api/v1/push";
+          url = "http://nuc:3100/loki/api/v1/push";
         }
       ];
 

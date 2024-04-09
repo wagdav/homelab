@@ -60,7 +60,7 @@ let
     {
       static_configs = [
         {
-          targets = [ "alertmanager.thewagner.home" ];
+          targets = [ "nuc:9093" ];
         }
       ];
     }

@@ -243,7 +243,7 @@ let
 
 
   send = device: command: value:
-    "${pkgs.mosquitto}/bin/mosquitto_pub --host mqtt --topic cmnd/${device}/${command} --message '${toString value}'";
+    "${pkgs.mosquitto}/bin/mosquitto_pub --host nuc --topic cmnd/${device}/${command} --message '${toString value}'";
 
   tasmota_0E63DE = pkgs.writeScript "tasmota_0E63DE" ''
     ${send "tasmota_0E63DE" "Backlog" (backlogMessage config-2c-3a-e8-0e-63-de)}
