@@ -56,8 +56,6 @@ mkShell {
       echo -n "MqttUser 0;"
       echo -n "MqttPassword 0;"
 
-      echo -n "Module 34;"
-
       echo ""
     }
   '';
