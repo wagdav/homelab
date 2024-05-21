@@ -24,7 +24,7 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
           extra_nix_config: "extra-platforms = aarch64-linux"
-      - uses: cachix/cachix-action@18cf96c7c98e048e10a83abd92116114cd8504be  # v14
+      - uses: cachix/cachix-action@ad2ddac53f961de1989924296a1f236fcfbaa4fc  # v15
         with:
           name: wagdav
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
