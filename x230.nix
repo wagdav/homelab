@@ -133,6 +133,8 @@
   };
 
   services = {
+    avahi.enable = true;
+
     illum.enable = true; # Enable the brightness buttons
 
     openssh.enable = true;
