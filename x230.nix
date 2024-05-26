@@ -133,7 +133,11 @@
   };
 
   services = {
-    avahi.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
 
     illum.enable = true; # Enable the brightness buttons
 
