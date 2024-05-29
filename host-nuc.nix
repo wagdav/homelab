@@ -19,5 +19,10 @@
     ./modules/webhook.nix
   ];
 
+  services.tailscale = {
+    useRoutingFeatures = "server";
+    extraUpFlags = "--advertise-exit-node";
+  };
+
   system.stateVersion = "22.05";
 }

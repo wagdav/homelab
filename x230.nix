@@ -147,6 +147,8 @@
 
     printing.enable = true;
 
+    tailscale.useRoutingFeatures = "client";
+
     greetd = {
       enable = true;
       settings = {
