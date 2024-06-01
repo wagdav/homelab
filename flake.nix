@@ -3,7 +3,7 @@
     url = "github:edolstra/flake-compat";
     flake = false;
   };
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
   inputs.cachix-deploy.url = "github:cachix/cachix-deploy-flake";
   inputs.nixos-generators.url = "github:nix-community/nixos-generators";

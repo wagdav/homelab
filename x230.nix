@@ -82,7 +82,7 @@
 
     sway = {
       enable = true;
-      extraPackages = with pkgs; [ chayang swaylock swayidle alacritty dmenu sway-contrib.grimshot ];
+      extraPackages = with pkgs; [ chayang swaylock swayidle alacritty sway-contrib.grimshot wmenu ];
     };
 
     neovim = {
@@ -135,7 +135,7 @@
   services = {
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       openFirewall = true;
     };
 

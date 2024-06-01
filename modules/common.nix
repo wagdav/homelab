@@ -9,7 +9,6 @@
   documentation.enable = false;
 
   nix = {
-    package = pkgs.nixUnstable;
     extraOptions = ''
       builders-use-substitutes = true
       experimental-features = nix-command flakes
