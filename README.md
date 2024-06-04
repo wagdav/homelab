@@ -216,7 +216,7 @@ The elements of `--builders` argument are described [here][NixOSRemoteBuilds].
 Uncompress the built image and write it to an SD card:
 
 ```
-unzstd nixos-sd-image.img.zst
+unzstd ./result/sd-image/nixos-sd-image*.zst -o nixos-sd-image.img.zst
 sudo dd  if=nixos-sd-image.img of=/dev/mmcblk0 bs=4096 conv=fsync status=progress
 ```
 
@@ -234,7 +234,7 @@ secrets:
 * Cachix authentication token
 
 If this is a complete reinstall, update the host's public key in
-[program.ssh.knownHosts](./modules/buildMachines.nix).  Run `ssh-keygen rp3` to
+[program.ssh.knownHosts](./modules/buildMachines.nix).  Run `ssh-keyscan rp3` to
 obtain the host key's signature.
 
 Store the WIFI SSID and password in the file `/etc/secrets/wireless.env` with
