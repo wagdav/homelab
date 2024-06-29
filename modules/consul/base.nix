@@ -5,9 +5,7 @@
     enable = true;
 
     extraConfig = {
-      retry_join = [ "nuc" ];
-
-      client_addr = [ "0.0.0.0" ];
+      bind_addr = "{{ GetPrivateInterfaces | include \"network\" \"192.168.1.0/24\" | attr \"address\" }}";
 
       telemetry = {
         disable_hostname = true;
