@@ -5,6 +5,7 @@ let
   # https://grafana.com/docs/loki/latest/configuration/examples/#complete-local-config
   configuration = {
     auth_enabled = false;
+    common.path_prefix = "/var/lib/loki";
 
     server.http_listen_port = httpPort;
     server.log_level = "warn";
@@ -34,12 +35,24 @@ let
             period = "168h";
           };
         }
+        {
+          from = "2024-07-01";
+          store = "tsdb";
+          object_store = "filesystem";
+          schema = "v13";
+          index = {
+            prefix = "index_";
+            period = "24h";
+          };
+        }
       ];
     };
 
     storage_config = {
       boltdb.directory = "/tmp/loki/index";
       filesystem.directory = "/tmp/loki/chunks";
+      tsdb_shipper.active_index_directory = "/var/lib/loki/tsdb-index";
+      tsdb_shipper.cache_location = "/var/lib/loki/tsdb-cache";
     };
 
     limits_config = {
