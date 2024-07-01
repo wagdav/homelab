@@ -363,5 +363,18 @@ dashboard configuration in this repository:
 nix run .#mqtt-dash-listen > nodemcu/mqtt-dash.json
 ```
 
+### Troubleshooting
+
+The device `tasmota_0E63DE` couldn't connect to the Wi-Fi network.  I believe
+this is because the 2.4GHz and 5GHz networks share the same SSID.  I flashed
+the latest tasmota firmware (14.1.0) on the device and selected the 2.4GHz
+connection with the command:
+
+```
+Wifi 3
+```
+
+which corresponds to the Wi-Fi mode 802.11b/g (2.4 GHz).
+
 [NixOSBootWifi]: https://nixos.org/manual/nixos/stable/#sec-installation-booting-networking
 [NixOSRemoteBuilds]: https://nixos.org/manual/nix/stable/advanced-topics/distributed-builds.html?highlight=builders#remote-builds

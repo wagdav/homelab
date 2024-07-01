@@ -9,6 +9,10 @@ let
   # https://tasmota.github.io/docs/PIR-Motion-Sensors/
   config-2c-3a-e8-0e-63-de = [
     {
+      cmnd = "Wifi";
+      value = 3; # select explicitly the Wi-Fi mode 802.11b/g (2.4 GHz) for better connectivity
+    }
+    {
       cmnd = "Template";
       value = tasmota.template {
         name = "MySensor";
