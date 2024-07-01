@@ -2,8 +2,8 @@ with import <nixpkgs> { };
 let
 
   firmware = fetchurl {
-    url = "https://github.com/arendst/Tasmota/releases/download/v8.2.0/tasmota.bin";
-    sha256 = "12a03e7f486c2974a79f058f0a94cc063c8aa35550370e5e9e2764ec99bc341a";
+    url = "https://github.com/arendst/Tasmota/releases/download/v14.1.0/tasmota.bin";
+    sha256 = "sha256-tcy79NlSnmJ3foLfYIDLPbR5fpW9ItVkuApO9+MS9n0=";
   };
 
 in
