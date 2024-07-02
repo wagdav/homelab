@@ -36,7 +36,6 @@
     #dropbox-cli
     fd
     file
-    fim
     firefox-wayland
     fzf
     git
@@ -82,7 +81,7 @@
 
     sway = {
       enable = true;
-      extraPackages = with pkgs; [ chayang swaylock swayidle alacritty sway-contrib.grimshot wmenu ];
+      extraPackages = with pkgs; [ chayang swaylock swayidle swayimg alacritty sway-contrib.grimshot wmenu ];
     };
 
     neovim = {
