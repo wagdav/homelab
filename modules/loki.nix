@@ -26,16 +26,6 @@ let
     schema_config = {
       configs = [
         {
-          from = "2020-05-15";
-          store = "boltdb";
-          object_store = "filesystem";
-          schema = "v11";
-          index = {
-            prefix = "index_";
-            period = "168h";
-          };
-        }
-        {
           from = "2024-07-01";
           store = "tsdb";
           object_store = "filesystem";
@@ -49,7 +39,6 @@ let
     };
 
     storage_config = {
-      boltdb.directory = "/tmp/loki/index";
       filesystem.directory = "/tmp/loki/chunks";
       tsdb_shipper.active_index_directory = "/var/lib/loki/tsdb-index";
       tsdb_shipper.cache_location = "/var/lib/loki/tsdb-cache";
