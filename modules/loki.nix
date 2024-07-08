@@ -5,22 +5,17 @@ let
   # https://grafana.com/docs/loki/latest/configuration/examples/#complete-local-config
   configuration = {
     auth_enabled = false;
-    common.path_prefix = "/var/lib/loki";
 
     server.http_listen_port = httpPort;
     server.log_level = "warn";
 
-    ingester = {
-      lifecycler = {
-        address = "127.0.0.1";
-        ring = {
-          kvstore.store = "inmemory";
-          replication_factor = 1;
-        };
-        final_sleep = "0s";
+    common = {
+      ring = {
+        instance_addr = "127.0.0.1";
+        kvstore.store = "inmemory";
       };
-      chunk_idle_period = "5m";
-      chunk_retain_period = "30s";
+      replication_factor = 1;
+      path_prefix = "/var/lib/loki";
     };
 
     schema_config = {
