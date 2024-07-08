@@ -39,7 +39,7 @@ let
     };
 
     storage_config = {
-      filesystem.directory = "/tmp/loki/chunks";
+      filesystem.directory = "/var/lib/loki/chunks";
       tsdb_shipper.active_index_directory = "/var/lib/loki/tsdb-index";
       tsdb_shipper.cache_location = "/var/lib/loki/tsdb-cache";
     };
