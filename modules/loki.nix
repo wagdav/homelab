@@ -56,7 +56,6 @@ let
     };
 
     limits_config = {
-      allow_structured_metadata = false;
       reject_old_samples = true;
       reject_old_samples_max_age = "168h";
     };
