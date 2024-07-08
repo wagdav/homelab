@@ -34,6 +34,7 @@
 
   systemd.timers."send-room-humidity" = {
     wantedBy = [ "timers.target" ];
+    wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
     timerConfig = {
       OnCalendar = [ "*-*-*  8:00" "*-*-* 22:00" ];
