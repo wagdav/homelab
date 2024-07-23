@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332  # v4.1.7
         with:
           fetch-depth: 0
-      - uses: docker/setup-qemu-action@5927c834f5b4fdf503fca6f4c7eccda82949e1ee  # v3.1.0
+      - uses: docker/setup-qemu-action@49b3bc8e6bdd4a60e6116a5414239cba5943d3cf  # v3.2.0
       - uses: cachix/install-nix-action@ba0dd844c9180cbf77aa72a116d6fbc515d0e87b  # v27
         with:
           nix_path: nixpkgs=channel:nixos-unstable
