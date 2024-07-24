@@ -42,6 +42,7 @@
     gh
     httpie
     moreutils
+    mosh
     mpv
     ntfs3g
     pass

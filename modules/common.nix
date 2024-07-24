@@ -8,6 +8,10 @@
 
   documentation.enable = false;
 
+  environment.systemPackages = with pkgs; [
+    mosh
+  ];
+
   nix = {
     extraOptions = ''
       builders-use-substitutes = true
