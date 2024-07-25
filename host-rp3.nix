@@ -4,7 +4,7 @@
   imports = [
     nixos-hardware.nixosModules.raspberry-pi-3
     ./hardware/rp3.nix
-    ./modules/camera.nix
+    ./modules/camera-rpi-v1
     ./modules/common.nix
     ./modules/cachix.nix
     ./modules/remote-builder
