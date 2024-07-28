@@ -9,14 +9,6 @@ in
   nix.settings.max-jobs = lib.mkDefault 4;
   nixpkgs.system = "aarch64-linux";
 
-  boot = {
-    kernelModules = [ "bcm2835-v4l2" ];
-    loader = {
-      grub.enable = false;
-      generic-extlinux-compatible.enable = true;
-    };
-  };
-
   networking.wireless = {
     enable = true;
     environmentFile = "/etc/secrets/wireless.env";
@@ -25,10 +17,6 @@ in
   };
 
   hardware.enableRedistributableFirmware = true;
-
-  environment.systemPackages = with pkgs; [
-    libraspberrypi
-  ];
 
   services.journald.extraConfig = ''
     Storage = volatile

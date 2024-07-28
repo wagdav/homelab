@@ -1,7 +1,8 @@
-{ config, ... }:
+{ config, nixos-hardware, ... }:
 
 {
   imports = [
+    nixos-hardware.nixosModules.raspberry-pi-3
     ./hardware/rp3.nix
     ./modules/camera.nix
     ./modules/common.nix

@@ -8,7 +8,7 @@
   inputs.cachix-deploy.url = "github:cachix/cachix-deploy-flake";
   inputs.nixos-generators.url = "github:nix-community/nixos-generators";
 
-  outputs = { self, flake-compat, nixpkgs, nixos-generators, nixos-hardware, cachix-deploy }:
+  outputs = { self, flake-compat, nixpkgs, nixos-generators, nixos-hardware, cachix-deploy }@attrs:
     let
       system = "x86_64-linux";
 
@@ -25,6 +25,7 @@
       mkMachine = system: modules: nixpkgs.lib.nixosSystem {
         inherit system;
         modules = modules ++ [ defaults ];
+        specialArgs = attrs;
       };
 
       mqtt-dash-listen = pkgs.writeScriptBin "mqtt-dash-listen" ''
