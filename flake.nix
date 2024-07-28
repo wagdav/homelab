@@ -90,6 +90,7 @@
         sdcard = nixos-generators.nixosGenerate {
           system = "aarch64-linux";
           format = "sd-aarch64";
+          specialArgs = attrs;
           modules = [
             ./host-rp3.nix
           ];
