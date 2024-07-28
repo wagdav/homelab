@@ -59,10 +59,7 @@
 
         nuc = mkMachine "x86_64-linux" [ ./host-nuc.nix ];
         rp3 = mkMachine "aarch64-linux" [ ./host-rp3.nix ];
-        # rp4 = mkMachine "aarch64-linux" [
-        #   ./host-rp4.nix
-        #   nixos-hardware.nixosModules.raspberry-pi-4
-        # ];
+        rp4 = mkMachine "aarch64-linux" [ ./host-rp4.nix ];
       };
 
       apps.${system} = {
@@ -84,6 +81,7 @@
             nuc = self.nixosConfigurations.nuc.config.system.build.toplevel;
             x230 = self.nixosConfigurations.x230.config.system.build.toplevel;
             rp3 = self.nixosConfigurations.rp3.config.system.build.toplevel;
+            rp4 = self.nixosConfigurations.rp4.config.system.build.toplevel;
           };
         };
       };
@@ -94,6 +92,15 @@
           format = "sd-aarch64";
           modules = [
             ./host-rp3.nix
+          ];
+        };
+
+        sdcard-rp4 = nixos-generators.nixosGenerate {
+          system = "aarch64-linux";
+          format = "sd-aarch64";
+          specialArgs = attrs;
+          modules = [
+            ./host-rp4.nix
           ];
         };
       };

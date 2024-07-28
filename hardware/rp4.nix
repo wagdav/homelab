@@ -8,9 +8,10 @@ in
 {
   nixpkgs.system = "aarch64-linux";
 
-  environment.systemPackages = with pkgs; [
-    libraspberrypi
-  ];
+  services.journald.extraConfig = ''
+    Storage = volatile
+    RuntimeMaxFileSize = 10M
+  '';
 
   fileSystems."/" =
     {
@@ -20,23 +21,16 @@ in
 
   hardware = {
     pulseaudio.enable = true;
-
-    raspberry-pi."4".fkms-3d.enable = true;
-    raspberry-pi."4".audio.enable = true;
   };
 
   networking = {
     hostName = name;
-    networkmanager.enable = true;
   };
 
-  nixpkgs.overlays = [
-    (self: super: {
-      libcec = super.libcec.override { inherit (super) libraspberrypi; };
-    })
-  ];
-
-  services.udev.extraRules = ''
-    SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"
-  '';
+  networking.wireless = {
+    enable = true;
+    environmentFile = "/etc/secrets/wireless.env";
+    networks."@WIFI_SSID@".psk = "@WIFI_KEY@";
+    interfaces = [ "wlan0" ];
+  };
 }

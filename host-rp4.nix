@@ -1,13 +1,15 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nixos-hardware, ... }:
 
 {
   imports = [
+    nixos-hardware.nixosModules.raspberry-pi-4
     ./hardware/rp4.nix
-    ./modules/arcade.nix
+    ./modules/cachix.nix
     ./modules/common.nix
     ./modules/consul/client.nix
     ./modules/remote-builder
+    ./modules/vpn.nix
   ];
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.11";
 }
