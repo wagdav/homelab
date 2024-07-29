@@ -91,18 +91,14 @@
           system = "aarch64-linux";
           format = "sd-aarch64";
           specialArgs = attrs;
-          modules = [
-            ./host-rp3.nix
-          ];
+          modules = [ ./host-rp3.nix ];
         };
 
         sdcard-rp4 = nixos-generators.nixosGenerate {
           system = "aarch64-linux";
           format = "sd-aarch64";
           specialArgs = attrs;
-          modules = [
-            ./host-rp4.nix
-          ];
+          modules = [ ./host-rp4.nix ];
         };
       };
 
