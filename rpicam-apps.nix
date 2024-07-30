@@ -33,7 +33,7 @@ stdenv.mkDerivation (finalAttrs: {
     ffmpeg
     libcamera
     libdrm
-    libepoxy
+    libepoxy  # GLES/EGL preview window
     libexif
     libjpeg
     libpng

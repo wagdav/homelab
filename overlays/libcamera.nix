@@ -10,6 +10,13 @@ final: prev: {
       patchShebangs src/py/libcamera
     '';
 
+    mesonFlags = prev.mesonFlags + [
+      "-Dcam=disabled"
+      "-Dgstreamer=disabled"
+      "-Dipas=rpi/vc4,rpi/pisp"
+      "-Dpipelines=rpi/vc4,rpi/pisp"
+    ];
+
     src = prev.fetchFromGitHub {
       owner = "raspberrypi";
       repo = "libcamera";
