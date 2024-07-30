@@ -55,8 +55,10 @@ stdenv.mkDerivation (finalAttrs: {
   BOOST_LIBRARYDIR = "${lib.getLib boost}/lib";
 
   mesonFlags = [
+    "-Denable_drm=disabled"
+    "-Denable_egl=disabled"
     "-Denable_hailo=disabled"
-    # maybe also disabled QT: "-Denable_qt=disabled"
+    "-Denable_qt=disabled"
     # See all options here: https://github.com/raspberrypi/rpicam-apps/blob/main/meson_options.txt
   ];
 
