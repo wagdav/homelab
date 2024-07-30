@@ -33,6 +33,13 @@
           supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
           inherit sshUser sshKey;
         }
+        {
+          hostName = "rp3";
+          systems = [ "aarch64-linux" ];
+          maxJobs = 1;
+          supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
+          inherit sshUser sshKey;
+        }
       ];
   };
 }
