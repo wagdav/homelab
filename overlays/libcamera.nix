@@ -10,7 +10,7 @@ final: prev: {
       patchShebangs src/py/libcamera
     '';
 
-    mesonFlags = old.mesonFlags + [
+    mesonFlags = old.mesonFlags ++ [
       "-Dcam=disabled"
       "-Dgstreamer=disabled"
       "-Dipas=rpi/vc4,rpi/pisp"
