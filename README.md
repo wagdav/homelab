@@ -166,6 +166,16 @@ $ nix eval .#nixosConfigurations.nuc.config.networking.firewall.allowedTCPPorts
 9093 9100 9883 ]
 ```
 
+Push a [runtime closure](https://docs.cachix.org/pushing#pushing-runtime-closure)
+of a locally built derivation to Cachix:
+
+```
+export CACHIX_AUTH_TOKEN=...
+nix build -L --json  .#nixosConfigurations.rp3.config.system.build.toplevel \
+    | nix run nixpkgs#jq -- -r '.[].outputs | to_entries[].value'
+    | nix run nixpkgs#cachix -- push wagdav
+```
+
 ## Router
 
 Linksys WRT ACM-3200 running OpenWRT.
