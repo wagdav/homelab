@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
@@ -20,6 +20,10 @@
     hostName = "x230";
     networkmanager.enable = true;
   };
+
+  # Workaround for " Failed to start Network Manager Wait Online." after `nixos-rebuild switch`
+  # See https://github.com/NixOS/nixpkgs/issues/180175
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
