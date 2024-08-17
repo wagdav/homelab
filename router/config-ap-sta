@@ -1,0 +1,49 @@
+#!/bin/sh
+# Setup Wi-Fi Repeater using AP+STA mode
+# Reference: https://openwrt.org/docs/guide-user/network/wifi/wifiextenders/ap_sta
+set -o errexit
+
+if [ "$#" -ne 2 ]; then
+  echo "Usage: $0 WIFI_SSID WIFI_KEY" >&2
+  exit 1
+fi
+
+WIFI_SSID="$1"
+WIFI_KEY="$2"
+
+# Add the WWAN network is in the WAN firewall zone
+while uci -q delete firewall.@zone[1].network; do :; done
+uci add_list firewall.@zone[1].network="wan"
+uci add_list firewall.@zone[1].network="wan6"
+uci add_list firewall.@zone[1].network="wwan"
+
+# The WWAN interface is the "uplink". It obtains a DHCP address from the upstream hotspot.
+uci set network.wwan="interface"
+uci set network.wwan.proto="dhcp"
+
+# Add the Wi-Fi interface for the uplink.
+uci set wireless.wwan="wifi-iface"
+uci set wireless.wwan.device="radio0"
+uci set wireless.wwan.network="wwan"
+uci set wireless.wwan.mode="sta"
+
+uci set wireless.wwan.encryption="psk2"
+uci set wireless.wwan.ssid="$WIFI_SSID"
+uci set wireless.wwan.key="$WIFI_KEY"
+
+CHANGES=$(uci changes)
+if [ -n "$CHANGES" ]; then
+    echo "Changes:"
+    uci changes
+    echo ""
+    echo ""
+    echo "This script doesn't restart any services. You may need to run:"
+    echo "- service firewall restart"
+    echo "- service network restart"
+    echo "- wifi reload"
+    echo ""
+    echo "Or just reboot the device"
+else
+    echo "No changes. Configuration is up-to-date!"
+fi
+uci commit

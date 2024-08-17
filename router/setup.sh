@@ -11,4 +11,4 @@ HERE=$(dirname "$(readlink -f "$0")")
 $SSH_COMMAND sh -s \
     "$(printf "%q" "$(pass Home/wifi_ssid)")" \
     "$(printf "%q" "$(pass Home/wifi_key)")" \
-    < "$HERE"/config
+    < <(cat "$HERE"/config "$HERE"/config-ap-sta)
