@@ -81,6 +81,7 @@ uci set dhcp.@cname[-1].target="nuc.thewagner.home"
 
 # Node exporter
 opkg install \
+    libubus-lua \
     prometheus-node-exporter-lua \
     prometheus-node-exporter-lua-nat_traffic \
     prometheus-node-exporter-lua-netstat \
