@@ -14,7 +14,7 @@
 
     rp4 = {
       hostNames = [ "rp4" "rp4.thewagner.home" ];
-      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJaIGkZhXd1DE1VPC/6R4bK1Iclk+zTjSyJ99QFkQ5wf";
+      publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID/z/WxE1OsrpXsv+NtHv5jkZtKRF9RtrFGVZyXWzMhm";
     };
   };
 
