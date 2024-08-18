@@ -226,7 +226,7 @@ The elements of `--builders` argument are described [here][NixOSRemoteBuilds].
 Uncompress the built image and write it to an SD card:
 
 ```
-unzstd ./result/sd-image/nixos-sd-image*.zst -o nixos-sd-image.img.zst
+unzstd ./result/sd-image/nixos-sd-image*.zst -o nixos-sd-image.img
 sudo dd  if=nixos-sd-image.img of=/dev/mmcblk0 bs=4096 conv=fsync status=progress
 ```
 
