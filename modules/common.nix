@@ -9,7 +9,7 @@
   documentation.enable = false;
 
   environment.systemPackages = with pkgs; [
-    mosh
+    vim
   ];
 
   nix = {
