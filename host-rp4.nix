@@ -13,6 +13,11 @@
 
   system.stateVersion = "23.11";
 
+  hardware = {
+    raspberry-pi."4".apply-overlays-dtmerge.enable = true;
+    deviceTree.enable = true;
+  };
+
   nixpkgs.overlays = [
     (final: super: {
       makeModulesClosure = x:
