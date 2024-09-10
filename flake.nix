@@ -5,13 +5,17 @@
   };
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
+  inputs.disko = {
+    url = "github:nix-community/disko";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   inputs.cachix-deploy.url = "github:cachix/cachix-deploy-flake";
   inputs.nixos-generators = {
     url = "github:nix-community/nixos-generators";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, flake-compat, nixpkgs, nixos-generators, nixos-hardware, cachix-deploy }@attrs:
+  outputs = { self, disko, flake-compat, nixpkgs, nixos-generators, nixos-hardware, cachix-deploy }@attrs:
     let
       system = "x86_64-linux";
 
@@ -41,6 +45,7 @@
     in
     {
       nixosConfigurations = {
+        x1 = mkMachine "x86_64-linux" [ ./x1.nix ];
         x230 = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
