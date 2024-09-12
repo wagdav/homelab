@@ -46,22 +46,7 @@
     {
       nixosConfigurations = {
         x1 = mkMachine "x86_64-linux" [ ./x1.nix ];
-        x230 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-
-          modules =
-            [
-              ./x230.nix
-
-              {
-                nix.registry.nixpkgs.flake = nixpkgs;
-              }
-
-              nixpkgs.nixosModules.notDetected
-              nixos-hardware.nixosModules.lenovo-thinkpad-x230
-            ];
-        };
-
+        x230 = mkMachine "x86_64-linux" [ ./x230.nix ];
         nuc = mkMachine "x86_64-linux" [ ./host-nuc.nix ];
         rp3 = mkMachine "aarch64-linux" [ ./host-rp3.nix ];
         rp4 = mkMachine "aarch64-linux" [ ./host-rp4.nix ];

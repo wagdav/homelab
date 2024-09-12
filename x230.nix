@@ -2,10 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nixpkgs, nixos-hardware, ... }:
 
 {
   imports = [
+    nixpkgs.nixosModules.notDetected
+    nixos-hardware.nixosModules.lenovo-thinkpad-x230
     ./hardware/x230.nix
     ./modules/buildMachines.nix
     ./modules/cachix.nix
