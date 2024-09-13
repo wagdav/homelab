@@ -25,13 +25,9 @@
 
       revision = "${self.lastModifiedDate}-${self.shortRev or "dirty"}";
 
-      defaults = {
-        nix.registry.nixpkgs.flake = nixpkgs;
-      };
-
       mkMachine = system: modules: nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = modules ++ [ defaults ];
+        modules = modules ++ [ ./modules/common.nix ];
         specialArgs = attrs;
       };
 

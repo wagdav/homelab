@@ -35,9 +35,6 @@
   # See https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Zurich";
-
   nixpkgs.config.allowUnfree = true;
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
@@ -193,14 +190,7 @@
     };
   };
 
-  nix = {
-    extraOptions = ''
-      builders-use-substitutes = true
-      experimental-features = nix-command flakes
-    '';
-
-    settings.trusted-users = [ "root" "@wheel" ];
-  };
+  nix.settings.trusted-users = [ "root" "@wheel" ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

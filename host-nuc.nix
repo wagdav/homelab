@@ -5,7 +5,6 @@
     ./hardware/nuc.nix
     ./modules/alertmanager.nix
     ./modules/cachix.nix
-    ./modules/common.nix
     ./modules/consul/server.nix
     ./modules/git.nix
     ./modules/grafana
@@ -14,6 +13,7 @@
     ./modules/prometheus.nix
     ./modules/push-notifications.nix
     ./modules/remote-builder
+    ./modules/server.nix
     ./modules/traefik.nix
     ./modules/vpn.nix
     ./modules/webhook.nix
