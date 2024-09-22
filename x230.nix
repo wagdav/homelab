@@ -85,7 +85,7 @@
 
     sway = {
       enable = true;
-      extraPackages = with pkgs; [ swaylock swayidle swayimg alacritty sway-contrib.grimshot wmenu ];
+      extraPackages = with pkgs; [ swaylock swayidle swayimg foot sway-contrib.grimshot wmenu ];
     };
 
     neovim = {
