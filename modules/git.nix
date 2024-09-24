@@ -15,6 +15,8 @@ in
   services = {
     cgit.git = {
       enable = true;
+      user = "cgit";
+      group = "cgit";
       scanPath = "/srv/git";
       settings = {
         enable-git-config = true;
