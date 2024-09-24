@@ -28,4 +28,14 @@
       settings.PasswordAuthentication = false;
     };
   };
+
+  # Machine configuration to be added for the vm script produced by ‘nixos-rebuild build-vm’.
+  virtualisation.vmVariant = {
+    services.qemuGuest.enable = true;
+    users.users.dwagner = {
+      initialHashedPassword = "";
+      isNormalUser = true;
+    };
+  };
+
 }
