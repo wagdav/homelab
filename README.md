@@ -4,14 +4,14 @@ The configuration of my home infrastructure.
 
 ## Laptop
 
-My main laptop, a Lenovo X230, runs [NixOS](https://nixos.org/).
+My main laptop, a Lenovo Carbon X1, runs [NixOS](https://nixos.org/).
 
-Its configuration is specified in `x230.nix` using the [experimental flakes
+Its configuration is specified in `x1.nix` using the [experimental flakes
 feature](https://www.tweag.io/blog/2020-07-31-nixos-flakes/).  Modify this file
 and switch to the new configuration:
 
 ```
-sudo nixos-rebuild switch --flake .
+./scripts/switch.sh x1
 ```
 
 By default, this configuration is stored in `/etc/nixos/configuration.nix`.
@@ -19,7 +19,7 @@ By default, this configuration is stored in `/etc/nixos/configuration.nix`.
 For testing purposes you can build a QEMU virtual machine from the configuration:
 
 ```
-nixos-rebuild build-vm --flake .
+nixos-rebuild build-vm --flake .#x1 && ./result/bin/run-*-vm
 ```
 
 To update the lock files:
