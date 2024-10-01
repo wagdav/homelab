@@ -59,6 +59,10 @@ let
       };
     }
     {
+      cmnd = "SetOption56";
+      value = "1"; # Wi-Fi network scan to select strongest signal on restart.
+    }
+    {
       cmnd = "SensorRetain";
       value = "on";
     }
@@ -147,6 +151,10 @@ let
         };
         base = tasmota.base.SonoffTH;
       };
+    }
+    {
+      cmnd = "SetOption56";
+      value = "1"; # Wi-Fi network scan to select strongest signal on restart.
     }
     {
       cmnd = "SensorRetain";
