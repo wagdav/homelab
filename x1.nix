@@ -123,7 +123,6 @@
   hardware = {
     enableRedistributableFirmware = true;
     enableAllFirmware = true;
-    firmware = [ pkgs.sof-firmware ];
 
     bluetooth = {
       enable = true;
