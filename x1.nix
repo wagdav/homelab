@@ -162,6 +162,8 @@
 
     tailscale.useRoutingFeatures = "client";
 
+    tlp.enable = true;
+
     greetd = {
       enable = true;
       settings = {
