@@ -159,6 +159,8 @@
 
     printing.enable = true;
 
+    fprintd.enable = true;
+
     tailscale.useRoutingFeatures = "client";
 
     tlp.enable = true;
