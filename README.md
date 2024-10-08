@@ -188,7 +188,7 @@ Download and install the [OpenWRT
 firmware](https://openwrt.org/toh/linksys/wrt3200acm) then run:
 
 ```
-router/setup.sh --first-time
+router/setup.sh first-time
 ```
 
 Reboot the router.
