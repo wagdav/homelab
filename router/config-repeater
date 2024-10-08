@@ -1,0 +1,106 @@
+#!/bin/sh
+# Setup Wi-Fi Repeater with relayd
+# Reference: https://openwrt.org/docs/guide-user/network/wifi/relay_configuration
+set -o errexit
+
+if [ "$#" -ne 3 ]; then
+  echo "Usage: $0 FIRST_TIME WIFI_SSID WIFI_KEY" >&2
+  exit 1
+fi
+
+FIRST_TIME="$1"
+WIFI_SSID="$2"
+WIFI_KEY="$3"
+
+uci set system.@system[0].hostname="wrt"
+uci set system.@system[0].zonename="Europe/Zurich"
+
+# LAN
+uci set network.lan.ipaddr=192.168.2.1
+
+# WIRELESS
+
+# https://openwrt.org/toh/linksys/wrt3200acm#wifi_driver_bug_and_workaround
+opkg remove kmod-mwifiex-sdio
+
+wifi config > /etc/config/wireless
+
+uci set wireless.radio0.disabled="0"
+uci set wireless.radio0.country="CH"
+uci set wireless.radio0.cell_density="0"
+uci set wireless.default_radio0.ssid="${WIFI_SSID}"
+uci set wireless.default_radio0.encryption='psk2'
+uci set wireless.default_radio0.key="$WIFI_KEY"
+
+uci set wireless.radio1.disabled="0"
+uci set wireless.radio1.country="CH"
+uci set wireless.radio1.cell_density="0"
+uci set wireless.default_radio1.ssid="${WIFI_SSID}"
+uci set wireless.default_radio1.encryption='psk2'
+uci set wireless.default_radio1.key="$WIFI_KEY"
+
+uci set dhcp.lan.ignore='1'
+
+# Configure Wi-Fi uplink. It obtains a DHCP address from the upstream hotspot.
+uci set network.wwan="interface"
+uci set network.wwan.proto="dhcp"
+
+# Add the Wi-Fi interface for the uplink.
+uci set wireless.wwan="wifi-iface"
+uci set wireless.wwan.device="radio0"
+uci set wireless.wwan.network="wwan"
+uci set wireless.wwan.mode="sta"
+uci set wireless.wwan.encryption="psk2"
+uci set wireless.wwan.ssid="$WIFI_SSID"
+uci set wireless.wwan.key="$WIFI_KEY"
+
+if $FIRST_TIME ; then
+  uci commit
+  echo "First time setup finished. After rebooting, the device's new address is 192.168.2.1"
+  reboot
+  exit 0
+fi
+
+# Add Relay interface
+if ! opkg list-installed | grep -q luci-proto-relay; then
+  opkg update
+  opkg install luci-proto-relay
+fi
+
+uci set network.repeater_bridge=interface
+uci set network.repeater_bridge.proto="relay"
+uci set network.repeater_bridge.network="lan wwan"
+
+# Firewall zone
+uci set firewall.@zone[0].network='lan repeater_bridge wwan'
+
+# Remove reduntant WAN interface and firewall zones
+if uci -q get network.wan; then
+  uci delete network.wan
+fi
+
+if uci -q get network.wan6; then
+  uci delete network.wan6
+fi
+
+if uci -q get firewall.@zone[1]; then
+  uci delete firewall.@zone[1]
+fi
+
+# Install packages
+if [ "$(uname -m)" != "mips" ]; then
+    opkg install \
+        libubus-lua \
+        prometheus-node-exporter-lua \
+        prometheus-node-exporter-lua-nat_traffic \
+        prometheus-node-exporter-lua-netstat \
+        prometheus-node-exporter-lua-openwrt \
+        prometheus-node-exporter-lua-wifi \
+        prometheus-node-exporter-lua-wifi_stations
+
+    # Tailscale
+    opkg install iptables tailscale
+fi
+
+uci commit
+wifi
