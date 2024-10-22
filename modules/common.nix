@@ -23,6 +23,12 @@
   time.timeZone = "Europe/Zurich";
 
   services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
     openssh = {
       enable = true;
       settings.PasswordAuthentication = false;

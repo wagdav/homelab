@@ -145,12 +145,6 @@
   };
 
   services = {
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
-
     illum.enable = true; # Enable the brightness buttons
 
     openssh.enable = true;
