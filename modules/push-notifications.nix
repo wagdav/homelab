@@ -41,4 +41,26 @@
       Unit = "send-room-humidity.service";
     };
   };
+
+  systemd.services."sunrise-sunset" = {
+    path = [ pkgs.sunwait pkgs.curl ];
+    script = ''
+      set -eu
+      ${../scripts/push-sunrise-sunset.sh}
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "ntfy";
+    };
+  };
+
+  systemd.timers."sunrise-sunset" = {
+    wantedBy = [ "timers.target" ];
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    timerConfig = {
+      OnCalendar = [ "*-*-* 5:30" "*-*-* 16:30" ];
+      Unit = "sunrise-sunset.service";
+    };
+  };
 }
