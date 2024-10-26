@@ -195,6 +195,35 @@
   # should.
   system.stateVersion = "24.05"; # Did you read the comment?
 
+  # Backup
+  services.borgbackup.jobs.home = {
+    paths = "/home";
+    patterns = [
+      "+ /home/*/documents"
+      "+ /home/*/projects"
+      "+ /home/*/.password-store"
+      "+ /home/*/.ssh/id_*"
+      "+ /home/*/.gnupg/**"
+      "- **/*.o"
+      "- **/.pyc"
+      "- **/.swp"
+      "- **"
+    ];
+    repo = "/mnt/nas/backup/borg/x1";
+    encryption.mode = "none";
+    doInit = false;
+    user = "dwagner";
+    startAt = "daily";
+    persistentTimer = true;
+    prune.keep = {
+      within = "1d";
+      daily = 7;
+      weekly = 4;
+      monthly = 12;
+      yearly = 10;
+    };
+  };
+
   disko.devices = {
     disk = {
       system = {
