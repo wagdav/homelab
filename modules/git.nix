@@ -1,10 +1,13 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   httpPort = 8022;
 
 in
 {
-  imports = [ ./consul-catalog.nix ];
+  imports = [
+    ./consul-catalog.nix
+    ./nas.nix
+  ];
 
   users.users.git = {
     isSystemUser = true;
@@ -45,6 +48,29 @@ in
         tags = (import ./lib/traefik.nix).tagsForHost "git";
       }
     ];
+
+    borgbackup.jobs.git = {
+      paths = "/srv/git";
+      repo = "/mnt/nas/backup/borg/git";
+      encryption.mode = "none";
+      doInit = false;
+      user = "borg";
+      group = "git";
+      startAt = "daily";
+      prune.keep = {
+        within = "1d";
+        daily = 7;
+        weekly = 4;
+        monthly = 12;
+        yearly = 10;
+      };
+    };
+  };
+
+  users.users.borg = {
+    isNormalUser = true;
+    uid = 1000;
+    extraGroups = [ "git" ];
   };
 
   networking.firewall.allowedTCPPorts = [ httpPort ];
