@@ -11,6 +11,7 @@
     ./hardware/x230.nix
     ./modules/buildMachines.nix
     ./modules/cachix.nix
+    ./modules/nas.nix
     ./modules/vpn.nix
   ];
 
@@ -170,14 +171,6 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [ "dialout" "networkmanager" "vboxusers" "wheel" ];
-  };
-
-  fileSystems = {
-    "/mnt/nas" = {
-      device = "dns-320:/mnt/HD/HD_a2/Ajaxpf";
-      fsType = "nfs";
-      options = [ "x-systemd.automount" "noauto" "_netdev" ];
-    };
   };
 
   nix.settings.trusted-users = [ "root" "@wheel" ];
