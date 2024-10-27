@@ -7,16 +7,18 @@ in
   imports = [ ./consul-catalog.nix ];
 
   users.users.git = {
-    isNormalUser = true;
+    isSystemUser = true;
+    group = "git";
     shell = "${pkgs.git}/bin/git-shell";
     openssh.authorizedKeys.keys = (import ./keys.nix).dwagner;
   };
+  users.groups.git = { };
 
   services = {
     cgit.git = {
       enable = true;
       user = "cgit";
-      group = "cgit";
+      group = "git";
       scanPath = "/srv/git";
       settings = {
         enable-git-config = true;
