@@ -202,10 +202,10 @@
       "- **/.swp"
       "- **"
     ];
-    repo = "/mnt/nas/backup/borg/x1";
+    repo = "borg@nuc:.";
+    environment = { BORG_RSH = "ssh -i /root/keys/id_ed25519-borg-x1"; };
     encryption.mode = "none";
     doInit = false;
-    user = "dwagner";
     startAt = "daily";
     persistentTimer = true;
     prune.keep = {

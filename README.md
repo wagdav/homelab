@@ -32,6 +32,16 @@ My [rcfiles](https://github.com/wagdav/rcfiles) repository completes the
 configuration of my laptop.  Those files live in a separate repository because
 I also use them on my work computer which doesn't run NixOS.
 
+A periodic job backs up my home directory.  The remote connection uses an SSH
+key which I store in `/root/keys`:
+
+```
+sudo ssh-keygen -N '' -t ed25519 -f /root/keys/id_ed25519-borg-x1
+```
+
+The [backup server configuration](./modules/backup.nix) references the public
+part of this key.
+
 ## Servers
 
 The server's configuration is in the `nixosConfigurations` attribute of

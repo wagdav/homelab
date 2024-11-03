@@ -4,6 +4,7 @@
   imports = [
     ./hardware/nuc.nix
     ./modules/alertmanager.nix
+    ./modules/backup.nix
     ./modules/cachix.nix
     ./modules/consul/server.nix
     ./modules/git.nix

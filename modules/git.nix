@@ -67,11 +67,5 @@ in
     };
   };
 
-  users.users.borg = {
-    isNormalUser = true;
-    uid = 1000;
-    extraGroups = [ "git" ];
-  };
-
   networking.firewall.allowedTCPPorts = [ httpPort ];
 }
