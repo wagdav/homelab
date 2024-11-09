@@ -27,6 +27,8 @@ in
         enable-git-config = true;
         clone-url = "git@nuc:/srv/git/$CGIT_REPO_URL";
         source-filter = "${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py";
+        about-filter = "${pkgs.cgit}/lib/cgit/filters/about-formatting.sh";
+        readme = ":README.md";
       };
     };
 
