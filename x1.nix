@@ -44,7 +44,6 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     acpi
-    bat
     curl
     #dropbox-cli
     fd
