@@ -14,8 +14,12 @@
     url = "github:nix-community/nixos-generators";
     inputs.nixpkgs.follows = "nixpkgs";
   };
+  inputs.treefmt-nix = {
+    url = "github:numtide/treefmt-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
-  outputs = { self, disko, flake-compat, nixpkgs, nixos-generators, nixos-hardware, cachix-deploy }@attrs:
+  outputs = { self, disko, flake-compat, nixpkgs, nixos-generators, nixos-hardware, cachix-deploy, treefmt-nix }@attrs:
     let
       system = "x86_64-linux";
 
@@ -38,6 +42,8 @@
 
       dashboard-linter = pkgs.callPackage ./modules/grafana/dashboard-linter.nix { };
 
+      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+
     in
     {
       nixosConfigurations = {
@@ -47,6 +53,8 @@
         rp3 = mkMachine "aarch64-linux" [ ./host-rp3.nix ];
         rp4 = mkMachine "aarch64-linux" [ ./host-rp4.nix ];
       };
+
+      formatter.${system} = treefmtEval.config.build.wrapper;
 
       apps.${system} = {
         mqtt-dash-listen = {
@@ -90,15 +98,7 @@
       };
 
       checks.${system} = with pkgs; {
-        nixpkgs-fmt = runCommand "nixpkgs-fmt"
-          {
-            buildInputs = [ nixpkgs-fmt ];
-            src = self;
-          }
-          ''
-            mkdir $out
-            nixpkgs-fmt --check "$src"
-          '';
+        formatting = treefmtEval.config.build.check self;
 
         markdownlint = runCommand "mdl"
           {
@@ -116,16 +116,6 @@
           ''
             mkdir $out
             shellcheck --shell bash ${./scripts}/*
-          '';
-
-        yamllint = runCommand "yamllint"
-          {
-            buildInputs = [ actionlint yamllint ];
-          }
-          ''
-            mkdir $out
-            yamllint --strict ${./.github/workflows}
-            # actionlint ${./.github/workflows}/*.yml
           '';
       };
     };
