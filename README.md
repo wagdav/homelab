@@ -271,36 +271,9 @@ To connect Cachix, follow [these instructions](#continuous-deployment).
 
 ### Raspberry Pi Camera 1.3
 
-The firmware configuration is _not_ managed by Nix, the following manual edit
-is required.  Mount the firmware partition:
-
-```
-mount /dev/disk/by-label/FIRMWARE /mnt
-```
-
-And add the following lines to `/mnt/config.txt`:
-
-```
-start_x=1
-gpu_mem=256
-```
-
-Save the changes and reboot the Pi:
-
-```
-umount /mnt
-reboot
-```
-
-Stream a live video stream over SSH:
-
-```
-ssh root@rp3 \
-    nix run nixpkgs#ffmpeg -- \
-        -an -f video4linux2 -s 640x480 -i /dev/video0 -r 10 -b:v 500k \
-        -f matroska - | \
-    nix run nixpkgs#mpv -- --demuxer=mkv /dev/stdin
-```
+[This article](https://thewagner.net/blog/2024/07/31/raspberry-pi-camera-on-nixos/),
+describes how I configured my Raspberry Pi v1 camera module on my Raspberry Pi
+3 running NixOS.
 
 ### Reference
 
