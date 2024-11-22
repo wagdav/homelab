@@ -63,6 +63,7 @@
     pmount
     ripgrep
     tree
+    trash-cli
     unzip
     vcsh
     wget
