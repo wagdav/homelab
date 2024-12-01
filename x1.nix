@@ -15,8 +15,7 @@
     initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
     loader.systemd-boot.enable = true;
     kernelModules = [ "kvm-intel" ];
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    # Sound and display need at least kernel 6.8.12, which is not yet supported by the stable ZFS package.
+    kernelPackages = pkgs.linuxPackages_6_11;
     zfs.package = pkgs.zfs_unstable;
   };
 
