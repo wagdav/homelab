@@ -124,15 +124,6 @@
       enable = true;
     };
 
-    pulseaudio = {
-      enable = true;
-      extraConfig = ''
-        # Automatically switch to newly-connected devices
-        load-module module-switch-on-connect
-      '';
-      package = pkgs.pulseaudioFull;
-    };
-
     trackpoint = {
       enable = true;
       speed = 200;
