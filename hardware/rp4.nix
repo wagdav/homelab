@@ -29,8 +29,8 @@ in
 
   networking.wireless = {
     enable = true;
-    environmentFile = "/etc/secrets/wireless.env";
-    networks."@WIFI_SSID@".psk = "@WIFI_KEY@";
+    secretsFile = "/etc/secrets/wireless.env";
+    networks."Eat-Knit-Code-Repeat".pskRaw = "ext:WIFI_KEY";
     interfaces = [ "wlan0" ];
   };
 }
