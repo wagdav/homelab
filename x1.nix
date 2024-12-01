@@ -114,11 +114,6 @@
     };
   };
 
-  sound = {
-    enable = true;
-    mediaKeys.enable = true;
-  };
-
   xdg.portal.wlr.enable = true;
 
   hardware = {
@@ -149,8 +144,6 @@
     illum.enable = true; # Enable the brightness buttons
 
     openssh.enable = true;
-
-    pipewire.enable = true;
 
     printing.enable = true;
 
