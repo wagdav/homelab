@@ -7,6 +7,7 @@
     nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen
     ./modules/buildMachines.nix
     ./modules/cachix.nix
+    ./modules/mediaKeys.nix
     ./modules/nas.nix
     ./modules/vpn.nix
   ];
