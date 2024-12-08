@@ -59,7 +59,7 @@
     mpv
     ntfs3g
     pass
-    pavucontrol
+    pwvucontrol
     pmount
     ripgrep
     tree
