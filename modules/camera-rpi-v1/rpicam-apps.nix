@@ -54,6 +54,10 @@ stdenv.mkDerivation (finalAttrs: {
   BOOST_INCLUDEDIR = "${lib.getDev boost}/include";
   BOOST_LIBRARYDIR = "${lib.getLib boost}/lib";
 
+  env.NIX_CFLAGS_COMPILE = toString [
+    "-Wno-error=deprecated-declarations"
+  ];
+
   # See all options here: https://github.com/raspberrypi/rpicam-apps/blob/main/meson_options.txt
   mesonFlags = [
     "-Denable_drm=disabled"
