@@ -182,7 +182,7 @@ of a locally built derivation to Cachix:
 ```
 export CACHIX_AUTH_TOKEN=...
 nix build -L --json  .#nixosConfigurations.rp3.config.system.build.toplevel \
-    | nix run nixpkgs#jq -- -r '.[].outputs | to_entries[].value'
+    | nix run nixpkgs#jq -- -r '.[].outputs | to_entries[].value' \
     | nix run nixpkgs#cachix -- push wagdav
 ```
 
