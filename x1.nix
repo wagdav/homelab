@@ -127,8 +127,6 @@
 
     trackpoint = {
       enable = true;
-      speed = 200;
-      sensitivity = 200;
     };
   };
 
