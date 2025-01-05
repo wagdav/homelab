@@ -16,7 +16,7 @@
     initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
     loader.systemd-boot.enable = true;
     kernelModules = [ "kvm-intel" ];
-    kernelPackages = pkgs.linuxPackages_6_11;
+    kernelPackages = pkgs.linuxPackages_6_12;
     zfs.package = pkgs.zfs_unstable;
   };
 
