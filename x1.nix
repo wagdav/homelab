@@ -7,7 +7,6 @@
     nixos-hardware.nixosModules.lenovo-thinkpad-x1-12th-gen
     ./modules/buildMachines.nix
     ./modules/cachix.nix
-    ./modules/mediaKeys.nix
     ./modules/nas.nix
     ./modules/vpn.nix
   ];
@@ -96,7 +95,7 @@
 
     sway = {
       enable = true;
-      extraPackages = with pkgs; [ swaylock swayidle swayimg foot sway-contrib.grimshot wmenu ];
+      extraPackages = with pkgs; [ swaylock swayidle swayimg pulseaudio foot sway-contrib.grimshot wmenu ];
     };
 
     neovim = {
@@ -134,6 +133,8 @@
     illum.enable = true; # Enable the brightness buttons
 
     openssh.enable = true;
+
+    pipewire.pulse.enable = true;
 
     printing.enable = true;
 
