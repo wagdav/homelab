@@ -152,6 +152,8 @@
         };
       };
     };
+
+    upower.enable = true;
   };
 
   virtualisation.podman.enable = true;
