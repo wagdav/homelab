@@ -1,14 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  httpPort = 8022;
+  httpPort = 80;
 
 in
 {
-  imports = [
-    ./consul-catalog.nix
-    ./nas.nix
-  ];
-
   users.users.git = {
     isSystemUser = true;
     group = "git";
@@ -25,7 +20,7 @@ in
       scanPath = "/srv/git";
       settings = {
         enable-git-config = true;
-        clone-url = "git@nuc:/srv/git/$CGIT_REPO_URL";
+        clone-url = "git@git:/srv/git/$CGIT_REPO_URL";
         source-filter = "${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py";
         about-filter = "${pkgs.cgit}/lib/cgit/filters/about-formatting.sh";
         readme = ":README.md";
@@ -43,30 +38,12 @@ in
       }
     ];
 
-    consul.catalog = [
-      {
-        name = "cgit";
-        port = httpPort;
-        tags = (import ./lib/traefik.nix).tagsForHost "git";
-      }
-    ];
-
-    borgbackup.jobs.git = {
-      paths = "/srv/git";
-      repo = "/mnt/nas/backup/borg/git";
-      encryption.mode = "none";
-      doInit = false;
-      user = "borg";
-      group = "git";
-      startAt = "daily";
-      prune.keep = {
-        within = "1d";
-        daily = 7;
-        weekly = 4;
-        monthly = 12;
-        yearly = 10;
-      };
+    openssh = {
+      enable = true;
+      settings.PasswordAuthentication = false;
+      settings.PermitRootLogin = "no";
     };
+
   };
 
   networking.firewall.allowedTCPPorts = [ httpPort ];
