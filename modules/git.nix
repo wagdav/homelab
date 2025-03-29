@@ -24,6 +24,9 @@ in
         source-filter = "${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py";
         about-filter = "${pkgs.cgit}/lib/cgit/filters/about-formatting.sh";
         readme = ":README.md";
+        root-title = "Homelab git repositories";
+        root-desc = "Git repositories hosted at home";
+        section-from-path = 1;
       };
     };
 
