@@ -46,6 +46,20 @@
       };
   };
 
+  containers.nats = {
+    autoStart = true;
+    macvlans = [ "eno1" ];
+    config =
+      { config, lib, ... }:
+      {
+        imports = [
+          ./modules/nats.nix
+        ];
+        networking.useDHCP = lib.mkForce true;
+        system.stateVersion = "24.05";
+      };
+  };
+
   services.borgbackup.jobs.git = {
     paths = "/srv/git";
     repo = "borg@nuc:.";
