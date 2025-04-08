@@ -2,6 +2,8 @@
 
 The configuration of my home infrastructure.
 
+![Architectural overview](./overview.svg)
+
 ## Laptop
 
 My main laptop, a Lenovo Carbon X1, runs [NixOS](https://nixos.org/).
