@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: docker/setup-qemu-action@29109295f81e9208d7d86ff1c6c12d2833863392  # v3.6.0
-      - uses: cachix/install-nix-action@d1ca217b388ee87b2507a9a93bf01368bde7cec2  # v31
+      - uses: cachix/install-nix-action@754537aaedb35f72ab11a60cc162c49ef3016495  # v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable
           extra_nix_config: "extra-platforms = aarch64-linux"
