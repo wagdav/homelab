@@ -19,9 +19,7 @@ in
       fsType = "ext4";
     };
 
-  hardware = {
-    pulseaudio.enable = true;
-  };
+  services.pulseaudio.enable = true;
 
   networking = {
     hostName = name;
