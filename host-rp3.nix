@@ -5,7 +5,7 @@
     nixos-hardware.nixosModules.raspberry-pi-3
     ./hardware/rp3.nix
     ./modules/cachix.nix
-    ./modules/camera-rpi-v1
+    #./modules/camera-rpi-v1
     ./modules/consul/client.nix
     ./modules/remote-builder
     ./modules/server.nix
