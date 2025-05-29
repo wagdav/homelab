@@ -20,8 +20,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "raspberrypi";
       repo = "libcamera";
-      rev = "6ddd79b5bdbedc1f61007aed35391f1559f9e29a";
-      sha256 = "eFIiYCsuukPuG6iqHZeKsXQYSuZ+9q5oLNwuJJ+bAhk=";
+      rev = "d83ff0a4ae4503bc56b7ed48cd142c3dd423ad3b";
+      sha256 = "sha256-VP0s1jOON9J3gn81aiemsChvGeqx0PPivQF5rmSga6M=";
 
       nativeBuildInputs = [ prev.git ];
 
