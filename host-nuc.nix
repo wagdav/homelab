@@ -53,6 +53,7 @@
       {
         imports = [
           ./modules/nats.nix
+          ./modules/vpn.nix
         ];
         networking.useDHCP = lib.mkForce true;
         system.stateVersion = "24.05";
