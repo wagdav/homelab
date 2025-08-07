@@ -42,7 +42,6 @@
         ];
         networking.useDHCP = lib.mkForce true;
         system.stateVersion = "24.05";
-        services.tailscale.interfaceName = "userspace-networking";
       };
   };
 
