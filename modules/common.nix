@@ -2,6 +2,8 @@
 { config, lib, pkgs, nixpkgs, ... }:
 
 {
+  networking.firewall.logRefusedConnections = false;
+
   nix = {
     extraOptions = ''
       builders-use-substitutes = true
