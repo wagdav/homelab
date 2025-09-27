@@ -4,6 +4,7 @@
   imports = [
     nixos-hardware.nixosModules.raspberry-pi-4
     ./hardware/rp4.nix
+    ./modules/arcade.nix
     ./modules/cachix.nix
     ./modules/consul/client.nix
     ./modules/remote-builder
@@ -12,11 +13,6 @@
   ];
 
   system.stateVersion = "23.11";
-
-  hardware = {
-    raspberry-pi."4".apply-overlays-dtmerge.enable = true;
-    deviceTree.enable = true;
-  };
 
   nixpkgs.overlays = [
     (final: super: {

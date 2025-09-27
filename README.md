@@ -245,6 +245,28 @@ sudo dd  if=nixos-sd-image.img of=/dev/mmcblk0 bs=4096 conv=fsync status=progres
 Insert the SD card in the Raspberry Pi and power it up.  The system is
 configured as defined in [host-rp3.nix](./host-rp3.nix).
 
+## Raspberry Pi 4 Model B
+
+Mount the firmware's partition:
+
+```
+mount /dev/disk/by-label/FIRMWARE /mnt
+```
+
+Enable audio in the firmware's configuration in `/mnt/config.txt`
+
+```
+dtparam=audio=on
+```
+
+Update the firmware:
+
+```
+nix-shell -p raspberrypi-eeprom
+mount /dev/disk/by-label/FIRMWARE /mnt
+BOOTFS=/mnt FIRMWARE_RELEASE_STATUS=stable rpi-eeprom-update -d -a
+```
+
 ### Secrets
 
 If the SD card is build from scratch, change or provision the following

@@ -19,8 +19,6 @@ in
       fsType = "ext4";
     };
 
-  services.pulseaudio.enable = true;
-
   networking = {
     hostName = name;
   };
@@ -31,4 +29,16 @@ in
     networks."Eat-Knit-Code-Repeat".pskRaw = "ext:WIFI_KEY";
     interfaces = [ "wlan0" ];
   };
+
+  hardware = {
+    raspberry-pi."4".fkms-3d.enable = true;
+    raspberry-pi."4".bluetooth.enable = true;
+    deviceTree.enable = true;
+    enableAllFirmware = true;
+  };
+
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
+  boot.kernelParams = [ "snd_bcm2835.enable_hdmi=1" ];
+
+  boot.kernelModules = [ "hidp" ];
 }

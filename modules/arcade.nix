@@ -1,36 +1,39 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports = [ ./consul-catalog.nix ];
-
-  sound.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   services.xserver.enable = true;
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "zsnes";
-  services.xserver.desktopManager.retroarch.enable = true;
-  services.xserver.desktopManager.retroarch.package = pkgs.retroarchFull;
+  services.xserver.desktopManager.retroarch = {
+    enable = true;
+    package = (pkgs.retroarch.withCores (cores: with cores; [
+      genesis-plus-gx
+      snes9x
+    ]));
+  };
 
-  nixpkgs.overlays = [
-    (self: super: {
-      retroarchFull = super.retroarch.override {
-        cores = [ super.libretro.snes9x2010 ];
-      };
-    })
-  ];
+  hardware.bluetooth.enable = true;
 
-  users.users.zsnes = {
+  services.pipewire.pulse.enable = true;
+
+  users.users.gamer = {
     isNormalUser = true;
     extraGroups = [ "video" ];
   };
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "gamer";
 
+  # CEC
   nixpkgs.overlays = [
-    (self: super: {
-      libcec = super.libcec.override { inherit (super) libraspberrypi; };
-    })
+    (self: super: { libcec = super.libcec.override { withLibraspberrypi = true; }; })
+  ];
+
+  environment.systemPackages = with pkgs; [
+    libcec
   ];
 
   services.udev.extraRules = ''
-    SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"
+    # allow access to raspi cec device for video group (and optionally register it as a systemd device, used below)
+    KERNEL=="vchiq", GROUP="video", MODE="0660", TAG+="systemd", ENV{SYSTEMD_ALIAS}="/dev/vchiq"
   '';
 }
