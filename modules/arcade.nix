@@ -22,6 +22,9 @@
   };
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "gamer";
+  services.xserver.displayManager.startx.extraCommands = ''
+    xset s off  # Disable screen-saver
+  '';
 
   # CEC
   nixpkgs.overlays = [
