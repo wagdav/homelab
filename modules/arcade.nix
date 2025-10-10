@@ -8,6 +8,7 @@
     enable = true;
     package = (pkgs.retroarch.withCores (cores: with cores; [
       genesis-plus-gx
+      mgba
       snes9x
     ]));
   };
