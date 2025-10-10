@@ -23,8 +23,8 @@
   };
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "gamer";
-  services.xserver.displayManager.startx.extraCommands = ''
-    xset s off  # Disable screen-saver
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xset}/bin/xset s off -dpms
   '';
 
   # CEC
