@@ -9,6 +9,7 @@
     package = (pkgs.retroarch.withCores (cores: with cores; [
       genesis-plus-gx
       mgba
+      picodrive
       snes9x
     ]));
   };
