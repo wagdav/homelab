@@ -24,6 +24,41 @@
     extraUpFlags = "--advertise-exit-node";
   };
 
+  containers.borrow = {
+    autoStart = true;
+    macvlans = [ "eno1" ];
+
+    allowedDevices = [
+      { node = "/dev/dri/card1"; modifier = "rw"; }
+      { node = "/dev/dri/renderD128"; modifier = "rw"; }
+    ];
+
+    bindMounts = {
+      "/dev/dri/card1" = {
+        hostPath = "/dev/dri/card1";
+        isReadOnly = false;
+      };
+      "/dev/dri/renderD128" = {
+        hostPath = "/dev/dri/renderD128";
+        isReadOnly = false;
+      };
+    };
+
+    config =
+      { config, lib, pkgs, ... }:
+      {
+        imports = [
+          ./modules/media.nix
+          ./modules/vpn.nix
+        ];
+
+        networking.useDHCP = lib.mkForce true;
+        networking.useHostResolvConf = lib.mkForce false; # Workaround for https://github.com/NixOS/nixpkgs/issues/162686
+        services.resolved.enable = true;
+        system.stateVersion = "24.05";
+      };
+  };
+
   containers.git = {
     autoStart = true;
     macvlans = [ "eno1" ];
