@@ -44,6 +44,7 @@
     drawio
     curl
     #dropbox-cli
+    entr
     fd
     file
     firefox-wayland
