@@ -2,8 +2,8 @@
 
 {
   imports = [
+    ./alloy.nix
     ./node-exporter.nix
-    ./promtail.nix
   ];
 
   documentation.enable = false;
