@@ -14,6 +14,19 @@
   # Allow radar to see the transmission's Download directory
   users.users.radarr.extraGroups = [ "transmission" ];
 
+  services.sonarr = {
+    enable = true;
+    settings = {
+      server.urlbase = "series";
+      auth.method = "External";
+    };
+  };
+  systemd.services.sonarr.serviceConfig = {
+    StateDirectory = [ "/var/lib/sonarr/media" ]; # TODO: need to create it manually
+  };
+  # Allow sonarr to see the transmission's Download directory
+  users.users.sonarr.extraGroups = [ "transmission" ];
+
   services.prowlarr = {
     enable = true;
     settings = {
@@ -70,6 +83,9 @@
           };
           "/${config.services.prowlarr.settings.server.urlbase}" = {
             proxyPass = "http://127.0.0.1:${toString config.services.prowlarr.settings.server.port}";
+          };
+          "/${config.services.sonarr.settings.server.urlbase}" = {
+            proxyPass = "http://127.0.0.1:${toString config.services.sonarr.settings.server.port}";
           };
           "/transmission" = {
             extraConfig = ''
