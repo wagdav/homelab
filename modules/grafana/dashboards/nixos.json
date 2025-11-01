@@ -144,7 +144,7 @@
       "pluginVersion": "9.4.9",
       "targets": [
         {
-          "expr": "sum by (hostname) (rate({job=\"systemd-journal\"}[5m])) * 60",
+          "expr": "sum by (hostname) (rate({job=\"loki.source.journal.read\"}[5m])) * 60",
           "legendFormat": "{{ hostname }}",
           "refId": "B"
         }

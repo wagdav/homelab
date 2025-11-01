@@ -15,7 +15,7 @@
       }
 
       rule {
-        source_labels = ["__journal__systemd_hostname"]
+        source_labels = ["__journal__hostname"]
         target_label  = "hostname"
       }
     }
