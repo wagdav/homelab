@@ -40,6 +40,7 @@
     settings = {
       rpc-host-whitelist-enabled = true;
       rpc-host-whitelist = config.networking.hostName;
+      ratio-limit-enabled = true;
     };
   };
 
