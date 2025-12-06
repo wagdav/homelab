@@ -3,7 +3,7 @@
     url = "github:edolstra/flake-compat";
     flake = false;
   };
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
   inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
   inputs.disko = {
     url = "github:nix-community/disko";

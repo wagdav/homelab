@@ -22,7 +22,7 @@ in
 {
   nixpkgs.overlays = [
     deviceTree_overlay
-    libcamera_overlay
+    # libcamera_overlay
     rpicam-apps_overlay
   ];
 

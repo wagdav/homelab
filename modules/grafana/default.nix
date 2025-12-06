@@ -60,7 +60,7 @@
 
   networking.firewall.allowedTCPPorts = [
     config.services.grafana.settings.server.http_port
-    config.services.grafana-image-renderer.settings.service.port
+    8081
   ];
 
   services.consul.catalog = [
@@ -71,7 +71,7 @@
     }
     {
       name = "grafana-image-renderer";
-      port = config.services.grafana-image-renderer.settings.service.port;
+      port = 8081;
     }
   ];
 }

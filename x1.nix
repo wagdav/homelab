@@ -47,7 +47,7 @@
     entr
     fd
     file
-    firefox-wayland
+    firefox
     fzf
     git
     gh
@@ -73,7 +73,7 @@
 
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
   ];
 
   security.wrappers = {
@@ -147,7 +147,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
+          command = "${pkgs.greetd}/bin/agreety --cmd sway";
         };
       };
     };

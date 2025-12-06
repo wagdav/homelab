@@ -37,6 +37,7 @@
 
   services.transmission = {
     enable = true;
+    package = pkgs.transmission_4;
     settings = {
       rpc-host-whitelist-enabled = true;
       rpc-host-whitelist = config.networking.hostName;
