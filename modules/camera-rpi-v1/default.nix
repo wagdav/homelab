@@ -30,6 +30,20 @@ in
     rpicam-apps
   ];
 
+  systemd.services.rpicam = {
+    description = "Raspberry Pi Camera Daemon";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    serviceConfig = {
+      ExecStart = ''
+        ${pkgs.natscli}/bin/nats reply rpicam \
+        --server nats \
+        --command="${pkgs.rpicam-apps}/bin/rpicam-still --verbose 0 --immediate --output -"
+      '';
+      User = "root";
+    };
+  };
+
   hardware.deviceTree.filter = "bcm2837-rpi-3*";
   hardware.deviceTree.overlays = [
     # Equivalent to:

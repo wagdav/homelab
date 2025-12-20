@@ -245,6 +245,19 @@ sudo dd  if=nixos-sd-image.img of=/dev/mmcblk0 bs=4096 conv=fsync status=progres
 Insert the SD card in the Raspberry Pi and power it up.  The system is
 configured as defined in [host-rp3.nix](./host-rp3.nix).
 
+### Raspberry Pi Camera 1.3
+
+[This article](https://thewagner.net/blog/2024/07/31/raspberry-pi-camera-on-nixos/),
+describes how I configured my Raspberry Pi v1 camera module on my Raspberry Pi
+3 running NixOS.
+
+As an experiment, I run a service on the Raspberry Pi which takes a photo when
+it receives any message on the NATS subject `rpicam`:
+
+```
+scripts/snap.sh | swayimg -
+```
+
 ## Raspberry Pi 4 Model B
 
 Mount the firmware's partition:
@@ -292,12 +305,6 @@ WIFI_KEY=...
 Connect the host to the tailnet with `tailscale login`.
 
 To connect Cachix, follow [these instructions](#continuous-deployment).
-
-### Raspberry Pi Camera 1.3
-
-[This article](https://thewagner.net/blog/2024/07/31/raspberry-pi-camera-on-nixos/),
-describes how I configured my Raspberry Pi v1 camera module on my Raspberry Pi
-3 running NixOS.
 
 ### Reference
 
