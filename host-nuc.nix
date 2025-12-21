@@ -29,15 +29,10 @@
     macvlans = [ "eno1" ];
 
     allowedDevices = [
-      { node = "/dev/dri/card1"; modifier = "rw"; }
       { node = "/dev/dri/renderD128"; modifier = "rw"; }
     ];
 
     bindMounts = {
-      "/dev/dri/card1" = {
-        hostPath = "/dev/dri/card1";
-        isReadOnly = false;
-      };
       "/dev/dri/renderD128" = {
         hostPath = "/dev/dri/renderD128";
         isReadOnly = false;
