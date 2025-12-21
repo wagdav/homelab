@@ -9,7 +9,7 @@
     };
   };
   systemd.services.radarr.serviceConfig = {
-    StateDirectory = [ "/var/lib/radarr/media" ]; # TODO: need to create it manually
+    StateDirectory = [ "/var/lib/radarr/media" ];
   };
   # Allow radar to see the transmission's Download directory
   users.users.radarr.extraGroups = [ "transmission" ];
@@ -22,7 +22,7 @@
     };
   };
   systemd.services.sonarr.serviceConfig = {
-    StateDirectory = [ "/var/lib/sonarr/media" ]; # TODO: need to create it manually
+    StateDirectory = [ "/var/lib/sonarr/media" ];
   };
   # Allow sonarr to see the transmission's Download directory
   users.users.sonarr.extraGroups = [ "transmission" ];
@@ -34,6 +34,11 @@
       auth.method = "External";
     };
   };
+
+  system.activationScripts.create-media-directories = ''
+    install --directory --mode 755 --owner radarr --group radarr /var/lib/radarr/media
+    install --directory --mode 755 --owner sonarr --group sonarr /var/lib/sonarr/media
+  '';
 
   services.transmission = {
     enable = true;
