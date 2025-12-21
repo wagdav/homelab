@@ -60,8 +60,8 @@
     enable = true;
     # openFirewall = true;  # Use it for first-time config
   };
-  # Allow jellyfin to see the media downloaded by radarr
-  users.users.jellyfin.extraGroups = [ "radarr" ];
+  # Allow jellyfin to see the media downloaded by radarr/sonarr
+  users.users.jellyfin.extraGroups = [ "radarr" "sonarr" ];
   networking.firewall.allowedUDPPorts = [ 7359 ];
 
   # HARDWARE ACCELERATION
