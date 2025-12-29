@@ -49,7 +49,6 @@
 
         networking.useDHCP = lib.mkForce true;
         networking.useHostResolvConf = lib.mkForce false; # Workaround for https://github.com/NixOS/nixpkgs/issues/162686
-        services.resolved.enable = true;
         system.stateVersion = "24.05";
       };
   };
@@ -72,7 +71,6 @@
         ];
         networking.useDHCP = lib.mkForce true;
         networking.useHostResolvConf = lib.mkForce false; # Workaround for https://github.com/NixOS/nixpkgs/issues/162686
-        services.resolved.enable = true;
         system.stateVersion = "24.05";
       };
   };
@@ -89,7 +87,6 @@
         ];
         networking.useDHCP = lib.mkForce true;
         networking.useHostResolvConf = lib.mkForce false; # Workaround for https://github.com/NixOS/nixpkgs/issues/162686
-        services.resolved.enable = true;
         system.stateVersion = "24.05";
       };
   };
