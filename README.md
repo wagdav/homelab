@@ -219,7 +219,7 @@ router/setup.sh
 
 Build the Raspberry Pi's SD card image using QEMU's aarch64 emulator.
 
-On `x230`, because `nuc` [is configured](./hardware/nuc.nix) as a remote builder
+On my laptop, because `nuc` [is configured](./hardware/nuc.nix) as a remote builder
 for `aarch64` packages, just run:
 
 ```
