@@ -52,10 +52,18 @@ in
   networking = {
     hostName = name;
     useDHCP = false;
+  };
 
-    interfaces = {
-      eno1.useDHCP = true;
-      wlp58s0.useDHCP = true;
+  systemd.network = {
+    enable = true;
+
+    networks."20-wired" = {
+      matchConfig = {
+        Type = "ether";
+        Kind = "!*";
+      };
+      networkConfig.DHCP = "yes";
+      linkConfig.RequiredForOnline = "routable";
     };
   };
 }
