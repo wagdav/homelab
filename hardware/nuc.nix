@@ -57,13 +57,38 @@ in
   systemd.network = {
     enable = true;
 
-    networks."20-wired" = {
-      matchConfig = {
-        Type = "ether";
-        Kind = "!*";
+    netdevs."25-mv-0" = {
+      netdevConfig = {
+        Name = "mv-0";
+        Kind = "macvlan";
       };
-      networkConfig.DHCP = "yes";
+      macvlanConfig.Mode = "bridge";
+    };
+
+    networks."30-wired" = {
+      matchConfig = {
+        Name = "eno1";
+      };
+      linkConfig.RequiredForOnline = "carrier";
+      networkConfig = {
+        MACVLAN = "mv-0";
+        DHCP = "no";
+        IPv6AcceptRA = false;
+        LinkLocalAddressing = false;
+        MulticastDNS = false;
+        LLMNR = false;
+      };
+    };
+
+    networks."35-mv-0" = {
+      matchConfig = {
+        Name = "mv-0";
+      };
       linkConfig.RequiredForOnline = "routable";
+      networkConfig = {
+        BindCarrier = "eno1";
+        DHCP = "yes";
+      };
     };
   };
 }
