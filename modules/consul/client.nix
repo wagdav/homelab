@@ -7,7 +7,7 @@
 
   services.consul = {
     extraConfig = {
-      retry_join = [ "nuc.sunrise.box" ];
+      retry_join = [ "192.168.1.11" ]; # Use IP address temporarily
       server = false;
     };
   };
