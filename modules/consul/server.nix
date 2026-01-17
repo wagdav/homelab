@@ -6,7 +6,7 @@
   ];
 
   services.consul = {
-    interface.bind = "eno1";
+    interface.bind = "mv-0";
     extraConfig = {
       server = true;
       bootstrap_expect = 1;
