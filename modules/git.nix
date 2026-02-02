@@ -28,6 +28,7 @@ in
         root-desc = "Git repositories hosted at home";
         section-from-path = 1;
       };
+      gitHttpBackend.enable = false;
     };
 
     nginx.virtualHosts.git.listen = [
