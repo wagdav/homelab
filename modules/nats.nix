@@ -5,6 +5,7 @@
     enable = true;
     jetstream = true;
     settings = {
+      http_port = 8222;
       mqtt = {
         port = 1883;
       };
@@ -15,5 +16,5 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ config.services.nats.port 1883 8080 ];
+  networking.firewall.allowedTCPPorts = [ config.services.nats.port 1883 8080 8222 ];
 }
