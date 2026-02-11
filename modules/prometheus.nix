@@ -29,7 +29,6 @@ let
             "loki"
             "node-exporter"
             "prometheus"
-            "promtail"
             "telegraf"
           ];
         }
