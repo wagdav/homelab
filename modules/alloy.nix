@@ -1,7 +1,13 @@
 { config, pkgs, ... }:
+let
+
+  httpPort = 12345;
+
+in
 {
   services.alloy = {
     enable = true;
+    extraFlags = [ "--server.http.listen-addr=0.0.0.0:${toString httpPort}" ];
   };
 
   environment.etc."alloy/logs.alloy".text = ''
@@ -32,5 +38,14 @@
       }
     }
   '';
+
+  services.consul.catalog = [
+    {
+      name = "alloy";
+      port = httpPort;
+    }
+  ];
+
+  networking.firewall.allowedTCPPorts = [ httpPort ];
 }
 

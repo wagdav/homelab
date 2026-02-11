@@ -22,6 +22,7 @@ let
         {
           server = consulAgent;
           services = [
+            "alloy"
             "grafana"
             "grafana-image-renderer"
             "hydra"
