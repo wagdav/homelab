@@ -45,7 +45,7 @@
   services.grafana-image-renderer = {
     enable = true;
     provisionGrafana = true;
-    settings.service.metrics.enabled = true;
+    settings.server.addr = "0.0.0.0:8081";
   };
 
   # Provision each dashboard in /etc/dashboard
