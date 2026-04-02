@@ -19,7 +19,12 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, disko, flake-compat, nixpkgs, nixos-generators, nixos-hardware, cachix-deploy, treefmt-nix }@attrs:
+  inputs.nats-http = {
+    url = "github:wagdav/nats-http";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs = { self, disko, flake-compat, nixpkgs, nixos-generators, nixos-hardware, cachix-deploy, treefmt-nix, nats-http }@attrs:
     let
       system = "x86_64-linux";
 

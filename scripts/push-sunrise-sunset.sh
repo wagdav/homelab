@@ -1,6 +1,5 @@
 #!/bin/sh
 
-NTFY_ADDRESS=http://nuc:8080/home-thewagner-ec1
 LAT="46.519833N"
 LON="6.6335E"
 
@@ -18,7 +17,7 @@ fi
 
 sunwait wait $LAT $LON
 
-curl \
-  -H "Title: $HEADER" \
-  -d "$MESSAGE" \
-  "$NTFY_ADDRESS"
+nats req ntfy.http <<EDN
+ {:headers {:title "$HEADER"}
+  :body "$MESSAGE"}
+EDN

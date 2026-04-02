@@ -14,12 +14,14 @@ let
       icon=tada
     fi
 
-    ${pkgs.curl}/bin/curl \
-      -H "X-Tags: $icon" \
-      -H "Title: $summary" \
-      -H "Click: $externalUrl" \
-      -d "$description" \
-      "http://nuc:8080/home-thewagner-ec1"
+    export NATS_URL=nats://nats
+
+    ${pkgs.natscli}/bin/nats req ntfy.http <<EDN
+    {:headers {:X-Tags "$icon"
+               :Title  "$summary"
+               :Click  "$externalUrl"}
+     :body "$description"}
+    EDN
   '';
 
 in

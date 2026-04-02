@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nats-http, ... }:
 
 {
+  imports = [
+    nats-http.nixosModules.nats-http
+  ];
+
   services.ntfy-sh = {
     enable = true;
     settings = {
@@ -21,7 +25,7 @@
   users.groups."ntfy" = { };
 
   systemd.services."send-room-humidity" = {
-    path = [ pkgs.curl ];
+    path = [ pkgs.natscli ];
     script = ''
       set -eu
       ${../scripts/push-room-humidity.sh}
@@ -30,6 +34,17 @@
       Type = "oneshot";
       User = "ntfy";
     };
+  };
+
+  services.nats-http = {
+    enable = true;
+    configFiles = [
+      (pkgs.writeText "config.edn" ''
+        {"ntfy" {:server-port 8080
+                 :uri "/home-thewagner-ec1"
+                 :request-method :post}}
+      '')
+    ];
   };
 
   systemd.timers."send-room-humidity" = {
@@ -43,7 +58,7 @@
   };
 
   systemd.services."sunrise-sunset" = {
-    path = [ pkgs.sunwait pkgs.curl ];
+    path = [ pkgs.sunwait pkgs.natscli ];
     script = ''
       set -eu
       ${../scripts/push-sunrise-sunset.sh}
