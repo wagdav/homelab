@@ -94,7 +94,16 @@
 
     sway = {
       enable = true;
-      extraPackages = with pkgs; [ swaylock swayidle swayimg pulseaudio foot sway-contrib.grimshot wmenu ];
+      extraPackages = with pkgs; [
+        adwaita-icon-theme
+        foot
+        pulseaudio
+        sway-contrib.grimshot
+        swayidle
+        swayimg
+        swaylock
+        wmenu
+      ];
     };
 
     neovim = {
