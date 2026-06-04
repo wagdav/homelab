@@ -37,7 +37,6 @@ in
     enableAllFirmware = true;
   };
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
   boot.kernelParams = [ "snd_bcm2835.enable_hdmi=1" ];
 
   boot.kernelModules = [ "hidp" ];
