@@ -25,7 +25,7 @@
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "gamer";
   services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.xorg.xset}/bin/xset s off -dpms
+    ${pkgs.xset}/bin/xset s off -dpms
   '';
 
   # CEC
