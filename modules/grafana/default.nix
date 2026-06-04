@@ -10,6 +10,7 @@
       enabled = true;
       org_role = "Editor";
     };
+    settings.security.secret_key = "SW2YcwTIb9zpOOhoPsMm"; # See https://nixos.org/manual/nixos/stable/release-notes#sec-release-26.05
 
     provision = {
       enable = true;
