@@ -188,6 +188,31 @@ nix build -L --json  .#nixosConfigurations.rp3.config.system.build.toplevel \
     | nix run nixpkgs#cachix -- push wagdav
 ```
 
+Build a derivation using the REPL:
+
+```
+nix-repl> ovl = import ./modules/camera-rpi-v1/overlays/libcamera.nix
+nix-repl> sys = "aarch64-linux";
+nix-repl> pkgs = import <nixpkgs> { system = sys; overlays = [ ovl ]; }
+nix-repl> rpicam = pkgs.callPackage ./modules/camera-rpi-v1/rpicam-apps.nix {}
+nix-repl> :b pkgs.libcamera
+nix-repl> :b rpicam
+```
+
+or with a single `nix build` commmand:
+
+```
+nix build -f - <<EOF
+let
+  pkgs = import <nixpkgs> {
+    system = "aarch64-linux";
+    overlays = [ (import ./modules/camera-rpi-v1/overlays/libcamera.nix) ];
+  };
+in
+  pkgs.callPackage ./modules/camera-rpi-v1/rpicam-apps.nix {}
+EOF
+```
+
 ## Router
 
 Linksys WRT ACM-3200 running OpenWRT.
