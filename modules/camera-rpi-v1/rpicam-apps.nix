@@ -20,13 +20,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "rpicam-apps";
-  version = "1.10.1";
+  version = "1.12.0";
 
   src = fetchFromGitHub {
     owner = "raspberrypi";
     repo = "rpicam-apps";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-uEwpXogTvxOK25/QgKRKWFtgoSWOKZSGZdU1N3dgt7c=";
+    hash = "sha256-u/VdAHCiXlc9MDHcVG2DPKqnQGEynlXIieHuAkcTarQ=";
   };
 
   buildInputs = [
@@ -48,11 +48,6 @@ stdenv.mkDerivation (finalAttrs: {
     ninja
     pkg-config
   ];
-
-  # Meson is no longer able to pick up Boost automatically.
-  # https://github.com/NixOS/nixpkgs/issues/86131
-  BOOST_INCLUDEDIR = "${lib.getDev boost}/include";
-  BOOST_LIBRARYDIR = "${lib.getLib boost}/lib";
 
   env.NIX_CFLAGS_COMPILE = toString [
     "-Wno-error=deprecated-declarations"
