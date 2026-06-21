@@ -1,7 +1,30 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [ ../consul-catalog.nix ];
+
+  systemd.services.grafana-renderer-token = {
+    description = "Generate Grafana Renderer Token";
+    before = [ "grafana.service" ];
+    requiredBy = [ "grafana.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      mkdir -p /var/lib/grafana-tokens
+      chmod 700 /var/lib/grafana-tokens
+
+      if [ ! -f /var/lib/grafana-tokens/renderer_token ]; then
+        ${pkgs.pwgen}/bin/pwgen -s -1 32 | ${pkgs.coreutils}/bin/tr -d '\n' > /var/lib/grafana-tokens/renderer_token
+        chmod 400 /var/lib/grafana-tokens/renderer_token
+      fi
+    '';
+  };
+
+  systemd.services.grafana = {
+    serviceConfig.LoadCredential = "renderer_token:/var/lib/grafana-tokens/renderer_token";
+  };
 
   services.grafana = {
     enable = true;
@@ -11,6 +34,7 @@
       org_role = "Editor";
     };
     settings.security.secret_key = "SW2YcwTIb9zpOOhoPsMm"; # See https://nixos.org/manual/nixos/stable/release-notes#sec-release-26.05
+    settings.rendering.renderer_token = "$__file{/run/credentials/grafana.service/renderer_token}";
 
     provision = {
       enable = true;
