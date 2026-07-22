@@ -8,6 +8,17 @@ in
 {
   imports = [ ./consul-catalog.nix ];
 
+  services.zigbee2mqtt = {
+    enable = true;
+    settings = {
+      mqtt.server = "mqtt://nats:1883";
+      serial = {
+        port = "/dev/serial/by-id/usb-Itead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_V2_40bc51d30591f011bbdd7b6236f0e4ad-if00-port0";
+        adapter = "ember";
+      };
+    };
+  };
+
   services.mosquitto = {
     enable = true;
     listeners = [
