@@ -34,18 +34,31 @@ in
     enable = true;
 
     extraConfig = {
-      inputs.mqtt_consumer = {
-        servers = [ "tcp://127.0.0.1:${toString mqtt_port}" ];
-        topics = [ "tele/+/SENSOR" "tele/+/STATE" ];
-        data_format = "json";
-        json_string_fields = [ "POWER" ];
-        topic_parsing = [
-          {
-            topic = "tele/+/+";
-            fields = "_/device/_";
-          }
-        ];
-      };
+      inputs.mqtt_consumer = [
+        {
+          servers = [ "tcp://127.0.0.1:${toString mqtt_port}" ];
+          topics = [ "tele/+/SENSOR" "tele/+/STATE" ];
+          data_format = "json";
+          json_string_fields = [ "POWER" ];
+          topic_parsing = [
+            {
+              topic = "tele/+/+";
+              fields = "_/device/_";
+            }
+          ];
+        }
+        {
+          servers = [ "tcp://nats:1883" ];
+          topics = [ "zigbee2mqtt/+" ];
+          data_format = "json";
+          topic_parsing = [
+            {
+              topic = "zigbee2mqtt/+";
+              fields = "_/device";
+            }
+          ];
+        }
+      ];
 
       processors.enum = [
         { }
@@ -71,6 +84,10 @@ in
                 "tasmota_96804E" = "Living room";
                 "tasmota_D892EA" = "Study";
                 "tasmota_D8A2DD" = "Kitchen";
+                "0xcc36bbfffe009e3b" = "Living room";
+                "0xcc36bbfffe7f95d3" = "Kitchen";
+                "0xcc36bbfffe7fa019" = "Study";
+                "0xcc36bbfffe80655e" = "Bedroom";
               };
             }
           ];
