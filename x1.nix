@@ -44,6 +44,7 @@
     acpi
     drawio
     curl
+    devenv
     #dropbox-cli
     entr
     fd
