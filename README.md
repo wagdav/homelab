@@ -248,13 +248,13 @@ On my laptop, because `nuc` [is configured](./hardware/nuc.nix) as a remote buil
 for `aarch64` packages, just run:
 
 ```
-nix build .#packages.aarch64-linux.sdcard
+nixos-rebuild build-image --flake .#rp4 --image-variant sd-card
 ```
 
 On other hosts, specify `nuc` explicitly as a remote builder:
 
 ```
-nix build -L .#packages.aarch64-linux.sdcard \
+nixos-rebuild build-image --flake .#rp4 --image-variant sd-card \
   --builders "ssh://root@nuc aarch64-linux $HOME/.ssh/remote-builder 4 1 - - c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUlLYUV0YzhQTnFoeEFRMjRnWTV0MjVZLzhIVTZTdFVCNmttVTF4bVZ0YTcgcm9vdEBudWMK"
 ```
 

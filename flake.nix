@@ -13,16 +13,12 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
   inputs.cachix-deploy.url = "github:cachix/cachix-deploy-flake";
-  inputs.nixos-generators = {
-    url = "github:nix-community/nixos-generators";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
   inputs.treefmt-nix = {
     url = "github:numtide/treefmt-nix";
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, disko, flake-compat, nixpkgs, nixos-generators, nixos-hardware, cachix-deploy, treefmt-nix }@attrs:
+  outputs = { self, disko, flake-compat, nixpkgs, nixos-hardware, cachix-deploy, treefmt-nix }@attrs:
     let
       system = "x86_64-linux";
 
@@ -79,22 +75,6 @@
             rp3 = self.nixosConfigurations.rp3.config.system.build.toplevel;
             rp4 = self.nixosConfigurations.rp4.config.system.build.toplevel;
           };
-        };
-      };
-
-      packages.aarch64-linux = {
-        sdcard = nixos-generators.nixosGenerate {
-          system = "aarch64-linux";
-          format = "sd-aarch64";
-          specialArgs = attrs;
-          modules = [ ./host-rp3.nix ];
-        };
-
-        sdcard-rp4 = nixos-generators.nixosGenerate {
-          system = "aarch64-linux";
-          format = "sd-aarch64";
-          specialArgs = attrs;
-          modules = [ ./host-rp4.nix ];
         };
       };
 
