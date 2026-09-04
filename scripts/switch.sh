@@ -16,5 +16,5 @@ else
         --flake ".#$host" \
         --target-host "root@$host" \
         --build-host  "root@$host" \
-        --fast
+        --no-reexec
 fi
