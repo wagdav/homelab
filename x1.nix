@@ -194,8 +194,8 @@
       "+ /home/*/.ssh/id_*"
       "+ /home/*/.gnupg/**"
       "- **/*.o"
-      "- **/.pyc"
-      "- **/.swp"
+      "- **/*.pyc"
+      "- **/*.swp"
       "- **"
     ];
     repo = "borg@nuc:.";
