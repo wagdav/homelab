@@ -36,9 +36,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  powerManagement.powertop.enable = true;
-
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     acpi
@@ -152,7 +149,17 @@
 
     tailscale.useRoutingFeatures = "client";
 
-    tlp.enable = true;
+    tlp = {
+      enable = true;
+      settings = {
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "power"; # default: balance_power
+        CPU_BOOST_ON_BAT = 0; # default: unset (boost on)
+        PLATFORM_PROFILE_ON_BAT = "low-power"; # default: balanced
+        PCIE_ASPM_ON_BAT = "powersupersave"; # default: default
+        START_CHARGE_THRESH_BAT0 = 75; # default: unset (charge to 100%)
+        STOP_CHARGE_THRESH_BAT0 = 80; # default: unset (charge to 100%)
+      };
+    };
 
     greetd = {
       enable = true;
