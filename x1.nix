@@ -175,13 +175,12 @@
   };
 
   virtualisation.podman.enable = true;
-  virtualisation.virtualbox.host.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dwagner = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "dialout" "networkmanager" "vboxusers" "wheel" ];
+    extraGroups = [ "dialout" "networkmanager" "wheel" ];
   };
 
   nix.settings.trusted-users = [ "root" "@wheel" ];
