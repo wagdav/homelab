@@ -129,6 +129,7 @@
 
     bluetooth = {
       enable = true;
+      powerOnBoot = false;
     };
 
     trackpoint = {
