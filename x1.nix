@@ -15,6 +15,7 @@
     initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
     loader.systemd-boot.enable = true;
     kernelModules = [ "kvm-intel" ];
+    kernelParams = [ "i915.enable_fbc=1" "i915.enable_psr=1" ];
     zfs.forceImportRoot = false;
   };
 
