@@ -149,6 +149,8 @@
 
     fprintd.enable = true;
 
+    fwupd.enable = true;
+
     tailscale.useRoutingFeatures = "client";
 
     tlp = {
