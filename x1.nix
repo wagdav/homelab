@@ -35,6 +35,9 @@
   # See https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
 
+  # Don't start Tailscale on boot; start it manually with `sudo systemctl start tailscaled`.
+  systemd.services.tailscaled.wantedBy = lib.mkForce [ ];
+
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile.
@@ -129,7 +132,7 @@
     enableAllFirmware = true;
 
     bluetooth = {
-      enable = true;
+      enable = false;
       powerOnBoot = false;
     };
 
