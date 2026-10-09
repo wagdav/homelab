@@ -50,7 +50,6 @@
     entr
     fd
     file
-    firefox
     fzf
     git
     gh
@@ -92,6 +91,8 @@
 
   programs = {
     autojump.enable = true;
+
+    firefox.enable = true;
 
     gnupg.agent = { enable = true; enableSSHSupport = true; };
 
