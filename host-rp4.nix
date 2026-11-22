@@ -4,9 +4,9 @@
   imports = [
     nixos-hardware.nixosModules.raspberry-pi-4
     ./hardware/rp4.nix
-    ./modules/arcade.nix
     ./modules/cachix.nix
     ./modules/consul/client.nix
+    ./modules/jellyfin-tv.nix
     ./modules/remote-builder
     ./modules/server.nix
     ./modules/vpn.nix

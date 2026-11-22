@@ -37,6 +37,9 @@ in
     enableAllFirmware = true;
   };
 
+  # enableAllFirmware + bluetooth pull in unfree Broadcom firmware.
+  nixpkgs.config.allowUnfree = true;
+
   boot.kernelParams = [ "snd_bcm2835.enable_hdmi=1" ];
 
   boot.kernelModules = [ "hidp" ];
